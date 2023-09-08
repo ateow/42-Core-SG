@@ -11,26 +11,23 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+//#include <bsd/string.h>
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
-	int	j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
-	j = 0;
-	if (little[j] == '\0')
-		return ((char *)(big));
-	while (i < (int)len)
+	if (!*needle)
+		return ((char *) haystack);
+	while (haystack[i] && i < len)
 	{
-		while (big[i + j] == little[j] && big[i + j] != '\0')
-		{
-			j++;
-		}
-		if (little[j] == '\0')
-			return ((char *)(big + i));
-		i++;
 		j = 0;
+		while (needle[j] == haystack[i + j] && i + j < len)
+			if (!needle[++j])
+				return ((char *) haystack + i);
+		i++;
 	}
 	return (0);
 }
@@ -38,13 +35,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 int main ()
 {
 	char haystack[99] ="123456";
-	char needle[99] = "34";
-	
-	char* ret = ft_strnstr(haystack, needle, 6);
-	printf("%s", ret);
-	
-	//strstr(haystack, needle);
-	//ft_strstr(haystack, needle);
+	char needle[99] = "2";
 
-	//printf("%s\n", strstr(haystack, needle));
+	printf("ft: %s\n", ft_strnstr(haystack, needle, 6));	
+	printf("og: %s\n", strnstr(haystack, needle, 6));
+	
+	printf("\nnew: %s",ft_strnstr("lorem ipsum dolor sit amet", "ipsumm", 30));
 }*/

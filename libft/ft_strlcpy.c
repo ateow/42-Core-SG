@@ -33,17 +33,19 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 /*
 int	main()
 {
+	printf("### Function: strlcpy ###");
 	//function suppose to return len of src
 	//function will null terminate. means size - 1. last byte for null
 	//assume that size that user end is less or equal to dest size
 	
 	char src[] = "helloworld";
-	//char dest[10] = "aaaaaaaaaa";
-	char dest2[10] = "aaaaaaaaaa";
-	
-	//printf("\nOG len:%ld", strlcpy(dest, src, 3));
-	//printf("\nOG string:%s", dest);
+	char src2[] = "helloworld";
+	char dest[15] = "nonono";
+	char dest2[15] = "nonono";
 
-	printf("\nft len:%ld", ft_strlcpy(dest2, src, 4));
-	printf("\nft string:%s", dest2);
+	printf("\n\nft len:%ld", ft_strlcpy(dest2, src2, 0));
+	printf("\nft string:%s\n", dest2);
+		
+	printf("\n\nOG len:%ld", strlcpy(dest, src, 0));
+	printf("\nOG string:%s\n", dest);
 }*/
