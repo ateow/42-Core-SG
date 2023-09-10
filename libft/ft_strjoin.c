@@ -38,9 +38,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[i + j] = '\0';
 	return (new);
 }
-
+/*
 int	main()
 {
 	printf("### Function: ft_strjoin ###");
 	printf("\nft_strjoin: %s\n",ft_strjoin("hello","world"));
-}
+}*/
