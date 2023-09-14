@@ -16,6 +16,6 @@ Assuming libft.a is in the current directory you want to compile your code (use 
 
 cc main.c -L . libft.a && ./a.out
 
-cc main.c -L . -lft.a && ./a.out [-lft is a shortform for libraries labelled as libXXX.a]
+cc main.c -L . -lXXX.a && ./a.out [-lft is a shortform for libraries labelled as libXXX.a]
 
 note that header file is not included because main.c define that libft.h is included and will search for current directory for libft.h
