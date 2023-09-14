@@ -4,7 +4,8 @@
 ALIAS: Name, CC, CFLAG Sources, Bsources, objects and bobjects\
 COMMANDS: all, $(NAME), bonus, %.o, clean, fclean, re
 
-    NAME = libft.a: Defines the name of the library to be created as libft.a.
+    NAME = libft.a
+    Defines the name of the library to be created as libft.a.
 
     all: $(NAME): 
     The default target all depends on $(NAME). It's the default goal when you run make without specifying a target.
