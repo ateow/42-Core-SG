@@ -1,6 +1,7 @@
 # Makefile Guide
 
-ALIAS: Name, CC, CFLAG Sources, Bsources, objects and bobjects
+
+ALIAS: Name, CC, CFLAG Sources, Bsources, objects and bobjects\
 COMMANDS: all, $(NAME), bonus, %.o, clean, fclean, re
 
     NAME = libft.a: Defines the name of the library to be created as libft.a.
@@ -29,11 +30,11 @@ COMMANDS: all, $(NAME), bonus, %.o, clean, fclean, re
     This rule compiles each .c file into a .o file using the C compiler and specified flags.
     
     clean: 
-    rm -f $(OBJECTS) $(BOBJECTS): Removes the object files.
+        rm -f $(OBJECTS) $(BOBJECTS): Removes the object files.
     A target for removing object files and bonus object files.
 
     fclean: clean
-    rm -f $(NAME): Removes the library file.
+        rm -f $(NAME): Removes the library file.
     execute command make clean then remover libft.a file.
 
     re: fclean all
