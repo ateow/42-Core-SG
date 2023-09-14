@@ -1,4 +1,4 @@
-#How to use libft.a
+# How to use libft.a
 
 -l Flag:
 The -l flag is used to specify a library that the linker should include when linking your program.
@@ -12,9 +12,10 @@ This flag allows you to specify custom library search paths in addition to the d
 
 Run Make > generate static library libft.a (note that header is not compiled in static libraries)
 
-assuming libft.a is in the current directory you want to compile your code:
+Assuming libft.a is in the current directory you want to compile your code (use first one):
+
 cc main.c -L . libft.a && ./a.out
-or
+
 cc main.c -L . -lft.a && ./a.out [-lft is a shortform for libraries labelled as libXXX.a]
 
 note that header file is not included because main.c define that libft.h is included and will search for current directory for libft.h
