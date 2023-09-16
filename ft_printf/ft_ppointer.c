@@ -12,14 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_ppointer(unsigned long nbr)
-{
-	ft_pchar('0');
-	ft_pchar('x');
-	return (ft_phexapointer(nbr) + 2);
-}
-
-int	ft_phexapointer(unsigned long nbr)
+static int	ft_phexapointer(unsigned long nbr)
 {
 	char	*hex;
 	int		count;
@@ -37,4 +30,16 @@ int	ft_phexapointer(unsigned long nbr)
 		count += ft_phexapointer(nbr % 16);
 	}
 	return (count);
+}
+
+int	ft_ppointer(unsigned long nbr)
+{
+	if (nbr == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	ft_pchar('0');
+	ft_pchar('x');
+	return (ft_phexapointer(nbr) + 2);
 }

@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SOURCES = ft_printf.c ft_itoa.c ft_phexanbr.c ft_pstring.c ft_uitoa.c ft_pchar.c ft_ppointer.c ft_printf.h ft_strlen.c
+SOURCES = ft_printf.c ft_itoa.c ft_phexanbr.c ft_pstring.c ft_uitoa.c ft_pchar.c ft_ppointer.c ft_strlen.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -22,16 +22,16 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(AR) -r $@ $?
+	ar rcs $(NAME) $(OBJECTS)
 
-%.o: %.c
+$(OBJECTS): %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJECTS)
 
 fclean:	clean
-	$(RM) $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

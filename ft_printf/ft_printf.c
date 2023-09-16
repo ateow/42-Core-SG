@@ -12,22 +12,24 @@
 
 #include "ft_printf.h"
 
-int	ft_definetype(char c, va_list args)
+static int	ft_definetype(char c, va_list args, int *i)
 {
 	if (c == 'i' || c == 'd')
-		return (ft_pstring(ft_itoa(va_arg(args, int))));
-	if (c == 'u')
-		return (ft_pstring(ft_uitoa(va_arg(args, unsigned int))));
-	if (c == 'c')
+		return (ft_itoa(va_arg(args, int)));
+	else if (c == 'u')
+		return (ft_uitoa(va_arg(args, unsigned int)));
+	else if (c == 'c')
 		return (ft_pchar(va_arg(args, int)));
-	if (c == 's')
+	else if (c == 's')
 		return (ft_pstring(va_arg(args, char *)));
-	if (c == 'x' || c == 'X')
+	else if (c == 'x' || c == 'X')
 		return (ft_phexanbr(va_arg(args, unsigned int), c));
-	if (c == 'p')
+	else if (c == 'p')
 		return (ft_ppointer(va_arg(args, unsigned long)));
-	if (c == '%')
+	else if (c == '%')
 		return (ft_pchar('%'));
+	else
+		(*i)--;
 	return (0);
 }
 
@@ -42,17 +44,32 @@ int	ft_printf(const char *input, ...)
 	count = 0;
 	while (input[i] != '\0')
 	{
-		if (input[i] != '%')
+		if (input[i] == '%')
 		{
-			count = count + ft_pchar(input[i]);
+			i++;
+			count += ft_definetype(input[i], args, &i);
 			i++;
 		}
-		else if (input[i] == '%')
+		else
 		{
-			count = count + ft_definetype(input[i + 1], args);
-			i = i + 2;
+			count += ft_pchar(input[i]);
+			i++;
 		}
 	}
 	va_end(args);
 	return (count);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	printf(" NULL %s NULL", NULL);
+
+	int x = ft_printf("%a");
+	printf("\n");
+	int y = printf("%");
+	printf("\nx: %i", x);
+	printf("\ny: %i", y);
+	printf("\n");
+}
+*/

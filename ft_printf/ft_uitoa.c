@@ -27,7 +27,7 @@ static unsigned int	ft_len(unsigned int n)
 	return (len);
 }
 
-char	*ft_uitoa(int n)
+int	ft_uitoa(int n)
 {
 	char			*arr;
 	unsigned int	nb;
@@ -44,10 +44,7 @@ char	*ft_uitoa(int n)
 		arr[--len] = (nb % 10) + '0';
 		nb = nb / 10;
 	}
-	return (arr);
+	write(1, arr, ft_strlen(arr));
+	free (arr);
+	return (ft_len(n));
 }
-/*
-int	main()
-{
-	printf("%s",ft_itoa(-2147483648));
-}*/

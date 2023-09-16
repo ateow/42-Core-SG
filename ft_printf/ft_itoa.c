@@ -27,7 +27,7 @@ static int	ft_len(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+int	ft_itoa(int n)
 {
 	char	*arr;
 	long	nb;
@@ -49,10 +49,7 @@ char	*ft_itoa(int n)
 		arr[--len] = (nb % 10) + '0';
 		nb = nb / 10;
 	}
-	return (arr);
+	write(1, arr, ft_strlen(arr));
+	free (arr);
+	return (ft_len(n));
 }
-/*
-int	main()
-{
-	printf("%s",ft_itoa(-2147483648));
-}*/
