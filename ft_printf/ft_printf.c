@@ -59,14 +59,3 @@ int	ft_printf(const char *input, ...)
 	va_end(args);
 	return (count);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int x = ft_printf("%a");
-	printf("\n");
-	int y = printf("%");
-	printf("\nx: %i", x);
-	printf("\ny: %i", y);
-	printf("\n");
-}*/

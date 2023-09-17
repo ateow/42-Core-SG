@@ -21,10 +21,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-/*
-int	main()
-{
-	char *s = "hello";
-	printf("\nOG: %ld", strlen(s));
-	printf("\nft: %ld", ft_strlen(s));
-}*/
