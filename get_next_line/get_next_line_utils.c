@@ -32,12 +32,48 @@ char	*ft_strdup(const char *src)
 	return (new);
 }
 
+char	*ft_strdup_special(const char *src)
+{
+	char	*new;
+	size_t		i;
+
+	if (!src)
+		return (0);
+	new = malloc(sizeof(char) * (ft_strlen_special(src) + 1));
+	if (new == NULL)
+		return (0);
+	i = 0;
+	while (i < ft_strlen_special(src))
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (i);
 	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+size_t	ft_strlen_special(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (i);
+	while (s[i] != '\0' && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
 		i++;
 	return (i);
 }
@@ -48,9 +84,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
-	new = malloc((ft_strlen(s1)+ ft_strlen(s2) + 1) * sizeof(char));
+
+	new = malloc((ft_strlen(s1) + ft_strlen_special(s2) + 1) * sizeof(char));
 	if (!new)
 		return (NULL);
 	i = 0;
@@ -60,11 +97,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	j = 0;
-	while (j < (int)ft_strlen(s2))
+	while (j < (int)ft_strlen_special(s2))
 	{
 		new[i + j] = s2[j];
 		j++;
 	}
 	new[i + j] = '\0';
+	//printf("inside:%s\n", new);
 	return (new);
 }
