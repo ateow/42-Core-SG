@@ -12,87 +12,83 @@
 
 #include "get_next_line.h"
 
-static char	*append_holding(int fd, char *buf, char *holding)
+char	*append_holding(int fd, char *holding)
 {
+	char	*buf;
 	char	*tmp;
-	int		read_line;
 
-	read_line = 1;
-	while (read_line != 0)
+	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buf)
+		return (NULL);
+	while (read(fd, buf, BUFFER_SIZE) > 0)
 	{
-		read_line = read(fd, buf, BUFFER_SIZE);
-		if (read_line == -1)
-			return (NULL);
-		else if (read_line == 0)
-			break ;
-		buf[read_line] = '\0';
 		if (holding == NULL)
 			holding = ft_substr("", 0, 1);
 		tmp = ft_strjoin(holding, buf);
 		free(holding);
 		holding = ft_strjoin("", tmp);
 		free(tmp);
-		tmp = NULL;
-		if (get_index(buf, '\n') != (-1))
+		if (get_index(buf, '\n') != -1)
 			break ;
 	}
+	free(buf);
 	return (holding);
 }
 
-void	extract_line(char *line)
+char	*extract_line(char *holding)
 {
-	int	index;
+	int		len;
+	char	*line;
 
-	index = get_index(line, '\n');
-	if (index != -1)
-		line[index + 1] = '\0';
+	if (holding == NULL)
+		return (NULL);
+	len = get_index(holding, '\n') + 1;
+	line = ft_substr(holding, 0, len);
+	if (!*line)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
 
-static char	*update_holding(char *line)
+char	*update_holding(char *holding)
 {
 	int		new_len;
+	char	*tmp;
 	int		start;
-	char	*holding;
-	int		index;
 
-	index = get_index(line, '\n');
-	if (index != -1)
+	if (holding == NULL)
 	{
-		start = index + 1;
-		new_len = ft_strlen(line) - start;
-		holding = ft_substr(line, start, new_len);
-		if (*holding == '\0')
-		{
-			free(holding);
-			holding = NULL;
-		}
+		free(holding);
+		return (NULL);
 	}
 	else
-		holding = NULL;
-	return (holding);
+	{
+		start = get_index(holding, '\n') + 1;
+		new_len = ft_strlen(holding) - start;
+		tmp = ft_substr(holding, start, new_len);
+		free(holding);
+		holding = ft_strjoin("", tmp);
+		free(tmp);
+		return (holding);
+	}
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*holding;
 	char		*line;
-	char		*buf;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (0);
-	line = append_holding(fd, buf, holding);
-	free(buf);
-	buf = NULL;
-	if (!line)
-		return (NULL);
-	holding = update_holding(line);
-	extract_line(line);
+
+	holding = append_holding(fd, holding);
+	line = extract_line(holding);
+	holding = update_holding(holding);
 	return (line);
 }
-/*
+
 int	main(void)
 {
 	int fd1 = open("sample.txt", O_RDONLY, 0);
@@ -100,5 +96,5 @@ int	main(void)
 	printf("\nouput >>>>>>>%s\n", get_next_line(fd1));
 	printf("\nouput >>>>>>>%s\n", get_next_line(fd1));
 	printf("\nouput >>>>>>>%s\n", get_next_line(fd1));
-	printf("\nouput >>>>>>>%s\n", get_next_line(fd1));
-}*/
+}
+
