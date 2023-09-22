@@ -36,22 +36,6 @@ int	get_index(const char *s, int c)
 	return (-1);
 }
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*p;
-
-	p = malloc(count * size);
-	if (p)
-	{
-		while (count > 0)
-		{
-			((unsigned char *)p)[count - 1] = '\0';
-			count--;
-		}
-	}
-	return (p);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
