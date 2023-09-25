@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+//#include <stdio.h>
+//#include <fcntl.h>
+#include "get_next_line_bonus.h"
 
 static char	*add_buf_to_holding(char *holding, char *buf)
 {
@@ -54,13 +56,26 @@ static char	*append_holding(int fd, char *holding)
 	return (holding);
 }
 
-void	extract_line(char *line)
+char	**ft_free(char *line, char **holding)
 {
-	int	index;
+	int	i;
 
-	index = get_index(line, '\n');
-	if (index != -1)
-		line[index + 1] = '\0';
+	i = 0;
+	if (line == NULL)
+	{
+		while (i < FD_SIZE)
+		{
+			if (holding[i] != NULL)
+				break ;
+			i++;
+		}
+		if (i == FD_SIZE)
+		{
+			free(holding);
+			holding = NULL;
+		}
+	}
+	return (holding);
 }
 
 static char	*update_holding(char *line)
@@ -89,23 +104,27 @@ static char	*update_holding(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*holding;
+	static char	**holding = NULL;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SIZE)
 		return (NULL);
-	line = append_holding(fd, holding);
+	if (holding == NULL)
+		holding = ft_calloc(FD_SIZE + 1, sizeof(char *));
+	line = append_holding(fd, holding[fd]);
 	if (line == NULL)
 	{
-		if (holding != NULL)
+		if (holding[fd] != NULL)
 		{
-			free(holding);
-			holding = NULL;
+			free(holding[fd]);
+			holding[fd] = NULL;
 		}
+		holding = ft_free(line, holding);
 		return (NULL);
 	}
-	holding = update_holding(line);
-	extract_line(line);
+	holding[fd] = update_holding(line);
+	if (get_index(line, '\n') != -1)
+		line[get_index(line, '\n') + 1] = '\0';
 	return (line);
 }
 /*
@@ -114,14 +133,12 @@ int	main(void)
 	char *s;
 
 	int fd1 = open("sample.txt", O_RDONLY, 0);
-	//int fd2 = open("sample2.txt", O_RDONLY, 0);
-
-	fd1 = 0;
-	s = get_next_line(0);
+	int fd2 = open("sample2.txt", O_RDONLY, 0);
+	s = get_next_line(fd1);
 	printf("output:%s|", s);
 	free(s);
 	
-	s = get_next_line(fd1);
+	s = get_next_line(fd2);
 	printf("output:%s|", s);
 	free(s);
 	
