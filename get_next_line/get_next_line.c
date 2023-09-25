@@ -54,15 +54,6 @@ static char	*append_holding(int fd, char *holding)
 	return (holding);
 }
 
-void	extract_line(char *line)
-{
-	int	index;
-
-	index = get_index(line, '\n');
-	if (index != -1)
-		line[index + 1] = '\0';
-}
-
 static char	*update_holding(char *line)
 {
 	int		new_len;
@@ -105,7 +96,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	holding = update_holding(line);
-	extract_line(line);
+	if (get_index(line, '\n') != -1)
+		line[get_index(line, '\n') + 1] = '\0';
 	return (line);
 }
 /*
