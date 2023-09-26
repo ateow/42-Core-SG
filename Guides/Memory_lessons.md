@@ -47,6 +47,7 @@ Double free is not a issue if its "if, else". it is a issue for "if, if"
    	}
 
 To prevent, free str after your conditions.
+
 	str = malloc(5);
  	if (condition 1)
    		call function 1;
