@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
-//#include <fcntl.h>
 #include "get_next_line_bonus.h"
 
 static char	*add_buf_to_holding(char *holding, char *buf)
@@ -104,7 +102,7 @@ static char	*update_holding(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	**holding = NULL;
+	static char	**holding;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_SIZE)
@@ -127,22 +125,3 @@ char	*get_next_line(int fd)
 		line[get_index(line, '\n') + 1] = '\0';
 	return (line);
 }
-/*
-int	main(void)
-{
-	char *s;
-
-	int fd1 = open("sample.txt", O_RDONLY, 0);
-	int fd2 = open("sample2.txt", O_RDONLY, 0);
-	s = get_next_line(fd1);
-	printf("output:%s|", s);
-	free(s);
-	
-	s = get_next_line(fd2);
-	printf("output:%s|", s);
-	free(s);
-	
-	s = get_next_line(fd1);
-	printf("output:%s|", s);
-	free(s);
-}*/

@@ -100,24 +100,3 @@ char	*get_next_line(int fd)
 		line[get_index(line, '\n') + 1] = '\0';
 	return (line);
 }
-/*
-int	main(void)
-{
-	char *s;
-
-	int fd1 = open("sample.txt", O_RDONLY, 0);
-	//int fd2 = open("sample2.txt", O_RDONLY, 0);
-
-	fd1 = 0;
-	s = get_next_line(0);
-	printf("output:%s|", s);
-	free(s);
-	
-	s = get_next_line(fd1);
-	printf("output:%s|", s);
-	free(s);
-	
-	s = get_next_line(fd1);
-	printf("output:%s|", s);
-	free(s);
-}*/

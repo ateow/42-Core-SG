@@ -17,11 +17,11 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 10
 # endif
 
 # ifndef FD_SIZE
-#  define FD_SIZE 256
+#  define FD_SIZE 1024
 # endif
 
 void	*ft_calloc(size_t count, size_t size);
