@@ -29,7 +29,8 @@ Pay attention to how we exit the function / program and make sure that free is c
 
 The follwing code will cause a double free issue because in the event you meet 2 conditions, free(d) will be called twice. 
 Double free is not a issue if its "if, else". it is a issue for "if, if"
-	str = malloc(5);
+	
+ 	str = malloc(5);
  	if (condition 1)
   	{
    		call function 1;
