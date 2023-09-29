@@ -21,10 +21,9 @@ void	swap_a(int *arr, int count)
 		write(1, "fail sa\n", 8);
 		return ;
 	}
-	count = count - 1;
-	tmp = arr[count];
-	arr[count] = arr[count - 1];
-	arr[count - 1] = tmp;
+	tmp = arr[0];
+	arr[0] = arr[1];
+	arr[1] = tmp;
 	write(1, "sa\n", 3);
 }
 
@@ -34,13 +33,12 @@ void	swap_b(int *arr, int count)
 
 	if (count < 2)
 	{
-		write(1, "fail sb\n", 8);
+		write(1, "fail sa\n", 8);
 		return ;
 	}
-	count = count - 1;
-	tmp = arr[count];
-	arr[count] = arr[count - 1];
-	arr[count - 1] = tmp;
+	tmp = arr[0];
+	arr[0] = arr[1];
+	arr[1] = tmp;
 	write(1, "sb\n", 3);
 }
 
@@ -53,13 +51,11 @@ void	swap_ab(int *arr_a, int count_a, int *arr_b, int count_b)
 		write(1, "fail ss\n", 8);
 		return ;
 	}
-	count_a = count_a - 1;
-	count_b = count_b - 1;
-	tmp = arr_a[count_a];
-	arr_a[count_a] = arr_a[count_a - 1];
-	arr_a[count_a - 1] = tmp;
-	tmp = arr_b[count_b];
-	arr_b[count_b] = arr_b[count_b - 1];
-	arr_b[count_b - 1] = tmp;
+	tmp = arr_a[0];
+	arr_a[0] = arr_a[1];
+	arr_a[1] = tmp;
+	tmp = arr_b[0];
+	arr_b[0] = arr_b[1];
+	arr_b[1] = tmp;
 	write(1, "ss\n", 3);
 }

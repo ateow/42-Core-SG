@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 int		ft_atoi(const char *str);
 int		is_error(char **arr, int count);
@@ -23,11 +24,11 @@ void	swap_b(int *arr, int count);
 void	swap_ab(int *arr_a, int count_a, int *arr_b, int count_b);
 void	push_a(int *arr_a, int *count_a, int *arr_b, int *count_b);
 void	push_b(int *arr_a, int *count_a, int *arr_b, int *count_b);
-void	rot_a(int *arr, int count);
-void	rot_b(int *arr, int count);
-void	rot_ab(int *arr_a, int count_a, int *arr_b, int count_b);
-void	revrot_a(int *arr, int count);
-void	revrot_b(int *arr, int count);
-void	revrot_ab(int *arr_a, int count_a, int *arr_b, int count_b);
+void	rot_up_a(int *arr, int count);
+void	rot_up_b(int *arr, int count);
+void	rot_up_ab(int *arr_a, int count_a, int *arr_b, int count_b);
+void	rot_down_a(int *arr, int count);
+void	rot_down_b(int *arr, int count);
+void	rot_down_ab(int *arr_a, int count_a, int *arr_b, int count_b);
 
 #endif
