@@ -38,7 +38,7 @@ void	push_a(int *arr_a, int *count_a, int *arr_b, int *count_b)
 		i++;
 	}
 	arr_b[0] = tmp;
-	write(1, "pa\n", 3);
+	write(1, "pb\n", 3);
 }
 
 void	push_b(int *arr_a, int *count_a, int *arr_b, int *count_b)
@@ -67,5 +67,5 @@ void	push_b(int *arr_a, int *count_a, int *arr_b, int *count_b)
 		i++;
 	}
 	arr_b[0] = tmp;
-	write(1, "pb\n", 3);
+	write(1, "pa\n", 3);
 }
