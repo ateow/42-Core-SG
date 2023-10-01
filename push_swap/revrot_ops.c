@@ -19,7 +19,7 @@ void	rot_down_a(int *arr, int count)
 
 	if (count < 2)
 	{
-		write(1, "fail rra\n", 9);
+		//write(1, "fail rra\n", 9);
 		return ;
 	}
 	i = 0;
@@ -40,7 +40,7 @@ void	rot_down_b(int *arr, int count)
 
 	if (count < 2)
 	{
-		write(1, "fail rra\n", 9);
+		//write(1, "fail rra\n", 9);
 		return ;
 	}
 	i = 0;
@@ -61,7 +61,7 @@ void	rot_down_ab(int *arr_a, int count_a, int *arr_b, int count_b)
 
 	if (count_a < 2 || count_b < 2)
 	{
-		write(1, "fail rrr\n", 9);
+		//write(1, "fail rrr\n", 9);
 		return ;
 	}
 	i = 0;

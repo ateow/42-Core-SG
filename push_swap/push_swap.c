@@ -117,6 +117,81 @@ void	sort_five(int *stack_a, int count_a, int *stack_b, int count_b)
 	}
 }
 
+void	move_small_to_b(int *stack_a, int *count_a, int *stack_b, int *count_b, int chunk_size)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	*smallest_arr;
+
+	smallest_arr = find_smallest_numbers(stack_a, *count_a, chunk_size);
+	i = 0;
+	k = 0;
+	while (i < *count_a + *count_b)
+	{
+		//printf("i:%d\n",i);
+		j = 0;
+		while (j < chunk_size && k < chunk_size)
+		{
+			//printf("j:%d\n",j);
+			//printf("stack_a[0]: %d    smallest_arr[j]: %d\n",stack_a[0],  smallest_arr[j]);
+			if (stack_a[0] == smallest_arr[j])
+			{
+			//	printf("found same\n");
+				push_a(stack_a, count_a, stack_b, count_b);
+				//if (stack_b[0] < stack_b[10])
+				//	swap_b(stack_b, *count_b);
+				k++;
+				j = -1;
+			}
+			j++;
+		}
+		if (k == chunk_size)
+			break ;
+		rot_up_a(stack_a, *count_a);
+		i++;
+	}
+	free(smallest_arr);
+	//print_stack(stack_a, *count_a, stack_b, *count_b);
+}
+
+void	return_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b)
+{
+	int	i;
+	int	l;
+
+	i = *count_b;
+	while (i > 0)
+	{
+		l = find_largest_index(stack_b, *count_b);
+		if (l == 0)
+		{
+			push_b(stack_b, count_b, stack_a, count_a);
+			i--;
+		}
+		else if (l < (*count_b - l))
+			rot_up_b(stack_b, *count_b);
+		else if (l > (*count_b - i))
+			rot_down_b(stack_b, *count_b);
+
+	}
+	//print_stack(stack_a, *count_a, stack_b, *count_b);
+}
+
+void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size)
+{
+	int	loop;
+
+	loop = count_a / chunk_size;
+	if ((count_a % chunk_size) != 0)
+		loop++;
+//	printf("counta:%d, chunk:%d, loop:%d\n", count_a, chunk_size, loop);
+	while (count_a > 0)
+		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
+	return_to_a(stack_a, &count_a, stack_b, &count_b);
+	//print_stack(stack_a, count_a, stack_b, count_b);
+}
+
 int	main(int argc, char **argv)
 {
 	int	*stack_a;
@@ -152,6 +227,10 @@ int	main(int argc, char **argv)
 			sort_four(stack_a, count_a, stack_b, count_b);
 		else if (count_a == 5)
 			sort_five(stack_a, count_a, stack_b, count_b);
+		else if (count_a == 500)
+			chuck_sort(stack_a, count_a, stack_b, count_b, 70);
+		else
+			chuck_sort(stack_a, count_a, stack_b, count_b, 20);
 	}
 
 //PRINTING STACK
@@ -171,4 +250,9 @@ int	main(int argc, char **argv)
 	rot_down_a(stack_a, count_a);
 	rot_down_b(stack_b, count_b);
 	rot_down_ab(stack_a, count_a, stack_b, count_b);
+	printf("%d\n", smallest_arr[0]);
+	printf("%d\n", smallest_arr[1]);
+	printf("%d\n", smallest_arr[2]);
+	printf("%d\n", smallest_arr[3]);
+	printf("%d\n", smallest_arr[4]);
 */

@@ -19,7 +19,7 @@ void	push_a(int *arr_a, int *count_a, int *arr_b, int *count_b)
 
 	if (*count_a < 1)
 	{
-		write(1, "fail pa\n", 8);
+		//write(1, "fail pa\n", 8);
 		return ;
 	}
 	tmp = arr_a[0];
@@ -48,7 +48,7 @@ void	push_b(int *arr_a, int *count_a, int *arr_b, int *count_b)
 
 	if (*count_a < 1)
 	{
-		write(1, "fail pa\n", 8);
+		//write(1, "fail pa\n", 8);
 		return ;
 	}
 	tmp = arr_a[0];

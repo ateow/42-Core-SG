@@ -43,5 +43,7 @@ void	rot_down_ab(int *arr_a, int count_a, int *arr_b, int count_b);
 int		is_sorted(int *arr, int count);
 int		is_smallest(int *arr, int nbr, int count);
 int		is_largest(int *arr, int nbr, int count);
+int	*find_smallest_numbers(int *arr, int count, int x);
+int	find_largest_index(int *arr, int count);
 void	print_stack(int *stack_a, int count_a, int *stack_b, int count_b);
 #endif

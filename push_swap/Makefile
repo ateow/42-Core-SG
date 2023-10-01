@@ -20,8 +20,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
-
-$(NAME):
 	$(CC) $(CFLAGS) $(SOURCES) -L ./ $(LIB) -o $(NAME)
 
 clean:
