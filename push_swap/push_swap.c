@@ -127,34 +127,108 @@ void	move_small_to_b(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 	smallest_arr = find_smallest_numbers(stack_a, *count_a, chunk_size);
 	i = 0;
 	k = 0;
-	while (i < *count_a + *count_b)
+	while (k != chunk_size)
 	{
 		//printf("i:%d\n",i);
 		j = 0;
 		while (j < chunk_size && k < chunk_size)
 		{
 			//printf("j:%d\n",j);
-			//printf("stack_a[0]: %d    smallest_arr[j]: %d\n",stack_a[0],  smallest_arr[j]);
+		//	printf("stack_a[0]: %d    smallest_arr[j]: %d\n",stack_a[0],  smallest_arr[j]);
 			if (stack_a[0] == smallest_arr[j])
 			{
 			//	printf("found same\n");
 				push_a(stack_a, count_a, stack_b, count_b);
-				//if (stack_b[0] < stack_b[10])
-				//	swap_b(stack_b, *count_b);
 				k++;
 				j = -1;
 			}
 			j++;
 		}
-		if (k == chunk_size)
-			break ;
 		rot_up_a(stack_a, *count_a);
+		//printf(">>>>>>>>>>>>>> i : %d\n",i);
 		i++;
 	}
 	free(smallest_arr);
 	//print_stack(stack_a, *count_a, stack_b, *count_b);
 }
 
+void	move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int chunk_size)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	z;
+	int	*largest_arr;
+
+	largest_arr = find_largest_numbers(stack_b, *count_b, chunk_size);
+	//printf("\n>>>>> MOVE LARGE TO A START <<<<<<<\n");
+	//printf("j:%d    stack_b[j]: %d    largest_arr[%d]: %d\n",j, stack_b[j], k,  largest_arr[k]);
+	k = 0;
+	z = 0;
+	while (k != chunk_size)
+	{
+		i = 0;
+		j = 0;
+		while (j < *count_b && k < chunk_size)
+		{		
+			if (stack_b[j] == largest_arr[k])
+			{
+				i = j;
+				break ;
+			}
+			j++;
+		}
+		//printf("j:%d    stack_b[j]: %d    largest_arr[%d]: %d\n",j, stack_b[j], k,  largest_arr[k]);
+		//printf("countb:%d || i:%d || j:%d\n",*count_b, i, j);
+		while (stack_b[0] != largest_arr[k])
+		{
+			if (i <= (*count_b - i))
+				rot_up_b(stack_b, *count_b);
+			else if (i > (*count_b - i))
+				rot_down_b(stack_b, *count_b);
+			j--;
+			if (stack_b[0] == largest_arr[k + 1] && z == 0)
+			{
+				push_b(stack_b, count_b, stack_a, count_a);
+				z = 1;
+			}
+		}		
+		if (stack_b[0] == largest_arr[k])			
+		{
+			push_b(stack_b, count_b, stack_a, count_a);
+			k++;
+			if (z == 1)
+			{
+				swap_a(stack_a, *count_a);
+				k++;
+				z = 0;
+			}
+		}
+	}
+	free(largest_arr);
+	//print_stack(stack_a, *count_a, stack_b, *count_b);
+}
+
+void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size)
+{
+	int	loop;
+
+	loop = count_a / chunk_size;
+	if ((count_a % chunk_size) != 0)
+		loop++;
+	while (count_a > 0)
+		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
+	//print_stack(stack_a, count_a, stack_b, count_b);
+	while (count_b > 0)
+	{
+		if (count_b < chunk_size)
+			chunk_size = count_b;
+		move_large_to_a(stack_a, &count_a, stack_b, &count_b, chunk_size);
+	}
+	//return_to_a(stack_a, &count_a, stack_b, &count_b);
+}
+
+/*
 void	return_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b)
 {
 	int	i;
@@ -164,16 +238,16 @@ void	return_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b)
 	while (i > 0)
 	{
 		l = find_largest_index(stack_b, *count_b);
+		//print_stack(stack_a, *count_a, stack_b, *count_b);
 		if (l == 0)
 		{
 			push_b(stack_b, count_b, stack_a, count_a);
 			i--;
 		}
-		else if (l < (*count_b - l))
+		else if (l <= (*count_b - l))
 			rot_up_b(stack_b, *count_b);
-		else if (l > (*count_b - i))
+		else if (l > (*count_b - l))
 			rot_down_b(stack_b, *count_b);
-
 	}
 	//print_stack(stack_a, *count_a, stack_b, *count_b);
 }
@@ -185,12 +259,12 @@ void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_
 	loop = count_a / chunk_size;
 	if ((count_a % chunk_size) != 0)
 		loop++;
-//	printf("counta:%d, chunk:%d, loop:%d\n", count_a, chunk_size, loop);
 	while (count_a > 0)
 		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
-	return_to_a(stack_a, &count_a, stack_b, &count_b);
 	//print_stack(stack_a, count_a, stack_b, count_b);
+	return_to_a(stack_a, &count_a, stack_b, &count_b);
 }
+*/
 
 int	main(int argc, char **argv)
 {
@@ -255,4 +329,41 @@ int	main(int argc, char **argv)
 	printf("%d\n", smallest_arr[2]);
 	printf("%d\n", smallest_arr[3]);
 	printf("%d\n", smallest_arr[4]);
+	
+	
+void	return_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b)
+{
+	int	i;
+	int	l;
+
+	i = *count_b;
+	while (i > 0)
+	{
+		l = find_largest_index(stack_b, *count_b);
+		//print_stack(stack_a, *count_a, stack_b, *count_b);
+		if (l == 0)
+		{
+			push_b(stack_b, count_b, stack_a, count_a);
+			i--;
+		}
+		else if (l <= (*count_b - l))
+			rot_up_b(stack_b, *count_b);
+		else if (l > (*count_b - l))
+			rot_down_b(stack_b, *count_b);
+	}
+	//print_stack(stack_a, *count_a, stack_b, *count_b);
+}
+
+void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size)
+{
+	int	loop;
+
+	loop = count_a / chunk_size;
+	if ((count_a % chunk_size) != 0)
+		loop++;
+	while (count_a > 0)
+		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
+	//print_stack(stack_a, count_a, stack_b, count_b);
+	return_to_a(stack_a, &count_a, stack_b, &count_b);
+}
 */

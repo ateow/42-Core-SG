@@ -88,7 +88,46 @@ int	*find_smallest_numbers(int *arr, int count, int x)
 		arrdup[j] = 2147483647;
 		y++;
 	}
-	free(arrdup);
+	free (arrdup);
+	//printf("res[5]:%d\n", res[4]);
+	return (res);
+}
+
+int	*find_largest_numbers(int *arr, int count, int x)
+{
+	int	i;
+	int	j;
+	int	y;
+	int	*arrdup;
+	int	*res;
+
+	arrdup = malloc(sizeof(int) * count);
+	i = 0;
+	while (i < count)
+	{
+		arrdup[i] = arr[i];
+		//printf("arrdup[%d]:%d\n", i, arrdup[i]);
+		i++;
+	}
+	res = malloc(sizeof(int) * x);
+	y = 0;
+	while (y < x)
+	{
+		i = 0;
+		j = 0;
+		while (i < count)
+		{			
+			if (arrdup[j] < arrdup[i])
+				j = i;
+			//printf("j:%d\n",j);
+			i++;
+		}
+		res[y] = arrdup[j];
+		//printf("res[%d] is:%d\n",y, res[y]);
+		arrdup[j] = -2147483648;
+		y++;
+	}
+	free (arrdup);
 	//printf("res[5]:%d\n", res[4]);
 	return (res);
 }
@@ -105,6 +144,24 @@ int	find_largest_index(int *arr, int count)
 	while (i < count)
 	{
 		if (arr[j] < arr[i])
+			j = i;
+		i++;
+	}
+	return (j);
+}
+
+int	find_smallest_index(int *arr, int count)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (count <= 0) 
+		return -1;
+	while (i < count)
+	{
+		if (arr[j] > arr[i])
 			j = i;
 		i++;
 	}
