@@ -140,6 +140,11 @@ void	move_small_to_b(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 			//	printf("found same\n");
 				push_a(stack_a, count_a, stack_b, count_b);
 				k++;
+				if (j < (chunk_size / 2))
+				{
+					rot_up_b(stack_b, *count_b);
+					write(1, "YYYYYY smallest loop\n", 21);
+				}
 				j = -1;
 			}
 			j++;
@@ -161,6 +166,7 @@ void	move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 	int	*largest_arr;
 
 	largest_arr = find_largest_numbers(stack_b, *count_b, chunk_size);
+	//write(1, "ZZZZZZ LARGEST\n", 16);
 	//printf("\n>>>>> MOVE LARGE TO A START <<<<<<<\n");
 	//printf("j:%d    stack_b[j]: %d    largest_arr[%d]: %d\n",j, stack_b[j], k,  largest_arr[k]);
 	k = 0;
@@ -179,11 +185,13 @@ void	move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 			j++;
 		}
 		//printf("j:%d    stack_b[j]: %d    largest_arr[%d]: %d\n",j, stack_b[j], k,  largest_arr[k]);
-		//printf("countb:%d || i:%d || j:%d\n",*count_b, i, j);
 		while (stack_b[0] != largest_arr[k])
 		{
 			if (i <= (*count_b - i))
+			{
 				rot_up_b(stack_b, *count_b);
+				write(1, "HERE>>\n", 7);
+			}
 			else if (i > (*count_b - i))
 				rot_down_b(stack_b, *count_b);
 			j--;
@@ -191,8 +199,15 @@ void	move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 			{
 				push_b(stack_b, count_b, stack_a, count_a);
 				z = 1;
+				//printf("####### find 2\n");
 			}
-		}		
+			if (stack_b[0] == largest_arr[k + 2] && z == 1)
+			{
+				push_b(stack_b, count_b, stack_a, count_a);
+				z = 2;
+				//printf("####### find 3\n");
+			}
+		}
 		if (stack_b[0] == largest_arr[k])			
 		{
 			push_b(stack_b, count_b, stack_a, count_a);
@@ -203,23 +218,30 @@ void	move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int
 				k++;
 				z = 0;
 			}
+			if (z == 2)
+			{
+				swap_a(stack_a, *count_a);
+				rot_up_a(stack_a, *count_a);
+				swap_a(stack_a, *count_a);
+				rot_down_a(stack_a, *count_a);
+				k = k + 2;
+				z = 0;
+			}
 		}
 	}
 	free(largest_arr);
-	//print_stack(stack_a, *count_a, stack_b, *count_b);
+
 }
 
 void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size)
 {
-	int	loop;
-
-	loop = count_a / chunk_size;
-	if ((count_a % chunk_size) != 0)
-		loop++;
-	while (count_a > 0)
+	while (count_a != 0)
+	{
+		if (count_a < chunk_size)
+			chunk_size = count_a;
 		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
-	//print_stack(stack_a, count_a, stack_b, count_b);
-	while (count_b > 0)
+	}
+	while (count_b != 0)
 	{
 		if (count_b < chunk_size)
 			chunk_size = count_b;
@@ -228,43 +250,8 @@ void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_
 	//return_to_a(stack_a, &count_a, stack_b, &count_b);
 }
 
-/*
-void	return_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b)
-{
-	int	i;
-	int	l;
 
-	i = *count_b;
-	while (i > 0)
-	{
-		l = find_largest_index(stack_b, *count_b);
-		//print_stack(stack_a, *count_a, stack_b, *count_b);
-		if (l == 0)
-		{
-			push_b(stack_b, count_b, stack_a, count_a);
-			i--;
-		}
-		else if (l <= (*count_b - l))
-			rot_up_b(stack_b, *count_b);
-		else if (l > (*count_b - l))
-			rot_down_b(stack_b, *count_b);
-	}
-	//print_stack(stack_a, *count_a, stack_b, *count_b);
-}
 
-void	chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size)
-{
-	int	loop;
-
-	loop = count_a / chunk_size;
-	if ((count_a % chunk_size) != 0)
-		loop++;
-	while (count_a > 0)
-		move_small_to_b(stack_a, &count_a, stack_b, &count_b, chunk_size);
-	//print_stack(stack_a, count_a, stack_b, count_b);
-	return_to_a(stack_a, &count_a, stack_b, &count_b);
-}
-*/
 
 int	main(int argc, char **argv)
 {
@@ -277,6 +264,8 @@ int	main(int argc, char **argv)
 	count_a = argc - 1;
 	count_b = 0;
 //CHECK ERROR
+	if (argc == 1)
+		return (0);
 	if (is_error((argv + 1), count_a) == 1)
 		return (0);
 	if ((argc - 1) < 2)
@@ -303,13 +292,11 @@ int	main(int argc, char **argv)
 			sort_five(stack_a, count_a, stack_b, count_b);
 		else if (count_a == 500)
 			chuck_sort(stack_a, count_a, stack_b, count_b, 70);
-		else
+		else if (count_a == 100)
 			chuck_sort(stack_a, count_a, stack_b, count_b, 20);
+		else
+			chuck_sort(stack_a, count_a, stack_b, count_b, count_a / 5);
 	}
-
-//PRINTING STACK
-	//print_stack(stack_a, count_a, stack_b, count_b);
-//FREE
 	free(stack_a);
 	free(stack_b);
 }
