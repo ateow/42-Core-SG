@@ -101,7 +101,7 @@ int	is_error(char **arr, int count)
 		|| is_outof_int(arr, count) == 1
 		|| is_dup(arr, count) == 1)
 	{
-		write(1, "error\n", 6);
+		write(1, "Error\n", 6);
 		return (1);
 	}
 	return (0);

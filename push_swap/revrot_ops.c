@@ -24,7 +24,7 @@ void	rot_down_a(int *arr, int count)
 	}
 	i = 0;
 	tmp = arr[count - 1];
-	while (i < count)
+	while (i < count - 1)
 	{
 		arr[count - 1 - i] = arr[count - 2 - i];
 		i++;
@@ -45,7 +45,7 @@ void	rot_down_b(int *arr, int count)
 	}
 	i = 0;
 	tmp = arr[count - 1];
-	while (i < count)
+	while (i < count - 1)
 	{
 		arr[count - 1 - i] = arr[count - 2 - i];
 		i++;
@@ -66,7 +66,7 @@ void	rot_down_ab(int *arr_a, int count_a, int *arr_b, int count_b)
 	}
 	i = 0;
 	tmp = arr_a[count_a - 1];
-	while (i < count_a)
+	while (i < count_a - 1)
 	{
 		arr_a[count_a - 1 - i] = arr_a[count_a - 2 - i];
 		i++;

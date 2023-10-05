@@ -24,7 +24,7 @@ void	rot_up_a(int *arr, int count)
 	}
 	i = 0;
 	tmp = arr[0];
-	while (i < count)
+	while (i < count - 1)
 	{
 		arr[i] = arr[i + 1];
 		i++;
@@ -45,7 +45,7 @@ void	rot_up_b(int *arr, int count)
 	}
 	i = 0;
 	tmp = arr[0];
-	while (i < count)
+	while (i < count - 1)
 	{
 		arr[i] = arr[i + 1];
 		i++;
@@ -66,7 +66,7 @@ void	rot_up_ab(int *arr_a, int count_a, int *arr_b, int count_b)
 	}
 	i = 0;
 	tmp = arr_a[0];
-	while (i < count_a)
+	while (i < count_a - 1)
 	{
 		arr_a[i] = arr_a[i + 1];
 		i++;

@@ -12,15 +12,15 @@
 
 NAME = push_swap
 
-SOURCES = push_swap.c push_swap_utils.c check_error.c push_ops.c revrot_ops.c rot_ops.c swap_ops.c
+SOURCES = push_swap.c push_swap_utils.c check_error.c push_ops.c revrot_ops.c rot_ops.c swap_ops.c chunk_sort.c sort_below_five.c
 
 LIB = libft.a libftprintf.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
-	$(CC) $(CFLAGS) $(SOURCES) -L ./ $(LIB) -o $(NAME)
+all:
+	$(CC) $(CFLAGS) $(SOURCES) $(LIB) -o $(NAME)
 
 clean:
 	rm -rf $(NAME)
