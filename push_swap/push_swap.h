@@ -16,6 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s
+{
+	int	*stack_a;
+	int	*stack_b;
+	int count_a;
+	int count_b;
+} MyStruct;
+
 int			ft_pchar(char c);
 int			ft_pstring(char *s);
 size_t		ft_strlen(const char *s);
@@ -32,12 +40,13 @@ void		sort_three(int *stack_a);
 void		sort_four(int *stack_a, int count_a, int *stack_b, int count_b);
 void		sort_five(int *stack_a, int count_a, int *stack_b, int count_b);
 
-void		chuck_sort(int *stack_a, int count_a, int *stack_b,
-				int count_b, int chunk_size);
-void		move_large_to_a(int *stack_a, int *count_a,
-				int *stack_b, int *count_b, int chunk_size);
-void		move_small_to_b(int *stack_a, int *count_a,
-				int *stack_b, int *count_b, int chunk_size);
+void		chuck_sort(MyStruct *stacks, int chunk_size);
+void		move_stack(MyStruct *stacks, int *largest_arr, int k);
+void		move_sec_third_largest(MyStruct *stacks,
+				int *largest_arr, int *k, int *z);
+void		move_largest(MyStruct *stacks, int *largest_arr, int *k, int *z);
+void		move_large_to_a(MyStruct *stacks, int cs);
+void		move_small_to_b(MyStruct *stacks, int cs);
 
 int			is_error(char **arr, int count);
 void		swap_a(int *arr, int count);
