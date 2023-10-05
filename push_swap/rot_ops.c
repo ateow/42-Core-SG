@@ -18,10 +18,7 @@ void	rot_up_a(int *arr, int count)
 	int	i;
 
 	if (count < 2)
-	{
-		//write(1, "fail ra\n", 8);
 		return ;
-	}
 	i = 0;
 	tmp = arr[0];
 	while (i < count - 1)
@@ -39,10 +36,7 @@ void	rot_up_b(int *arr, int count)
 	int	i;
 
 	if (count < 2)
-	{
-		//write(1, "fail ra\n", 8);
 		return ;
-	}
 	i = 0;
 	tmp = arr[0];
 	while (i < count - 1)
@@ -60,10 +54,7 @@ void	rot_up_ab(int *arr_a, int count_a, int *arr_b, int count_b)
 	int	i;
 
 	if (count_a < 2 || count_b < 2)
-	{
-		//write(1, "fail rr\n", 8);
 		return ;
-	}
 	i = 0;
 	tmp = arr_a[0];
 	while (i < count_a - 1)

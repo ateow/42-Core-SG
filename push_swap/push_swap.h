@@ -32,9 +32,12 @@ void		sort_three(int *stack_a);
 void		sort_four(int *stack_a, int count_a, int *stack_b, int count_b);
 void		sort_five(int *stack_a, int count_a, int *stack_b, int count_b);
 
-void		chuck_sort(int *stack_a, int count_a, int *stack_b, int count_b, int chunk_size);
-void		move_large_to_a(int *stack_a, int *count_a, int *stack_b, int *count_b, int chunk_size);
-void		move_small_to_b(int *stack_a, int *count_a, int *stack_b, int *count_b, int chunk_size);
+void		chuck_sort(int *stack_a, int count_a, int *stack_b,
+				int count_b, int chunk_size);
+void		move_large_to_a(int *stack_a, int *count_a,
+				int *stack_b, int *count_b, int chunk_size);
+void		move_small_to_b(int *stack_a, int *count_a,
+				int *stack_b, int *count_b, int chunk_size);
 
 int			is_error(char **arr, int count);
 void		swap_a(int *arr, int count);
