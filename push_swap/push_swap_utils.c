@@ -112,7 +112,6 @@ int	*find_largest_numbers(int *arr, int count, int x)
 	free (arrdup);
 	return (res);
 }
-
 /*
 void	print_stack(int *stack_a, int count_a, int *stack_b, int count_b)
 {
@@ -132,40 +131,4 @@ void	print_stack(int *stack_a, int count_a, int *stack_b, int count_b)
 			ft_printf("\n");
 		i++;
 	}
-}
-
-int	find_largest_index(int *arr, int count)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (count <= 0) 
-		return -1;
-	while (i < count)
-	{
-		if (arr[j] < arr[i])
-			j = i;
-		i++;
-	}
-	return (j);
-}
-
-int	find_smallest_index(int *arr, int count)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (count <= 0) 
-		return -1;
-	while (i < count)
-	{
-		if (arr[j] > arr[i])
-			j = i;
-		i++;
-	}
-	return (j);
 }*/

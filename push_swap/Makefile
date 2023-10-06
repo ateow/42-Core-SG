@@ -11,22 +11,33 @@
 # **************************************************************************** #
 
 NAME = push_swap
+BONUS = checker
 
-SOURCES = push_swap.c push_swap_utils.c check_error.c push_ops.c revrot_ops.c rot_ops.c swap_ops.c chunk_sort.c sort_below_five.c
+SOURCES = push_swap.c push_swap_utils.c check_error.c \
+	action_push.c action_revrot.c action_rot.c action_swap.c \
+	sort_big.c sort_small.c
+
+B_SOURCES = bonus_checker.c bonus_action_push.c bonus_action_revrot.c bonus_action_rot.c bonus_action_swap.c \
+	check_error.c get_next_line.c get_next_line_utils.c
 
 LIB = libft.a libftprintf.a
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all:
+all: $(NAME) $(BONUS)
+
+$(NAME):
 	$(CC) $(CFLAGS) $(SOURCES) $(LIB) -o $(NAME)
 
+$(BONUS):
+	$(CC) $(CFLAGS) $(B_SOURCES) $(LIB) -o $(BONUS)
+
 clean:
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BONUS)
 
 fclean:	clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BONUS)
 
 re: fclean all
 
