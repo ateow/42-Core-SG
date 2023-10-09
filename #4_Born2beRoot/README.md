@@ -1,8 +1,7 @@
 # Born2beRoot
 
-ref video: https://www.youtube.com/watch?v=2w-2MX5QrQw
-
-Step 1: Setup
+### VM Setup
+ref video: https://www.youtube.com/watch?v=2w-2MX5QrQw\
 * Grab latest Debian image: https://www.debian.org/download
 * Create VM with virtualbox. Input VM name, disk size
 * Select debian image to boot (Virtual Box GUI > Setting > Storage > Optical Drive disk icon)
@@ -23,7 +22,16 @@ To rename Logical Volume name: `lvrename LVMGroup oldname newname`
 * Verify user is in sudo group: `getent group sudo`
 * Install VIM to edit files: `apt install vim`
 
-###
+### Setup SSH (secure shell)
+* Install openssh-server: `apt install openssh-server`
+* Change SSH port `#Port 22` to `Port 4242` in file `/etc/ssh/sshd_config`
+* Change SSH port `#PermitRootLogin prohibit-password` to `PermitRootLogin no` in file `/etc/ssh/sshd_config`
+
+### Setup UFW (uncomplicated firewall)
+* Install UFW: `apt install ufw`
+* ufw enable
+* ufw allow 4242
+* ufw status
 
 ### SUDO Group Configuration
 Configure Sudoers: `vim /etc/sudoers`\
@@ -38,10 +46,12 @@ Append the following to the file:
 * To set sudo paths: `Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
 
 
-
 ### Evaluation
 AppArmour at startup:
 Check LVM: `lsblk`
 SSH:
-* on VM: 
-* on terminal: 'ssh ateow@127.0.0.1 -p 2222'
+* check ssh server installed: `dpkg -l | grep ssh`
+* check ssh service status: `sudo service ssh status` / `sudo service ssh restart`
+* on terminal: 'ssh ateow@127.0.0.1 -p 2222' (if issues: )
+UFW:
+* `ufw status`
