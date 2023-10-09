@@ -103,6 +103,30 @@ wall "	#Architecture: $arc
 	#Network: IP $ip ($mac)
 	#Sudo: $cmds cmd"
 ```
+### Bonus
+
+**MARIA DB**
+* Install mariadb-server: `apt install mariadb-server`
+* Start interactive script to remove insecure default settings via sudo mysql_secure_installation.\
+* `mysql_secure_installation`
+```
+Set root password? [Y/n] n
+Remove anonymous users? [Y/n] Y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] Y
+Reload privilege tables now? [Y/n] Y
+```
+* Log in to the MariaDB console via sudo mariadb
+* CREATE DATABASE <database-name>;
+* `MariaDB [(none)]> GRANT ALL ON <database-name>.* TO '<username-2>'@'localhost' IDENTIFIED BY '<password-2>' WITH GRANT OPTION;`
+* Flush the privileges: `FLUSH PRIVILEGES;`
+
+
+database-name: web_database
+username: ateow
+password: 0602
+login: `mariadb -u <username-2> -p`
+`SHOW DATABASE`
 
 ### Evaluation
 Born2beroot / Born2be0602
