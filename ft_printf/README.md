@@ -1,6 +1,6 @@
 # ft_printf
 
-This project requires us to recode some basic features of printf.\  
+This project requires us to recode some basic features of printf.
 
 • %c Prints a single character.\
 • %s Prints a string (as defined by the common C convention).\
