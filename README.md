@@ -5,7 +5,7 @@ This project is about coding a C library. It contains a lot of general purpose f
 Skillset: Basic C programming, Pointers and Memory Manipulation, Structures and Link Lists 
 
 ### [Project 2: ft_printf](https://github.com/ateow/42-Core-SG/tree/main/ft_printf) - 100/100
-Create a program to replicate some basic features of printf.\  
+Create a program to replicate some basic features of printf.\
 Skillset: Variadic Functions
 
 ### [Project 3: get_next_line](https://github.com/ateow/42-Core-SG/tree/main/get_next_line) - 125/100
