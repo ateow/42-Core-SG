@@ -17,7 +17,7 @@ ref video: https://www.youtube.com/watch?v=2w-2MX5QrQw\
 To rename Logical Volume name: `lvrename LVMGroup oldname newname`
 
 ### SUDO
-* Install sudo via apt install sudo: `apt install sudo`
+* Install sudo via apt install sudo: `apt install sudo` (apt is a newer verison of apt-get)
 * Add user in the sudo group: `adduser <username> sudo`
 * Verify user is in sudo group: `getent group sudo`
 * Install VIM to edit files: `apt install vim`
@@ -28,10 +28,10 @@ To rename Logical Volume name: `lvrename LVMGroup oldname newname`
 * Change SSH port `#PermitRootLogin prohibit-password` to `PermitRootLogin no` in file `/etc/ssh/sshd_config`
 
 ### Setup UFW (uncomplicated firewall)
-* Install UFW: `apt install ufw`
-* ufw enable
-* ufw allow 4242
-* ufw status
+* Install firewall: `apt install ufw`
+* Enable firewall: `ufw enable`
+* Allow port 4242 to pass firewall: `ufw allow 4242`
+* Display firewall status: `ufw status`
 
 ### SUDO Group Configuration
 Configure Sudoers: `vim /etc/sudoers`\
@@ -45,13 +45,35 @@ Append the following to the file:
 * Enable TTY mode: `Defaults  requiretty`
 * To set sudo paths: `Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
 
+### Configure Password Policy
+* Expire every 30 days: `/etc/login.defs` > `PASS_MAX_DAYS   30`
+* Min day allowed before mod set to 2: `/etc/login.defs` > `PASS_MIN_DAYS   2`
+* Provide warning message 7 days before expire: `/etc/login.defs` > `PASS_WARN_AGE   7`
+  
+* Install a pam lib to assist: `apt install libpam-pwquality`
+* Append the following into `/etc/pam.d/common-password` file 
+* At least 10 chars long: `minlen=10`
+* Contain at least 1 uppercase: `ucredit=-1`
+* Contain at least 1 lowercase: `lcredit=-1`
+* Contain at least 1 number: `dcredit=-1`
+* Must not contain more then 3 consecutive identical chars: `maxrepeat=3`
+* Must not include name of user: `reject_username`
+* Must have at least 7 chars that are not part of former password (not for root): `difok=7`
+* Enforce all above policy for root: `enforce_for_root`
+
+`password  requisite     pam_pwquality.so  retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
 
 ### Evaluation
+Born2beroot / Born2be0602
 AppArmour at startup:
 Check LVM: `lsblk`
 SSH:
 * check ssh server installed: `dpkg -l | grep ssh`
 * check ssh service status: `sudo service ssh status` / `sudo service ssh restart`
-* on terminal: 'ssh ateow@127.0.0.1 -p 2222' (if issues: )
+* on terminal: 'ssh ateow@127.0.0.1 -p 2222' (if issues: `rm ~/.ssh/known_hosts`)
 UFW:
 * `ufw status`
+
+Create new user:
+Assign to Group:
+Change Password: `passwd <username>`
