@@ -45,6 +45,10 @@ Append the following to the file:
 * Enable TTY mode: `Defaults  requiretty`
 * To set sudo paths: `Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
 
+* Create new user42 group: `addgroup user42`
+* Add user into group: `adduser <username> user42`
+* Verify: `getent group user42`
+  
 ### Configure Password Policy
 * Expire every 30 days: `/etc/login.defs` > `PASS_MAX_DAYS   30`
 * Min day allowed before mod set to 2: `/etc/login.defs` > `PASS_MIN_DAYS   2`
@@ -63,6 +67,43 @@ Append the following to the file:
 
 `password  requisite     pam_pwquality.so  retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
 
+### Monitoring Script
+Configure cron as root: `crontab -u root -e`
+Configure crontab: `*/10 * * * * bash /path/to/script`
+Check crontab: `crontab -u root -l`
+```
+#!/bin/bash
+arc=$(uname -a)
+pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l) 
+vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)
+fram=$(free -m | awk '$1 == "Mem:" {print $2}')
+uram=$(free -m | awk '$1 == "Mem:" {print $3}')
+pram=$(free | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+fdisk=$(df -BG | grep '^/dev/' | grep -v '/boot$' | awk '{ft += $2} END {print ft}')
+udisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} END {print ut}')
+pdisk=$(df -BM | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} {ft+= $2} END {printf("%d"), ut/ft*100}')
+cpul=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $1 + $3}')
+lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+lvmu=$(if [ $(lsblk | grep "lvm" | wc -l) -eq 0 ]; then echo no; else echo yes; fi)
+ctcp=$(ss -neopt state established | wc -l)
+ulog=$(users | wc -w)
+ip=$(hostname -I)
+mac=$(ip link show | grep "ether" | awk '{print $2}')
+cmds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+wall "	#Architecture: $arc
+	#CPU physical: $pcpu
+	#vCPU: $vcpu
+	#Memory Usage: $uram/${fram}MB ($pram%)
+	#Disk Usage: $udisk/${fdisk}Gb ($pdisk%)
+	#CPU load: $cpul
+	#Last boot: $lb
+	#LVM use: $lvmu
+	#Connections TCP: $ctcp ESTABLISHED
+	#User log: $ulog
+	#Network: IP $ip ($mac)
+	#Sudo: $cmds cmd"
+```
+
 ### Evaluation
 Born2beroot / Born2be0602
 AppArmour at startup:
@@ -72,8 +113,10 @@ SSH:
 * check ssh service status: `sudo service ssh status` / `sudo service ssh restart`
 * on terminal: 'ssh ateow@127.0.0.1 -p 2222' (if issues: `rm ~/.ssh/known_hosts`)
 UFW:
-* `ufw status`
+* check status" `ufw status`
 
-Create new user:
-Assign to Group:
-Change Password: `passwd <username>`
+* Create new user: `sudo adduser <username>`
+* Create new group: `addgroup <groupname>`
+* Add user into group: `adduser <username> <groupname>`
+* Verify: `getent group <groupname>`
+* Change Password: `passwd <username>`
