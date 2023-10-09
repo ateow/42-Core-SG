@@ -103,9 +103,9 @@ wall "	#Architecture: $arc
 	#Network: IP $ip ($mac)
 	#Sudo: $cmds cmd"
 ```
-### Bonus
+## Bonus
 
-**MARIA DB**
+### MARIA DB
 * Install mariadb-server: `apt install mariadb-server`
 * Start interactive script to remove insecure default settings via sudo mysql_secure_installation.\
 * `mysql_secure_installation`
@@ -121,14 +121,37 @@ Reload privilege tables now? [Y/n] Y
 * `MariaDB [(none)]> GRANT ALL ON <database-name>.* TO '<username-2>'@'localhost' IDENTIFIED BY '<password-2>' WITH GRANT OPTION;`
 * Flush the privileges: `FLUSH PRIVILEGES;`
 
+*database-name: web_database
+*username: ateow
+*password: 0602
+*login: `mariadb -u <username-2> -p`
+*`SHOW DATABASE`
 
-database-name: web_database
-username: ateow
-password: 0602
-login: `mariadb -u <username-2> -p`
-`SHOW DATABASE`
+### INSTALLING PHP
+* `sudo apt install php-cgi php-mysql`
 
-### Evaluation
+### INSALLING WORDPRESS
+* apt install wget
+* wget http://wordpress.org/latest.tar.gz -P /var/www/html
+* tar -xzvf /var/www/html/latest.tar.gz
+* rm /var/www/html/latest.tar.gz
+* cp -r /var/www/html/wordpress/* /var/www/html
+* rm -rf /var/www/html/wordpress
+* cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+* in wp-config, change database, name and password
+
+### LIGHTTPD
+* Install lighttpd: `sudo apt install lighttpd`
+* `sudo ufw allow 80`
+* sudo lighty-enable-mod fastcgi
+* sudo lighty-enable-mod fastcgi-php
+* sudo service lighttpd force-reload
+
+Do port fowarding. Map port 8080 to port 80\
+http://127.0.0.1:8080/index.html
+
+
+# Evaluation
 Born2beroot / Born2be0602
 AppArmour at startup:
 Check LVM: `lsblk`
