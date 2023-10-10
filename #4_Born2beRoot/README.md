@@ -153,7 +153,7 @@ http://127.0.0.1:8080/index.html
 
 # Evaluation
 Born2beroot / Born2be0602
-AppArmour at startup:
+AppArmour at startup:`aa-status`
 Check LVM: `lsblk`
 SSH:
 * check ssh server installed: `dpkg -l | grep ssh`
@@ -161,6 +161,9 @@ SSH:
 * on terminal: 'ssh ateow@127.0.0.1 -p 2222' (if issues: `rm ~/.ssh/known_hosts`)
 UFW:
 * check status" `ufw status`
+* crontab: crontab -l\
+ID	Minute	Hour	Day-Date	Month	Day Name\
+Values	0-59	0 -23	1-31		1-12	0-6\
 
 * Create new user: `sudo adduser <username>`
 * Create new group: `addgroup <groupname>`
