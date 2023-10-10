@@ -162,9 +162,12 @@ SSH:
 UFW:
 * check status" `ufw status`
 * crontab: crontab -l\
-ID	Minute	Hour	Day-Date	Month	Day Name\
-Values	0-59	0 -23	1-31		1-12	0-6\
+ID	Minute	Hour	Day-Date	Month	Dayofweek\
+Values	0-59	0 -23	1-31		1-12	0-6
 
+* Change hostname: `hostnamectl set-hostname new_hostname`
+* Restart your Virtual Machine.
+* `sudo vim /etc/hosts` - change current hostname to new hostname
 * Create new user: `sudo adduser <username>`
 * Create new group: `addgroup <groupname>`
 * Add user into group: `adduser <username> <groupname>`
