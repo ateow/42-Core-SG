@@ -139,6 +139,7 @@ Reload privilege tables now? [Y/n] Y
 * rm -rf /var/www/html/wordpress
 * cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 * in wp-config, change database, name and password
+* https://127.0.0.1:8080/index.html
 
 ### LIGHTTPD
 * Install lighttpd: `sudo apt install lighttpd`
@@ -148,11 +149,14 @@ Reload privilege tables now? [Y/n] Y
 * sudo service lighttpd force-reload
 
 Do port fowarding. Map port 8080 to port 80\
-http://127.0.0.1:8080/index.html
 
 
 # Evaluation
 Born2beroot / Born2be0602
+
+* DEBIAN vs ROCKY
+* AppArmour vs SELINUX
+
 AppArmour at startup:`aa-status`
 Check LVM: `lsblk`
 SSH:
@@ -173,3 +177,9 @@ Values	0-59	0 -23	1-31		1-12	0-6
 * Add user into group: `adduser <username> <groupname>`
 * Verify: `getent group <groupname>`
 * Change Password: `passwd <username>`
+
+* http://127.0.0.1:8080/index.html
+
+FTP
+* ftp 127.0.0.1 -p 2121
+
