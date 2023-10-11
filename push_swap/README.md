@@ -11,3 +11,4 @@
 * cmake -DCMAKE_C_COMPLIER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ ..
 * make
 * dir: ~/Desktop/PS_submit/push_swap
+export PS1="\[\e[32m\](\u)-[\w]\$ \[\e[0m\]"
