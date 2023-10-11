@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	t_list	*stacks;
 	int		i;
 
-	if (is_error((argv + 1), (argc - 1)) == 1 || (argc - 1) < 2)
+	if (is_error((argv + 1), (argc - 1)) == 1)
 		return (0);
 	stacks = (t_list *)malloc(sizeof(t_list));
 	stacks->count_a = argc - 1;
