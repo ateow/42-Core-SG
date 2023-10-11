@@ -1,6 +1,7 @@
 # Born2beRoot
 
 ### VM Setup
+ref git:https://github.com/hanshazairi/42-born2beroot\
 ref video: https://www.youtube.com/watch?v=2w-2MX5QrQw\
 * Grab latest Debian image: https://www.debian.org/download
 * Create VM with virtualbox. Input VM name, disk size
