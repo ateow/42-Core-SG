@@ -83,7 +83,11 @@ static int	is_not_int(char **arr, int count)
 	{
 		j = 0;
 		if (arr[i][0] == '-')
+		{
 			j++;
+			if (arr[i][j] == '\0')
+				return (1);
+		}		
 		while (arr[i][j] != '\0')
 		{
 			if (arr[i][j] < '0' || arr[i][j] > '9')
