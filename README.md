@@ -12,10 +12,10 @@ Skillset: Variadic Functions
 This project is about programming a function that returns a line read from a file descriptor.\
 Skillset: Static Variables, File Descriptor, ARGC ARGV
 
-### [Project 4: born_2_be_root](https://github.com/ateow/42-Core-SG/tree/main/%234_Born2beRoot) - 125/100
+### [Project 4: born_2_be_root](https://github.com/ateow/42-Core-SG/tree/main/%234_born2beRoot) - 125/100
 This is a System Administration related exercise.\
 Skillset: Configure Debain, Security configurations and set up SSH, FTP and Web hosting services
 
-### [Product 5: push_swap](https://github.com/ateow/42-Core-SG/tree/main/%234_push_swap) - 125/100
+### [Product 5: push_swap](https://github.com/ateow/42-Core-SG/tree/main/%235_push_swap) - 125/100
 This project asks to sort data on a stack, with a limited prescribe set of actions, using the lowest possible moves.\
 Skillset: Algorithms, Structs
