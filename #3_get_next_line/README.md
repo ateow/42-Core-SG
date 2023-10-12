@@ -1,6 +1,13 @@
 # get_next_line
 
 This project is about programming a function that returns a line read from a file descriptor.
+
+* Function name: get_next_line
+* Prototype: char *get_next_line(int fd);
+* Parameters: fd - The file descriptor to read from
+* Return value: Read line - correct behavior
+* Description: Write a function that returns a line read from a file descriptor
+
 ### Mandatory
 Repeated calls (e.g., using a loop) to your get_next_line() function should let you read the text file pointed to by the file descriptor, one line at a time.
 Your function should **return the line** that was read. If there is nothing else to read or if an error occurred, it should return NULL.
