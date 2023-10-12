@@ -24,23 +24,26 @@ The Push swap project is algorithm project that asks to sort data on a stack, wi
 * Bonus work consist of replicating this checker program
   
 ### ateow concept
+* Check input for error
+* Convert input into INT
+* check if sorted
+* if not, pass into sorting hat
+* if stack size is 3, 4 or 5, use sort3, sort4, sort5 algo respectively
+* if stack size is above 5, use custom algo, with a determined chunk size
+* for custom algo 2 steps:
+  * Move stack A into stack B in chunks.
+      *  First chunk will consist of the smallest values of chunk size. last chunk will have the largest value
+      *  When we pass in chunk of smallest value, we further split chunk into 2 depending on if it falls in the first half or second half of the chunk. use rotate
+  * Move stack B back into stack A sorted
+      *  When moving back, we find largest value and push is back to stack A
+      *  Algo finds index and determine if rot up or down uses less moves
+      *  If we find 2nd largest, on the way to finding the largest, we push 2nd largest to stack A, then perform a swap a after pushing in largest value
+      *  if we we find 3rd largest after finding 2nd largest, also push in 3rd largest. in this case, perform a series of actions for the 3 largest unsorted values in stack A.
 
-
-### how to test program
+### How to test push_swap program
 * `make` 2 program will be created. push_swap and checker
 * `./push_swap 3 2 1` Output is sa and rra. means swap A and rotate down. Performing both actions will result in a sorted stack
 * `ARG="3 2 1"; ./push_swap $ARG | ./checker_linux $ARG` Output is "OK". checker_linux is provided by project to check if moves will sort stack correctly.
 * `ARG="3 2 1"; ./push_swap $ARG | ./checker $ARG` Output is "OK". Checker is done as bonus work. Replicates checker_linux to check if moves will sort stack correctly.
-
-
-* https://github.com/izenynn/push_swap_tester
-* ./tester.sh ../PS_submit/ -rn 100 -600 -1 500
-
-
-* https://github.com/o-reo/push_swap_visualizer
-* mkdir build
-* cd build
-* cmake -DCMAKE_C_COMPLIER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ ..
-* make
-* dir: ~/Desktop/PS_submit/push_swap
-export PS1="\[\e[32m\](\u)-[\w]\$ \[\e[0m\]"
+* push_swap Testers used for huge stack: https://github.com/izenynn/push_swap_tester >> `./tester.sh ../ -rn 100 -600 600 500 -b`
+* visualiser used: https://github.com/o-reo/push_swap_visualizer >> use `cmake -DCMAKE_C_COMPLIER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ ..` instead of cmake for 42SG
