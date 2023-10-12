@@ -18,4 +18,4 @@ Skillset: Configure Debain, Security configurations and set up SSH, FTP and Web 
 
 ### [Project 5: push_swap](https://github.com/ateow/42-Core-SG/tree/main/%235_push_swap) - 125/100
 This project asks to sort data on a stack, with a limited prescribe set of actions, using the lowest possible moves.\
-Skillset: Algorithms, Structs
+Skillset: Sorting Algorithms, Structs
