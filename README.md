@@ -17,5 +17,5 @@ This is a System Administration related exercise.\
 Skillset: Configure Debain, Security configurations and set up SSH, FTP and Web hosting services
 
 ### [Product 5: push_swap](https://github.com/ateow/42-Core-SG/tree/main/%234_push_swap) - 125/100
-This project will make you sort data on a stack, with a limited prescribe set of instructions, using the lowest possible number of actions.\
+This project asks to sort data on a stack, with a limited prescribe set of actions, using the lowest possible moves.\
 Skillset: Algorithms, Structs
