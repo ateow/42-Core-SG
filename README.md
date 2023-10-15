@@ -20,5 +20,5 @@ Skillset: Configure Debain, Security configurations and set up SSH, FTP and Web 
 This project asks to sort data on a stack, with a limited prescribe set of actions, using the lowest possible moves.\
 Skillset: Sorting Algorithms, Structs
 
-### [Project 6: pipex](https://github.com/ateow/42-Core-SG/tree/main/%236_pipex) - PENDING
-Work in progress
+### [Project 6: pipex](https://github.com/ateow/42-Core-SG/tree/main/%236_pipex) - Work in progress
+
