@@ -33,8 +33,18 @@
 // perror
 # include <stdio.h>
 
+typedef struct s_list
+{
+	char	**cmd;
+	char	**bin_path;
+}	t_list;
+
 // functions
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
+void	free_array(char **arr);
+void	free_struct(t_list	s);
 
 #endif
