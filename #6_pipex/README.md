@@ -65,3 +65,25 @@ for dup: The new file descriptor number is guaranteed to be the lowest-numbered 
 
 EXECVE
 This function is primarily used for replacing the current process image with a new one. In other words, it allows you to start a new program while discarding the current program, effectively replacing the current process with the specified program.
+
+
+When you use the fork system call in Unix-like operating systems, a new process is created that is a copy of the parent process. However, the memory of the child process is not an exact duplicate of the parent's memory. Instead, the child process initially shares the same memory as the parent through a mechanism known as "copy-on-write" (COW).
+
+Here's how it works:
+
+    Initially, both the parent and child processes share the same memory.
+
+    When one of the processes (either the parent or the child) attempts to modify a shared memory page, the operating system creates a copy of that memory page for the process making the modification. This is the "copy-on-write" mechanism.
+
+    After the copy is made, each process has its own separate copy of the memory page, and modifications in one process do not affect the other.
+
+This COW mechanism is an optimization to reduce the overhead of duplicating all memory when forking a process. It ensures that the memory is only actually duplicated when necessary.
+
+Now, regarding memory management:
+
+    If you allocate memory dynamically using functions like malloc or calloc before forking, both the parent and child processes will initially share the same memory, and the memory is subject to COW. If one process modifies the dynamically allocated memory, a separate copy is created for that process.
+
+    If one process explicitly frees dynamically allocated memory, it does not directly affect the other process. Each process has its own memory space, so freeing memory in one process only affects that process's view of the memory. The other process may continue to use the memory until it is explicitly freed or until the process exits.
+
+So, freeing memory in one process does not automatically free it in the other. Each process is responsible for managing its own memory. However, if you're not careful and both processes access the same dynamically allocated memory, you can run into issues like double freeing or memory leaks. Therefore, it's essential to ensure proper memory management in both the parent and child processes to avoid these problems.
+
