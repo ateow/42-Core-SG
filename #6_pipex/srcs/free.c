@@ -25,8 +25,18 @@ void	free_array(char **arr)
 	free(arr);
 }
 
-void	free_struct(t_list s)
+int	free_all_struct(t_list input1, t_list input2, int ret)
 {
-	free_array(s.cmd);
-	free_array(s.bin_path);
+	free_array(input1.cmd);
+	free_array(input1.bin_path);
+	free_array(input2.cmd);
+	free_array(input2.bin_path);
+	return (ret);
+}
+
+int	free_struct(t_list input, int ret)
+{
+	free_array(input.cmd);
+	free_array(input.bin_path);
+	return (ret);
 }

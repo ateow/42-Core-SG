@@ -34,11 +34,62 @@ char	**get_pathname(char **envp, char *cmd)
 		string = ft_strjoin(bin_path[i], tmp_cmd);
 		free(bin_path[i]);
 		bin_path[i] = string;
-
 		i++;
 	}
 	free(tmp_cmd);
 	return (bin_path);
+}
+
+int	is_valid_command(char **path, char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (path[i] != NULL)
+	{
+		if (access(path[i], F_OK) != -1)
+		{
+			if (access(path[i], X_OK) != -1)
+				return (i);
+			else
+			{
+				write(2, cmd, ft_strlen(cmd));
+				write(2, ": Permission Denied\n", 21);
+			}
+		}
+		i++;
+	}
+	write(2, "pipex: line 1: ", 15);
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", 21);
+	return (-1);
+}
+
+char	**get_args(char *inputcmd)
+{
+	char	**args;
+	char	*tmp;
+
+	args = ft_split(inputcmd, ' ');
+	if (ft_strrchr(inputcmd, '"') != NULL || ft_strrchr(inputcmd, '\'') != NULL)
+	{
+		if (ft_strrchr(inputcmd, '"') != NULL && ft_strrchr(inputcmd, '\'') == NULL)
+			tmp = ft_strtrim(inputcmd + ft_strlen(args[0]) + 1, "\"");
+		if (ft_strrchr(inputcmd, '"') == NULL && ft_strrchr(inputcmd, '\'') != NULL)
+			tmp = ft_strtrim(inputcmd + ft_strlen(args[0]) + 1, "'");
+		else if (ft_strrchr(inputcmd, '"') != NULL && ft_strrchr(inputcmd, '\'') != NULL)
+		{
+			tmp = ft_strtrim(inputcmd + ft_strlen(args[0]) + 1, "'");
+			if (ft_strrchr(tmp, '\'') != NULL)
+				tmp = ft_strtrim(inputcmd + ft_strlen(args[0]) + 1, "\"");
+		}
+		free(args[1]);
+		args[1] = ft_strdup(tmp);
+		free(tmp);
+		free(args[2]);
+		args[2] = NULL;
+	}
+	return (args);
 }
 
 int	main(int argc, char **argv, char *envp[])
@@ -49,72 +100,81 @@ int	main(int argc, char **argv, char *envp[])
 	int		file;
 	t_list	input1;
 	t_list	input2;
-	
-	if (argc < 4)
-		return (1);
-	input1.cmd = ft_split(argv[2], ' ');
-	input2.cmd = ft_split(argv[3], ' ');
-	input1.bin_path = get_pathname(envp, input1.cmd[0]);
-	input2.bin_path = get_pathname(envp, input2.cmd[0]);
-	if (pipe(fd) == -1)
-		exit (-1);
-	child_pid = fork();
-	if (child_pid == 0)
+
+	if (argc < 5)
 	{
+		write(2, "Not enough arguments\n", 21);
+		return (1);
+	}
+	if (pipe(fd) == -1)
+	{
+		perror("PIPE");
+		return (1);
+	}
+	child_pid = fork();
+	if (child_pid == -1) // fork error
+	{
+		perror("FORK");
+		return (1);
+	}
+	if (child_pid == 0) // child process
+	{		
+		input1.cmd  = get_args(argv[2]);
+		if (ft_strrchr(input1.cmd[0], '/') != NULL || envp == NULL)
+		{	
+			input1.bin_path = malloc(sizeof(char *) * 2);
+			input1.bin_path[0] = ft_strdup(input1.cmd[0]);
+			input1.bin_path[1] = NULL;
+		}
+		else 
+			input1.bin_path = get_pathname(envp, input1.cmd[0]);
 		file = open(argv[1], O_RDONLY);
 		if (file == -1)
-			return (1);
-		dup2(file, STDIN_FILENO);
-		close(file);
-		
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		i = 0;
-		while (input1.bin_path[i] != NULL)
 		{
-			if (access(input1.bin_path[i], F_OK) != -1 && access(input1.bin_path[i], X_OK) != -1)
-			{
-				if (execve(input1.bin_path[i], input1.cmd, NULL) == -1)
-					perror("execve");
-				else
-					break ;
-			}
-			i++;
+			write(2, "pipex: line 1: ", 15);
+			perror(argv[1]);
 		}
-		if (input1.bin_path[i] == NULL)
+		i = is_valid_command(input1.bin_path, input1.cmd[0]);
+		if (i == -1 || file == -1)
+			return (free_struct(input1, 127));
+		close(fd[0]);
+		dup2(file, STDIN_FILENO);
+		dup2(fd[1], STDOUT_FILENO);
+		if (execve(input1.bin_path[i], input1.cmd, envp) == -1)
 			perror(input1.cmd[0]);
+		return (free_struct(input1, 1));
 	}
-	else
+	else // parent process
 	{
-		//if (access(argv[argc - 1], F_OK) == 0)
-		//	unlink(argv[argc - 1]);
+		input2.cmd  = get_args(argv[3]);
+		if (ft_strrchr(input2.cmd[0], '/') != NULL || envp == NULL)
+		{	
+			input2.bin_path = malloc(sizeof(char *) * 2);
+			input2.bin_path[0] = ft_strdup(input2.cmd[0]);
+			input2.bin_path[1] = NULL;
+		}
+		else
+			input2.bin_path = get_pathname(envp, input2.cmd[0]);
+	
+		if (access(argv[argc - 1], F_OK) == 0)
+			unlink(argv[argc - 1]);
 		file = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (file == -1)
-			return (1);
-		dup2(file, STDOUT_FILENO);
-		close(file);
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		i = 0;
-		while (input2.bin_path[i] != NULL)
+			perror(argv[1]);
+		i = is_valid_command(input2.bin_path, input2.cmd[0]);
+		if (i == -1 || file == -1)
 		{
-			if (access(input2.bin_path[i], F_OK) != -1 && access(input2.bin_path[i], X_OK) != -1)
-			{
-				if (execve(input2.bin_path[i], input2.cmd, NULL) == -1)
-					perror("execve");
-				else
-					break ;
-			}
-			i++;
+			return (free_struct(input2, 127));
 		}
-		if (input2.bin_path[i] == NULL)
+		dup2(file, STDOUT_FILENO);
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);	
+		if (execve(input2.bin_path[i], input2.cmd, envp) == -1)
 			perror(input2.cmd[0]);
+		return (free_struct(input2, 1));
 	}
 	close(fd[0]);
 	close(fd[1]);
-	free_struct(input1);
-	free_struct(input2);
-	return (0);
 }
 
 /*
