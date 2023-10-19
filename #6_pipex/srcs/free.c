@@ -40,3 +40,18 @@ int	free_struct(t_list input, int ret)
 	free_array(input.bin_path);
 	return (ret);
 }
+
+void	free_pipe_fd(int **fd)
+{
+	int	i;
+
+	i = 0;
+	if (fd == NULL)
+		return ;
+	while (fd[i] != NULL)
+	{
+		free(fd[i]);
+		i++;
+	}
+	free (fd);
+}

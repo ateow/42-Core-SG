@@ -39,6 +39,10 @@ typedef struct s_list
 	char	**bin_path;
 }	t_list;
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 // functions
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
@@ -57,5 +61,10 @@ char	**get_bin_path(char *binarycmd, char **envp);
 void	free_array(char **arr);
 int		free_struct(t_list input, int ret);
 int		free_all_struct(t_list input1, t_list input2, int ret);
+void	free_pipe_fd(int **fd);
+
+int		get_index(const char *s, int c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*get_next_line(int fd);
 
 #endif
