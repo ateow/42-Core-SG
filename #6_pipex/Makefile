@@ -19,7 +19,7 @@ RM = rm -rf
 
 #FILES AND PATH
 SRCS_DIR = srcs/
-SRCS_SRCS = pipex.c free.c
+SRCS_SRCS = pipex.c pipex_utils.c free.c
 SOURCES = $(addprefix $(SRCS_DIR), $(SRCS_SRCS))
 LIB = srcs/libft.a
 
