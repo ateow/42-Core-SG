@@ -19,14 +19,16 @@ int	is_valid_command(char **path, char *cmd)
 	i = 0;
 	while (path[i] != NULL)
 	{
-		if (access(path[i], F_OK) != -1)
+		path[i] = amend_backslash(path[i]);
+		if (access(path[i], F_OK) == 0)
 		{
-			if (access(path[i], X_OK) != -1)
+			if (access(path[i], X_OK) == 0)
 				return (i);
 			else
 			{
 				write(2, cmd, ft_strlen(cmd));
 				write(2, ": Permission Denied\n", 21);
+				return (126);
 			}
 		}
 		i++;
