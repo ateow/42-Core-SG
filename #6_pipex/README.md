@@ -1,7 +1,9 @@
-
-
-
 # pipex
+This project recreates some features of linux's PIPE features"/
+Linux Command: `file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2`
+Pipex Project:` ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2`
+
+
 
 Command to File
 > redirect output of command to file
