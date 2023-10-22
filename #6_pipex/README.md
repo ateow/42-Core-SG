@@ -86,6 +86,12 @@ same as previous...
 **Piping Logic** (extracted from https://www.codequoi.com/en/pipe-an-inter-process-communication-method) \
 ![pipeline_diagram_en drawio](https://github.com/ateow/42-Core-SG/assets/144050579/6453972a-2e19-4111-b27e-8d4143baca14)
 
+### Wrote a simple PUPEX tester for Evaluation
+- execute `./pipex_eval.sh` in folder with MAKEFILE
+- execute both linux shell pipe and your project pipe outputs
+- check for memory leaks if commands or file path is invalid 
+- one test case of here_doc of input: hello\nworld\nEOF\n
+- does not check for return status code 
 
 ### To be improved
 Code is unable to handle `awk` & `tr` command flags with quotes well
