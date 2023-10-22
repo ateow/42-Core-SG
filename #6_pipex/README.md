@@ -60,7 +60,7 @@ END
 
 </pre>
 
-Piping Logic\
+**Piping Logic **(extracted from https://www.codequoi.com/en/pipe-an-inter-process-communication-method/)\
 ![pipeline_diagram_en drawio](https://github.com/ateow/42-Core-SG/assets/144050579/6453972a-2e19-4111-b27e-8d4143baca14)
 
 
