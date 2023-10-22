@@ -11,7 +11,7 @@ This project recreates some features of linux's PIPE features
 - Functions allowed: open, close, read, write, malloc, free, perror, strerror, access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid, libft, getnextline
 
 
-### Project Logic
+### Project Logic (PIPES from INFILE)
 <pre>
 START
 error handling
@@ -57,7 +57,30 @@ CMD > OUTFILE
 - execve command
 |
 END
+</pre>
 
+### Project Logic (PIPES from STDIN with HERE_DOC and LIMITER)
+<pre>
+same as previous...
+|
+enter pipe
+fork process
+|
+| ------------------------------
+|                     		|
+| parent process		| child process (ID = 0)
+|				|
+|				HERE_DOC > CMD1
+|				- get_next_line(with FD 0 - STDIN)				      
+|				- store text in tempfile till "LIMITER" word is detected
+|				- exit get_next_line
+|				- open tempfile
+|				- link file FD to STDIN
+|				- link Cmd1 STDOUT to pipe write (fd[1])
+|				- detele (unlink) tmpfile
+|				- execve command
+|
+same as previous...
 </pre>
 
 **Piping Logic **(extracted from https://www.codequoi.com/en/pipe-an-inter-process-communication-method/)\
@@ -68,7 +91,6 @@ END
 Code is unable to handle `awk` & `tr` command flags with quotes well
 
 ### Notes
-
 - Command to File `>` redirect output of command to file
 - File to Command `<` redirect file text to input of command 
 - Command to Command `|` redirect command 1 output to command 2 input
