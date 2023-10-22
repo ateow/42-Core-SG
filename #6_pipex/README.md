@@ -1,8 +1,8 @@
 # pipex
-This project recreates some features of linux's PIPE features"\
+This project recreates some features of linux's PIPE features"
 - Handle multiple pipes:
 	- Linux Command: `file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2`
-	- Pipex Project: `./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2`\
+	- Pipex Project: `./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2`/
 - Support « and » when the first parameter is "here_doc"
 	- Linux Command: `cmd << LIMITER | cmd1 >> file`
 	- Pipex Project: `./pipex here_doc LIMITER cmd cmd1 fil`
