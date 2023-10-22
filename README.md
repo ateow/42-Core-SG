@@ -5,7 +5,7 @@ This project is about coding a C library. It contains a lot of general purpose f
 Skillset: Basic C programming, Pointers and Memory Manipulation, Structures and Link Lists 
 
 ### [Project 2: ft_printf](https://github.com/ateow/42-Core-SG/tree/main/%232_ft_printf) - 100/100
-Create a program to replicate some basic features of printf.\
+This project recreates basic features of printf.\
 Skillset: Variadic Functions
 
 ### [Project 3: get_next_line](https://github.com/ateow/42-Core-SG/tree/main/%233_get_next_line) - 125/100
@@ -21,6 +21,6 @@ This project asks to sort data on a stack, with a limited prescribe set of actio
 Skillset: Sorting Algorithms, Structs
 
 ### [Project 6: pipex](https://github.com/ateow/42-Core-SG/tree/main/%236_pipex) - 125/100
-This project recreates features of linux's PIPE function.\
+This project recreates basic features of linux's PIPE function.\
 SKillset: Linux Processes, Fork, Pipe, File Descriptors, Exevce
 
