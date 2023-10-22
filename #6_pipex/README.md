@@ -59,7 +59,11 @@ CMD > OUTFILE
 END
 
 </pre>
-	
+
+Piping Logic
+![pipeline_diagram_en drawio](https://github.com/ateow/42-Core-SG/assets/144050579/6453972a-2e19-4111-b27e-8d4143baca14)
+
+
 ### To be improved
 Code is unable to handle `awk` & `tr` command flags with quotes well
 
@@ -68,8 +72,8 @@ Code is unable to handle `awk` & `tr` command flags with quotes well
 - Command to File `>` redirect output of command to file
 - File to Command `<` redirect file text to input of command 
 - Command to Command `|` redirect command 1 output to command 2 input
-\\
-- **EXECVE**
+
+* **EXECVE**
 * Initially, both the parent and child processes share the same memory. When one of the processes (either the parent or the child) attempts to modify a shared memory page, the operating system creates a copy of that memory page for the process making the modification. This is the "copy-on-write" mechanism.
 * After the copy is made, each process has its own separate copy of the memory page, and modifications in one process do not affect the other.
 This COW mechanism is an optimization to reduce the overhead of duplicating all memory when forking a process. It ensures that the memory is only actually duplicated when necessary.
