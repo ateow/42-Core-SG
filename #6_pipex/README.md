@@ -21,7 +21,7 @@ fork process
 |\
 |\
 | ---------------------------------------\
-|                                        |\
+|^10                                       |\
 | _parent process_                       |_ child process (ID = 0)_\
 |                                        |\
 
