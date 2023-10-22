@@ -12,7 +12,7 @@ This project recreates some features of linux's PIPE features
 
 ### Project Logic
 <pre>
-start
+START
 error handling
 create pipes (depending on number of commands)
 |
@@ -23,18 +23,39 @@ fork process
 |                     		|
 | parent process		| child process (ID = 0)
 |				|
-|				FILE > CMD1
+|				INFILE > CMD1
 |				- get command path				      
 |				- check valid command
 |				- open Infile / check exist and access
 |				- link file FD to STDIN
-|				- write Cmd1 STDOUT to pipe write (fd[1])
-|				- execve cmd1
+|				- link Cmd1 STDOUT to pipe write (fd[1])
+|				- execve command
 |
+middle pipe (while loop thru cmds)
 fork process
 |
-
-
+| ------------------------------
+|                     		|
+| parent process		| n child process (ID = 0)
+|				|
+|				CMD > CMD (midde pipe) 
+|				- get command path				      
+|				- check valid command
+|				- link Cmd STDIN to previous pipe read (prev fd[0])
+|				- link Cmd STDOUT to next pipe write (next fd[1])
+|				- execve command
+|
+exit pipe
+|
+CMD > OUTFILE
+- get command path	
+- check valid command
+- open / create outfile
+- link CMD STDOUT to STDIN
+- link STDOUT to file FD
+- execve command
+|
+END
 
 </pre>
 	
