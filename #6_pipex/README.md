@@ -1,5 +1,5 @@
 # pipex
-This project recreates some features of linux's PIPE features"
+This project recreates some features of linux's PIPE features
 - Handle multiple pipes:
 	- Linux Command: `file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2`
 	- Pipex Project: `./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2`
@@ -8,15 +8,33 @@ This project recreates some features of linux's PIPE features"
 	- Linux Command: `cmd << LIMITER | cmd1 >> file`
 	- Pipex Project: `./pipex here_doc LIMITER cmd cmd1 fil`
 
-Command to File
-> redirect output of command to file
+- Functions allowed: open, close, read, write, malloc, free, perror, strerror, access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid, libft, getnextline
 
-File to Command
-< redirect file text to input of command 
+### Project Logic
 
-Command to Command
-|
-Redirect command 1 output to command 2 input
+start\
+error handling\
+create pipes (depending on number of commands)\
+|\
+enter pipe
+fork process
+|\
+|\
+| ---------------------------------------\
+|                                        |\
+| _parent process_                       |_ child process (ID = 0)_\
+|                                        |\
+
+
+
+### To be improved
+Code is unable to handle `awk` & `tr` command flags with quotes well
+
+### Notes
+
+- Command to File `>` redirect output of command to file
+- File to Command `<` redirect file text to input of command 
+- Command to Command `|` redirect command 1 output to command 2 input
 
 
 //
