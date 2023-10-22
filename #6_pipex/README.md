@@ -86,7 +86,7 @@ same as previous...
 **Piping Logic** (extracted from https://www.codequoi.com/en/pipe-an-inter-process-communication-method) \
 ![pipeline_diagram_en drawio](https://github.com/ateow/42-Core-SG/assets/144050579/6453972a-2e19-4111-b27e-8d4143baca14)
 
-### Wrote a simple PUPEX tester for Evaluation
+### Wrote a simple PIPEX tester for Evaluation
 - execute `./pipex_eval.sh` in folder with MAKEFILE
 - execute both linux shell pipe and your project pipe outputs
 - check for memory leaks if commands or file path is invalid 
