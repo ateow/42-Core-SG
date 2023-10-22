@@ -26,7 +26,7 @@ fork process
 |                                        |\
 
 
-
+<pre>
 ### To be improved
 Code is unable to handle `awk` & `tr` command flags with quotes well
 
