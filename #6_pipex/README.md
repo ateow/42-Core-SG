@@ -11,19 +11,29 @@ This project recreates some features of linux's PIPE features
 - Functions allowed: open, close, read, write, malloc, free, perror, strerror, access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid, libft, getnextline
 
 ### Project Logic
-<pre>:
-start\
-error handling\
-create pipes (depending on number of commands)\
-|\
+<pre>
+start
+error handling
+create pipes (depending on number of commands)
+|
 enter pipe
 fork process
-|\
-|\
-| ---------------------------------------\
-|^10                                       |\
-| _parent process_                       |_ child process (ID = 0)_\
-|                                        |\
+|
+| ------------------------------
+|                     		|
+| parent process		| child process (ID = 0)
+|				|
+|				FILE > CMD1
+|				- get command path				      
+|				- check valid command
+|				- open Infile / check exist and access
+|				- link file FD to STDIN
+|				- write Cmd1 STDOUT to pipe write (fd[1])
+|				- execve cmd1
+|
+fork process
+|
+
 
 
 </pre>
