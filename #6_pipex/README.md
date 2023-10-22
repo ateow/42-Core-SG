@@ -9,7 +9,7 @@ This project recreates some features of linux's PIPE features
 	- Pipex Project: `./pipex here_doc LIMITER cmd cmd1 fil`
 
 - Functions allowed: open, close, read, write, malloc, free, perror, strerror, access, dup, dup2, execve, exit, fork, pipe, unlink, wait, waitpid, libft, getnextline
-\
+/
 ### Project Logic
 <pre>
 START
