@@ -43,27 +43,76 @@ void	rotate_z(int *x, int *y, double angle_z)
 	*y = prev_x * sin(angle_z) + prev_y * cos(angle_z);
 }
 
-
-void	rotate_node(t_coord **node)
+void	rotate_node_default(t_data *data)
 {
 	int	i;
-	double	angle_x;
-	double	angle_y;
-	double	angle_z;
 
-    	//angle_x = 330 * M_PI / 180;
-	//angle_y = -30 * M_PI / 180;
-	//angle_z = 40 * M_PI / 180;
-    	angle_x = 30 * M_PI / 180;
-	angle_y = 330 * M_PI / 180;
-	angle_z = 35 * M_PI / 180;
+    	data->angle.x = 30 * M_PI / 180;
+	data->angle.y = 330 * M_PI / 180;
+	data->angle.z = 35 * M_PI / 180;
 
 	i = 0;
-	while (node[i] != NULL)
+	while (data->node[i] != NULL)
 	{
-		rotate_x(&node[i]->y, &node[i]->z, angle_x);
-		rotate_y(&node[i]->x, &node[i]->z, &node[i]->y, angle_y);
-		rotate_z(&node[i]->x, &node[i]->y, angle_z);
+		data->node[i]->x = data->node_org[i]->x;
+		data->node[i]->y = data->node_org[i]->y;
+		data->node[i]->z = data->node_org[i]->z;
+		rotate_x(&data->node[i]->y, &data->node[i]->z, data->angle.x);
+		rotate_y(&data->node[i]->x, &data->node[i]->z, &data->node[i]->y, data->angle.y);
+		rotate_z(&data->node[i]->x, &data->node[i]->y, data->angle.z);
+		i++;
+	}
+}
+
+void	rotate_node(t_data *data, int x, int y)
+{
+	int	i;
+	int	x_diff;
+	int	y_diff;
+	
+	x_diff = x - data->middle_drag_x;
+	y_diff = y - data->middle_drag_y;
+    	data->angle.x -= y_diff / 5 * M_PI / 180;
+	data->angle.y += x_diff / 5 * M_PI / 180;
+	data->angle.z += 0 * M_PI / 180;
+	i = 0;
+	while (data->node[i] != NULL)
+	{
+		data->node[i]->x = data->node_org[i]->x;
+		data->node[i]->y = data->node_org[i]->y;
+		data->node[i]->z = data->node_org[i]->z;
+		rotate_x(&data->node[i]->y, &data->node[i]->z, data->angle.x);
+		rotate_y(&data->node[i]->x, &data->node[i]->z, &data->node[i]->y, data->angle.y);
+		rotate_z(&data->node[i]->x, &data->node[i]->y, data->angle.z);
+		i++;
+	}
+}
+
+void	rotate_node_z(t_data *data, int keycode)
+{
+	int	i;
+
+	if (keycode == 65362) //key:up
+	    	data->angle.x += 5 * M_PI / 180;
+	else if (keycode == 65364) //key:down
+	    	data->angle.x -= 5 * M_PI / 180;	    	
+	if (keycode == 65361) // key:left
+		data->angle.y -= 5 * M_PI / 180;
+	else if (keycode == 65363) // key:right
+		data->angle.y += 5 * M_PI / 180;
+	if (keycode == 91) // key: [
+		data->angle.z += 5 * M_PI / 180;
+	else if (keycode == 93) // key: ]
+		data->angle.z -= 5 * M_PI / 180;
+	i = 0;
+	while (data->node[i] != NULL)
+	{
+		data->node[i]->x = data->node_org[i]->x;
+		data->node[i]->y = data->node_org[i]->y;
+		data->node[i]->z = data->node_org[i]->z;
+		rotate_x(&data->node[i]->y, &data->node[i]->z, data->angle.x);
+		rotate_y(&data->node[i]->x, &data->node[i]->z, &data->node[i]->y, data->angle.y);
+		rotate_z(&data->node[i]->x, &data->node[i]->y, data->angle.z);
 		i++;
 	}
 }

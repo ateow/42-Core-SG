@@ -13,7 +13,7 @@
 #include "../../includes/fdf.h"
 #include "../../includes/mlx.h"
 
-void	plot_line_low(t_xyaxis p1, t_xyaxis p2, t_vars vars)
+void	plot_line_low(t_xyaxis p1, t_xyaxis p2, t_data data)
 {
 	t_xyaxis	plot;
 	t_plot_line	tools;
@@ -31,7 +31,7 @@ void	plot_line_low(t_xyaxis p1, t_xyaxis p2, t_vars vars)
 	plot.x = p1.x;
 	while (plot.x <= p2.x)
 	{
-		mlx_pixel_put(vars.mlx, vars.win, plot.x, plot.y, 0xFFFFFF);
+		mlx_pixel_put(data.mlx, data.win, plot.x, plot.y, 0xFFFFFF);
 		if (tools.d > 0)
 		{
 			plot.y = plot.y + tools.i;
@@ -42,7 +42,7 @@ void	plot_line_low(t_xyaxis p1, t_xyaxis p2, t_vars vars)
 	}
 }
 
-void	plot_line_high(t_xyaxis p1, t_xyaxis p2, t_vars vars)
+void	plot_line_high(t_xyaxis p1, t_xyaxis p2, t_data data)
 {
 	t_xyaxis	plot;
 	t_plot_line	tools;
@@ -60,7 +60,7 @@ void	plot_line_high(t_xyaxis p1, t_xyaxis p2, t_vars vars)
 	plot.x = p1.x;
 	while (plot.y <= p2.y)
 	{
-		mlx_pixel_put(vars.mlx, vars.win, plot.x, plot.y, 0xFFFFFF);
+		mlx_pixel_put(data.mlx, data.win, plot.x, plot.y, 0xFFFFFF);
 		if (tools.d > 0)
 		{
 			plot.x = plot.x + tools.i;
@@ -71,7 +71,7 @@ void	plot_line_high(t_xyaxis p1, t_xyaxis p2, t_vars vars)
 	}
 }
 
-void	plot_line(t_xyaxis p1, t_xyaxis p2, t_vars vars)
+void	plot_line(t_xyaxis p1, t_xyaxis p2, t_data data)
 {
 	t_xyaxis	diff;
 
@@ -84,14 +84,14 @@ void	plot_line(t_xyaxis p1, t_xyaxis p2, t_vars vars)
 	if (diff.y < diff.x)
 	{
 		if (p1.x > p2.x)
-			plot_line_low(p2, p1, vars);
+			plot_line_low(p2, p1, data);
 		else
-			plot_line_low(p1, p2, vars);
+			plot_line_low(p1, p2, data);
 	}
 	else if (p1.y > p2.y)
-		plot_line_high(p2, p1, vars);
+		plot_line_high(p2, p1, data);
 	else
-		plot_line_high(p1, p2, vars);
+		plot_line_high(p1, p2, data);
 }
 /*
 plot line high are for steep slope (between 45deg to vert line)

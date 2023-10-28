@@ -19,7 +19,7 @@ RM = rm -rf
 
 #FILES AND PATH
 PROJECT_DIR = ./srcs/fdf/
-PROJECT_SRCS = fdf.c fdf_utils.c free.c plot_line.c rotate.c
+PROJECT_SRCS = fdf.c fdf_utils.c free.c plot_line.c rotate.c translate.c
 PROJECT = $(addprefix $(PROJECT_DIR), $(PROJECT_SRCS))
 
 GNL_DIR = ./srcs/get_next_line/
@@ -61,7 +61,7 @@ minilibx:
 	@$(MAKE) -C ./srcs/minilibx-linux
     
 clean_minilibx:
-	@$(MAKE) -C ./srcs/minilibx-linux clean   
+	@$(MAKE) -C ./srcs/minilibx-linux clean
 
 re_minilibx:
 	@$(MAKE) -C ./srcs/minilibx-linux re

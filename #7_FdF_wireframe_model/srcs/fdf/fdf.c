@@ -106,9 +106,9 @@ void	get_map_size(t_coord **node, t_xyaxis *map_size)
 	map_size->y = i / map_size->x;	
 }
 
-void	scale(t_coord **node, int xy_offset, int z_offset)
+void	scale(t_coord **node, double xy_offset, double z_offset)
 {
-	int			i;
+	int	i;
 
 	i = 0;
 	while (node[i] != NULL)
@@ -116,66 +116,11 @@ void	scale(t_coord **node, int xy_offset, int z_offset)
 		node[i]->x = xy_offset * node[i]->x;
 		node[i]->y = xy_offset * node[i]->y;
 		node[i]->z = z_offset * node[i]->z;
-		//printf("SCALE(temp) >> x:%d | y:%d | z:%d\n", node[i]->x, node[i]->y, node[i]->z);
-		//printf("SCALE(node) >> x:%d | y:%d | z:%d\n", temp_node[i]->x, temp_node[i]->y, temp_node[i]->z);
 		i++;
 	}
 }
 
-void	translate_orgin(t_coord **node, t_xyaxis map_size)
-{
-	int	i;
-	int	x_offset;
-	int	y_offset;
-
-	i = 0;
-	x_offset = node[map_size.x - 1]->x / 2;
-	y_offset = node[(map_size.y) * (map_size.x) - 1]->y / 2;
-	while (node[i] != NULL)
-	{
-		node[i]->x = node[i]->x - x_offset;
-		node[i]->y = node[i]->y - y_offset;
-		i++;
-	}
-}
-
-void	translate_center(t_coord **node, t_xyaxis win_size)
-{
-	int	i;
-	//int	x_offset;
-	//int	y_offset;
-	/*
-	i = 0;
-	x_offset = 0;
-	y_offset = 0;
-	while (node[i] != NULL)
-	{
-		if (node[i]->x < x_offset)
-			x_offset = node[i]->x;
-		if (node[i]->y < y_offset)
-			y_offset = node[i]->y;		
-		i++;
-	}
-	x_offset = x_offset * -1;
-	y_offset = y_offset * -1;
-	i = 0;
-	while (node[i] != NULL)
-	{
-		node[i]->x = node[i]->x + x_offset;
-		node[i]->y = node[i]->y + y_offset;
-		i++;
-	}
-	*/
-	i = 0;
-	while (node[i] != NULL)
-	{
-		node[i]->x = node[i]->x + (win_size.x / 2);
-		node[i]->y = node[i]->y + (win_size.y / 2);
-		i++;
-	}
-
-}
-void	render(t_coord **node, t_xyaxis map_size, t_vars vars)
+void	render(t_coord **node, t_xyaxis map_size, t_data data)
 {
 	t_xyaxis	p1;
 	t_xyaxis	p2;
@@ -199,7 +144,7 @@ void	render(t_coord **node, t_xyaxis map_size, t_vars vars)
 				p1.y = node[i]->y;
 				p2.x = node[i + 1]->x;
 				p2.y = node[i + 1]->y;
-				plot_line(p1, p2, vars);
+				plot_line(p1, p2, data);
 			}
 			else if (k == map_size.x - 1)
 			{
@@ -207,7 +152,7 @@ void	render(t_coord **node, t_xyaxis map_size, t_vars vars)
 				p1.y = node[i]->y;
 				p2.x = node[i + map_size.x]->x;
 				p2.y = node[i + map_size.x]->y;
-				plot_line(p1, p2, vars);
+				plot_line(p1, p2, data);
 			}
 			else
 			{
@@ -215,12 +160,12 @@ void	render(t_coord **node, t_xyaxis map_size, t_vars vars)
 				p1.y = node[i]->y;
 				p2.x = node[i + 1]->x;
 				p2.y = node[i + 1]->y;
-				plot_line(p1, p2, vars);
+				plot_line(p1, p2, data);
 				p1.x = node[i]->x;
 				p1.y = node[i]->y;
 				p2.x = node[i + map_size.x]->x;
 				p2.y = node[i + map_size.x]->y;
-				plot_line(p1, p2, vars);
+				plot_line(p1, p2, data);
 			}
 			k++;
 			i++;
@@ -229,70 +174,65 @@ void	render(t_coord **node, t_xyaxis map_size, t_vars vars)
 	}
 }
 
-t_coord	**project_node(t_coord **node, t_xyaxis map_size)
+void	project_node(t_coord **node)
 {
-	t_matrix	p_matrix;
-	t_coord		**temp_node;
 	int	i;
-
-	p_matrix.r1[0] = 0.7071;  // 1/sqrt(2)
-	p_matrix.r1[1] = 0.4082;  // 1/sqrt(6)
-	p_matrix.r1[2] = 0.5774;  // 1/sqrt(3)
-	p_matrix.r2[0] = -0.7071;  // -1/sqrt(2)
-	p_matrix.r2[1] = 0.4082;  // 1/sqrt(6)
-	p_matrix.r2[2] = 0.5774;  // 1/sqrt(3)
-	p_matrix.r3[0] = 0;       // 0
-	p_matrix.r3[1] = -0.8165;  // -2/sqrt(6)
-	p_matrix.r3[2] = 0.5774;  // 1/sqrt(3)
-
-	temp_node = malloc(sizeof(t_coord) * ((map_size.x * map_size.y) + 1));
+	int	f;
+	
+	f = 600;
 	i = 0;
 	while (node[i] != NULL)
 	{
-		temp_node[i] = malloc(sizeof(t_coord));
-		temp_node[i]->x = (p_matrix.r1[0] * node[i]->x) + (p_matrix.r1[1] * node[i]->y) + (p_matrix.r1[2] * node[i]->z);
-		temp_node[i]->y = (p_matrix.r2[0] * node[i]->x) + (p_matrix.r2[1] * node[i]->y) + (p_matrix.r2[2] * node[i]->z);
-		//printf("PROJECTNODE >> x:%d | y:%d | z:%d\n", temp_node[i]->x, temp_node[i]->y, temp_node[i]->z);
+		double scalingFactor = 20.0 / (20.0 + 0.1 * node[i]->z);
+		printf("nodez:%d\n", node[i]->z);
+		node[i]->x *= scalingFactor;
+		node[i]->y *= scalingFactor;
 		i++;
 	}
-	temp_node[i] = NULL;
-	free_struct_arr(node);
-	return (temp_node);
 }
 
 int	main(int argc, char **argv)
 {
-	t_vars	vars;
-	t_coord	**node;
-	t_xyaxis	win_size;
-	t_xyaxis	map_size;
-	int	xy_offset;
-	int	z_offset;
+	t_data	data;
+
 	// init
 	if (argc != 2)
 		return (0);
-	win_size.x = 1000;
-	win_size.y = 1000;
-	xy_offset = 20;
-	z_offset = xy_offset / 8;
-	vars.mlx = mlx_init ();
-	vars.win = mlx_new_window (vars.mlx, win_size.x, win_size.y, "ateow_fdf");
+	data.win_size.x = 1000;
+	data.win_size.y = 1000;
+	data.zoom_xy = 30;
+	data.zoom_z = data.zoom_xy / 8;
+	data.mlx = mlx_init ();
+	data.win = mlx_new_window (data.mlx, data.win_size.x, data.win_size.y, "ateow_fdf");
 	
-	node = get_coordinates(argv[1]);
-	get_map_size(node, &map_size);
-	scale(node, xy_offset, z_offset);
-	translate_orgin(node, map_size);
-	rotate_node(node);
-	translate_center(node, win_size);
+	data.node = get_coordinates(argv[1]);
+	get_map_size(data.node, &(data.map_size));
+	scale(data.node, data.zoom_xy, data.zoom_z);
+	translate_orgin(data.node, data.map_size);
+	
+	data.node_org = get_coordinates(argv[1]);
+	get_map_size(data.node_org, &(data.map_size));
+	scale(data.node_org, data.zoom_xy, data.zoom_z);
+	translate_orgin(data.node_org, data.map_size);
 
-	//node = project_node(node, map_size);
-	render(node, map_size, vars);
+	rotate_node_default(&data);
+	translate_center(&data);
 
+	render(data.node, data.map_size, data);
+	
 	// exit
-	mlx_key_hook(vars.win, &key_hook, &vars);
-	mlx_hook(vars.win, 17, 0, &close_window, &vars);
-	mlx_loop(vars.mlx);
-	free_struct_arr(node);
+
+	mlx_key_hook(data.win, key_hook, &data);
+	mlx_hook(data.win, 17, 0, close_window, &data);
+	
+	//mouse
+	mlx_hook(data.win, 4, (1L<<2), mouse_press, &data);
+	mlx_hook(data.win, 5, (1L<<3), mouse_release, &data);
+
+	
+	mlx_loop(data.mlx);
+	free_struct_arr(data.node);
+	free_struct_arr(data.node_org);
 	return (0);
 }
 
@@ -378,5 +318,38 @@ int	main(int argc, char **argv)
 	temp_node[i] = NULL;
 	free_struct_arr(node);
 	return (temp_node);
+}
+*/
+/*
+void	translate_position(t_coord **node, t_xyaxis win_size, int x, int y)
+{
+	int	i;
+	t_coord	smallest;
+	t_coord	largest;
+
+	i = 0;
+	smallest.x = node[i]->x;
+	smallest.y = node[i]->y;
+	largest.x = node[i]->x;
+	largest.y = node[i]->y;
+	while (node[i] != NULL)
+	{
+		if (node[i]->x < smallest.x)
+			smallest.x  = node[i]->x;
+		if (node[i]->y < smallest.y)
+			smallest.y = node[i]->y;
+		if (node[i]->x > largest.x)
+			largest.x  = node[i]->x;
+		if (node[i]->y > largest.y)
+			largest.y = node[i]->y;
+		i++;
+	}
+	i = 0;
+	while (node[i] != NULL)
+	{
+		node[i]->x = node[i]->x - smallest.x - ((largest.x - smallest.x) / 2) + x;
+		node[i]->y = node[i]->y - smallest.y - ((largest.y - smallest.y) / 2) + y;
+		i++;
+	}
 }
 */
