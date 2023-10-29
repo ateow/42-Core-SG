@@ -24,3 +24,5 @@ Skillset: Sorting Algorithms, Structs
 This project recreates basic features of linux's PIPE function.\
 SKillset: Linux Processes, Fork, Pipe, File Descriptors, Exevce
 
+### [Project 7: fdf](https://github.com/ateow/42-Core-SG/tree/main/%237_fdf) - 125/100
+Waiting for you to submit FDF.
