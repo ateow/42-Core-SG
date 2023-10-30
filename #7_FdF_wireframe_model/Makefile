@@ -19,7 +19,7 @@ RM = rm -rf
 
 #FILES AND PATH
 PROJECT_DIR = ./srcs/fdf/
-PROJECT_SRCS = fdf.c fdf_utils.c free.c plot_line.c rotate.c translate.c
+PROJECT_SRCS = fdf.c fdf_utils.c controls.c free.c plot_line.c rotate.c rotate_math.c translate.c projection.c render.c
 PROJECT = $(addprefix $(PROJECT_DIR), $(PROJECT_SRCS))
 
 GNL_DIR = ./srcs/get_next_line/

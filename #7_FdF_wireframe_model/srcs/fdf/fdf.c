@@ -14,7 +14,7 @@
 #include "../../includes/mlx.h"
 #include "../../includes/libft.h"
 #include "../../includes/get_next_line.h"
-
+#include <math.h>
 
 t_coord	**create_node(char *string, t_coord **node, int row)
 {
@@ -106,90 +106,8 @@ void	get_map_size(t_coord **node, t_xyaxis *map_size)
 	map_size->y = i / map_size->x;	
 }
 
-void	scale(t_coord **node, double xy_offset, double z_offset)
-{
-	int	i;
 
-	i = 0;
-	while (node[i] != NULL)
-	{
-		node[i]->x = xy_offset * node[i]->x;
-		node[i]->y = xy_offset * node[i]->y;
-		node[i]->z = z_offset * node[i]->z;
-		i++;
-	}
-}
 
-void	render(t_coord **node, t_xyaxis map_size, t_data data)
-{
-	t_xyaxis	p1;
-	t_xyaxis	p2;
-	int	i;
-	int	j;
-	int	k;
-
-	j = 0;
-	i = 0;
-	while (j < map_size.y)
-	{
-		k = 0;
-		while (k < map_size.x)
-		{
-			//printf("\ni:%d\n", i);
-			if (j == map_size.y - 1)
-			{
-				if (k == map_size.x - 1)
-					break ;
-				p1.x = node[i]->x;
-				p1.y = node[i]->y;
-				p2.x = node[i + 1]->x;
-				p2.y = node[i + 1]->y;
-				plot_line(p1, p2, data);
-			}
-			else if (k == map_size.x - 1)
-			{
-				p1.x = node[i]->x;
-				p1.y = node[i]->y;
-				p2.x = node[i + map_size.x]->x;
-				p2.y = node[i + map_size.x]->y;
-				plot_line(p1, p2, data);
-			}
-			else
-			{
-				p1.x = node[i]->x;
-				p1.y = node[i]->y;
-				p2.x = node[i + 1]->x;
-				p2.y = node[i + 1]->y;
-				plot_line(p1, p2, data);
-				p1.x = node[i]->x;
-				p1.y = node[i]->y;
-				p2.x = node[i + map_size.x]->x;
-				p2.y = node[i + map_size.x]->y;
-				plot_line(p1, p2, data);
-			}
-			k++;
-			i++;
-		}
-		j++;
-	}
-}
-
-void	project_node(t_coord **node)
-{
-	int	i;
-	int	f;
-	
-	f = 600;
-	i = 0;
-	while (node[i] != NULL)
-	{
-		double scalingFactor = 20.0 / (20.0 + 0.1 * node[i]->z);
-		printf("nodez:%d\n", node[i]->z);
-		node[i]->x *= scalingFactor;
-		node[i]->y *= scalingFactor;
-		i++;
-	}
-}
 
 int	main(int argc, char **argv)
 {
@@ -198,44 +116,24 @@ int	main(int argc, char **argv)
 	// init
 	if (argc != 2)
 		return (0);
-	data.win_size.x = 1000;
-	data.win_size.y = 1000;
-	data.zoom_xy = 30;
-	data.zoom_z = data.zoom_xy / 8;
+	data.map_info = argv[1];	
+	data.win_size.x = 1500;
+	data.win_size.y = 1500;
 	data.mlx = mlx_init ();
 	data.win = mlx_new_window (data.mlx, data.win_size.x, data.win_size.y, "ateow_fdf");
-	
-	data.node = get_coordinates(argv[1]);
-	get_map_size(data.node, &(data.map_size));
-	scale(data.node, data.zoom_xy, data.zoom_z);
-	translate_orgin(data.node, data.map_size);
-	
-	data.node_org = get_coordinates(argv[1]);
-	get_map_size(data.node_org, &(data.map_size));
-	scale(data.node_org, data.zoom_xy, data.zoom_z);
-	translate_orgin(data.node_org, data.map_size);
-
-	rotate_node_default(&data);
-	translate_center(&data);
-
-	render(data.node, data.map_size, data);
-	
+	project_default(&data);
 	// exit
-
 	mlx_key_hook(data.win, key_hook, &data);
 	mlx_hook(data.win, 17, 0, close_window, &data);
-	
-	//mouse
+	// control
 	mlx_hook(data.win, 4, (1L<<2), mouse_press, &data);
 	mlx_hook(data.win, 5, (1L<<3), mouse_release, &data);
 
-	
 	mlx_loop(data.mlx);
 	free_struct_arr(data.node);
 	free_struct_arr(data.node_org);
 	return (0);
 }
-
 /*
 	printf("row:%d\n", map_size.x);
 	printf("col:%d\n", map_size.y);
@@ -351,5 +249,35 @@ void	translate_position(t_coord **node, t_xyaxis win_size, int x, int y)
 		node[i]->y = node[i]->y - smallest.y - ((largest.y - smallest.y) / 2) + y;
 		i++;
 	}
+}
+
+
+t_coord	update_center(t_data *data)
+{
+	int	i;
+	t_coord	smallest;
+	t_coord	largest;
+	t_coord	ret;
+
+	i = 0;
+	smallest.x = data->node[i]->x;
+	smallest.y = data->node[i]->y;
+	largest.x = data->node[i]->x;
+	largest.y = data->node[i]->y;
+	while (data->node[i] != NULL)
+	{
+		if (data->node[i]->x < smallest.x)
+			smallest.x  = data->node[i]->x;
+		if (data->node[i]->y < smallest.y)
+			smallest.y = data->node[i]->y;
+		if (data->node[i]->x > largest.x)
+			largest.x  = data->node[i]->x;
+		if (data->node[i]->y > largest.y)
+			largest.y = data->node[i]->y;
+		i++;
+	}
+	ret.x = smallest.x + ((largest.x - smallest.x) / 2);
+	ret.y = smallest.y + ((largest.y - smallest.y) / 2);
+	return (ret);
 }
 */

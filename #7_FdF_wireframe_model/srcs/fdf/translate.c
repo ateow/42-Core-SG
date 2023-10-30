@@ -29,7 +29,6 @@ void	translate_orgin(t_coord **node, t_xyaxis map_size)
 	}
 }
 
-
 void	translate_position(t_data *data, int x, int y)
 {
 	int	i;
@@ -52,9 +51,8 @@ void	translate_center(t_data *data)
 	{
 		data->node[i]->x = data->node[i]->x + (data->win_size.x / 2);
 		data->node[i]->y = data->node[i]->y + (data->win_size.y / 2);
-
 		i++;
 	}
-	data->center_x = data->win_size.x / 2;
-	data->center_y = data->win_size.y / 2;
+	data->rot_axis_x = data->win_size.x / 2;
+	data->rot_axis_y = data->win_size.y / 2;
 }
