@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-
 typedef struct s_vars
 {
 	void	*mlx;
@@ -38,7 +37,6 @@ typedef struct s_angle
 	double	y;
 	double	z;
 }	t_angle;
-
 
 typedef struct s_xyaxis
 {
@@ -75,8 +73,8 @@ typedef struct s_data
 	int			middle_drag_y;
 	int			rot_axis_x;
 	int			rot_axis_y;
-	double			zoom_xy;
-	double			zoom_z;
+	double		zoom_xy;
+	double		zoom_z;
 	int			counter_scale;
 	int			counter_zoom;
 	t_angle		angle;
@@ -118,7 +116,7 @@ void	rotate_node(t_data *data, int x, int y);
 void	rotate_node_z(t_data *data, int keycode);
 void	rotate_node_scale(t_data *data);
 
-int		close_window(t_data data);
+int		close_window(t_data *data);
 int		key_hook(int keycode, t_data *data);
 int		mouse_press(int button, int x, int y, t_data *data);
 int		mouse_release(int button, int x, int y, t_data *data);

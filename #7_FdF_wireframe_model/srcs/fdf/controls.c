@@ -16,7 +16,7 @@
 int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
-		close_window(*data);
+		close_window(data);
 	if (keycode == 65362 || keycode == 65364 || keycode == 65361
 		|| keycode == 65363 || keycode == 91 || keycode == 93)
 	{

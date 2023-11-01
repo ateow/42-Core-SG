@@ -13,8 +13,11 @@
 #include "../../includes/fdf.h"
 #include "../../includes/mlx.h"
 
-void	draw_last_row(t_data *data, t_xyaxis p1, t_xyaxis p2, int *i)
+void	draw_last_row(t_data *data, int *i)
 {
+	t_xyaxis	p1;
+	t_xyaxis	p2;
+
 	p1.x = data->node[*i]->x;
 	p1.y = data->node[*i]->y;
 	p2.x = data->node[*i + 1]->x;
@@ -22,8 +25,11 @@ void	draw_last_row(t_data *data, t_xyaxis p1, t_xyaxis p2, int *i)
 	plot_line(p1, p2, *data);
 }
 
-void	draw_last_col(t_data *data, t_xyaxis p1, t_xyaxis p2, int *i)
+void	draw_last_col(t_data *data, int *i)
 {
+	t_xyaxis	p1;
+	t_xyaxis	p2;
+
 	p1.x = data->node[*i]->x;
 	p1.y = data->node[*i]->y;
 	p2.x = data->node[*i + data->map_size.x]->x;
@@ -31,13 +37,29 @@ void	draw_last_col(t_data *data, t_xyaxis p1, t_xyaxis p2, int *i)
 	plot_line(p1, p2, *data);
 }
 
+int	draw(t_data *data, int *i, int *j, int *k)
+{
+	if (*j == data->map_size.y - 1)
+	{
+		if (*k == data->map_size.x - 1)
+			return (-1);
+		draw_last_row(data, i);
+	}
+	else if (*k == data->map_size.x - 1)
+		draw_last_col(data, i);
+	else
+	{
+		draw_last_row(data, i);
+		draw_last_col(data, i);
+	}
+	return (0);
+}
+
 void	render(t_data data)
 {
-	t_xyaxis	p1;
-	t_xyaxis	p2;
 	int			i;
 	int			j;
-	int			k;
+	int			k;	
 
 	mlx_clear_window(data.mlx, data.win);
 	i = 0;
@@ -46,20 +68,9 @@ void	render(t_data data)
 	{
 		k = 0;
 		while (k < data.map_size.x)
-		{	
-			if (j == data.map_size.y - 1)
-			{
-				if (k == data.map_size.x - 1)
-					break ;
-				draw_last_row(&data, p1, p2, &i);
-			}
-			else if (k == data.map_size.x - 1)
-				draw_last_col(&data, p1, p2, &i);
-			else
-			{
-				draw_last_row(&data, p1, p2, &i);
-				draw_last_col(&data, p1, p2, &i);
-			}
+		{
+			if (draw(&data, &i, &j, &k) == -1)
+				break ;
 			k++;
 			i++;
 		}

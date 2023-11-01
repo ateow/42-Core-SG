@@ -13,11 +13,12 @@
 #include "../../includes/fdf.h"
 #include "../../includes/mlx.h"
 
-int	close_window(t_data data)
+int	close_window(t_data *data)
 {
-	mlx_destroy_window(data.mlx, data.win);
-	free_struct_arr(data.node);
-	free_struct_arr(data.node_org);
+	mlx_destroy_display(data->mlx);
+	mlx_destroy_window(data->mlx, data->win);
+	free_struct_arr(data->node);
+	free_struct_arr(data->node_org);
 	exit (1);
 }
 

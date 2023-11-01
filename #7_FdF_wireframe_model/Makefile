@@ -14,12 +14,12 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 RM = rm -rf
 
 #FILES AND PATH
 PROJECT_DIR = ./srcs/fdf/
-PROJECT_SRCS = fdf.c fdf_utils.c controls.c free.c plot_line.c rotate.c rotate_math.c translate.c projection.c render.c
+PROJECT_SRCS = fdf.c fdf_utils.c controls.c free.c plot_line.c rotate.c rotate_math.c translate.c projection.c render.c create_node.c
 PROJECT = $(addprefix $(PROJECT_DIR), $(PROJECT_SRCS))
 
 GNL_DIR = ./srcs/get_next_line/
@@ -71,7 +71,7 @@ re_minilibx:
 clean:
 	@rm -rf $(NAME) 
 
-fclean:	clean clean_libft clean_minilibx 
+fclean:	clean clean_libft
 	@rm -rf $(NAME)
 
 re: fclean all
