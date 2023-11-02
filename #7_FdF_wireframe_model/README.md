@@ -24,9 +24,9 @@ Example of a .fdf file map to be passed into the program
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 </pre>
 Each number represents a point in space:
-- The horizontal position corresponds to its axis.
-- The vertical position corresponds to its ordinate.
-- The value corresponds to its altitude.
+    - The horizontal position corresponds to its axis.
+    - The vertical position corresponds to its ordinate.
+    - The value corresponds to its altitude.
 
 
 ### Project Logic
