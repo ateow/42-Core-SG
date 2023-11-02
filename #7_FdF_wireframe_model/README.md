@@ -1,5 +1,6 @@
 # fdf_wireframe_model
 ![image](https://github.com/ateow/42-Core-SG/assets/144050579/d926d168-a478-4629-9f40-6663b554295a)
+
 This project is about creating a simple wireframe model representation of a 3D land-scape by linking various points (x, y, z) thanks to line segments (edges) using the MiniLibX library.
 - Functions allowed: open, close, read, write, malloc, free, perror, strerror, exit, All functions of the math
 library, All functions of the MiniLibX.
