@@ -37,16 +37,43 @@ $ make
 $ ./fdf ./maps/42.fdf
 </pre>
 Controls
-
+<pre>
+Left click and drag to translate
+Middle click and drag to rotate
+Scroll to zoom
+'+' to increase height
+'-' to decrease height
+'r' or '0' to reset model and present default view
+'1' for iso view
+'2' for plan view
+'3' for front view
+'4' for side view
+'esc' to exit
+'up' to rotate x
+'down' to rotate x
+'left' to rotate y
+'right' to rotate y
+'[' to rotate z
+']' to rotate z
+</pre>
 Adjust Parameters
 <pre>
 Change Window Size (/srcs/fdf.c)
-    line 68    data.win_size.x = 1500;
-    line 69    data.win_size.y = 1500;
+  line 68	data.win_size.x = 1500;
+  line 69	data.win_size.y = 1500;
+	
 Change Default Model Offsets (/srcs/projection.c)
-    line 25    data->zoom_xy = data->win_size.x / (2 * data->map_size.x);
-	line 26    data->zoom_z = data->zoom_xy / 5;
+  line 25	data->zoom_xy = data->win_size.x / (2 * data->map_size.x);
+  line 26	data->zoom_z = data->zoom_xy / 5;
 
+Change Default Rotation Angle (/srcs/projection.c)
+  line 31	data->angle.x = 30 * M_PI / 180;
+  line 32	data->angle.y = -30 * M_PI / 180;
+  line 33	data->angle.z = 30 * M_PI / 180;
+
+Change Limits of Scale and Zoom (/srcs/projection.c)
+  line 19	data->counter_zoom = 0;
+  line 20	data->counter_scale = 0;
 </pre>
 ### To be improved
 - Handle non-exisitent input file and files without permission.
