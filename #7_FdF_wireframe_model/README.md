@@ -11,6 +11,7 @@ library, All functions of the MiniLibX.
 
 Example of a .fdf file map to be passed into the program
 <pre>
+$cat ./42.fdf
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
