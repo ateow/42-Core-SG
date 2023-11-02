@@ -1,14 +1,13 @@
 # fdf_wireframe_model
-This project is about creating a simple wireframe model representation of a 3D land-scape by linking various points (x, y, z) thanks to line segments (edges) using the MiniLibX library.\
-Functions allowed: open, close, read, write, malloc, free, perror, strerror, exit, All functions of the math
-library, All functions of the MiniLibX.\
-
-Project Requirements
-- Render 3D isometric view given a map.fdf
-- Zoom in and out
-- Translate model
-- Rotate Model
-- Add one feature of choice (adjustable altitude) 
+This project is about creating a simple wireframe model representation of a 3D land-scape by linking various points (x, y, z) thanks to line segments (edges) using the MiniLibX library.
+- Functions allowed: open, close, read, write, malloc, free, perror, strerror, exit, All functions of the math
+library, All functions of the MiniLibX.
+- Project Requirements:
+    - Render 3D isometric view given a map.fdf
+    - Zoom in and out
+    - Translate model
+    - Rotate Model
+    - Add one feature of choice (adjustable altitude) 
 
 Example of a .fdf file map to be passed into the program
 <pre>
