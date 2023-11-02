@@ -82,3 +82,8 @@ Change Limits of Scale and Zoom (/srcs/projection.c)
 - Add live rotation and translation while mouse is on hold
 - Add colours
 - Shade nodes to transform wireframe into solid 3D
+### Project Sceenshots
+![image](https://github.com/ateow/42-Core-SG/assets/144050579/9362e8b4-3d39-4b90-b755-e371ba86de29)
+![image](https://github.com/ateow/42-Core-SG/assets/144050579/4385d779-5223-4166-ac14-da875f0f1ac5)
+![image](https://github.com/ateow/42-Core-SG/assets/144050579/f5227ebe-c854-4708-aeea-c098dddd0578)
+
