@@ -3,8 +3,12 @@ This project is about creating a simple wireframe model representation of a 3D l
 Functions allowed: open, close, read, write, malloc, free, perror, strerror, exit, All functions of the math
 library, All functions of the MiniLibX.\
 
-Requirements:
-- 
+Project Requirements
+- Render 3D isometric view given a map.fdf
+- Zoom in and out
+- Translate model
+- Rotate Model
+- Add one feature of choice (adjustable altitude) 
 
 Example of a .fdf file map to be passed into the program
 <pre>
