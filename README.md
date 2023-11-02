@@ -2,8 +2,8 @@
 
 ### [Project 1: libft](https://github.com/ateow/42-Core-SG/tree/main/%231_libft) - 125/100
 This project is about coding a C library. It contains a lot of general purpose functions programs will rely upon.\
-Skillset: Basic C programming, Pointers and Memory Manipulation, Structures and Link Lists\
-External Functions Allowed: write, malloc, free
+  Skillset: Basic C programming, Pointers and Memory Manipulation, Structures and Link Lists\
+  External Functions Allowed: write, malloc, free
 
 ### [Project 2: ft_printf](https://github.com/ateow/42-Core-SG/tree/main/%232_ft_printf) - 100/100
 This project recreates basic features of printf.\
@@ -12,7 +12,7 @@ External Functions Allowed: malloc, free, write, va_start, va_arg, va_copy, va_e
 
 ### [Project 3: get_next_line](https://github.com/ateow/42-Core-SG/tree/main/%233_get_next_line) - 125/100
 This project is about programming a function that returns a line read from a file descriptor.\
-Skillset: Static Variables, File Descriptor, ARGC ARGV, Memory Management
+Skillset: Static Variables, File Descriptor, ARGC ARGV, Memory Management\
 External Functions Allowed: read, malloc, free
 
 ### [Project 4: born_2_be_root](https://github.com/ateow/42-Core-SG/tree/main/%234_born2beRoot) - 125/100
