@@ -11,7 +11,7 @@ library, All functions of the MiniLibX.
 
 Example of a .fdf file map to be passed into the program
 <pre>
-$cat ./42.fdf
+$ cat ./42.fdf
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0 10 10  0  0 10 10  0  0  0 10 10 10 10 10  0  0  0
@@ -31,9 +31,23 @@ Each number represents a point in space:
 </pre>
 
 ### Project Documentations
-make
+Create and execute program
+<pre>
+$ make
+$ ./fdf ./maps/42.fdf
+</pre>
+Controls
 
+Adjust Parameters
+<pre>
+Change Window Size (/srcs/fdf.c)
+    line 68    data.win_size.x = 1500;
+    line 69    data.win_size.y = 1500;
+Change Default Model Offsets (/srcs/projection.c)
+    line 25    data->zoom_xy = data->win_size.x / (2 * data->map_size.x);
+	line 26    data->zoom_z = data->zoom_xy / 5;
 
+</pre>
 ### To be improved
 - Handle non-exisitent input file and files without permission.
 - To use MLX Images instead of plotting pixel
