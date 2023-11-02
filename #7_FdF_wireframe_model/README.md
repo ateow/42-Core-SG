@@ -30,6 +30,14 @@ Each number represents a point in space:
 - The value corresponds to its altitude.
 </pre>
 
+### Project Documentations
+make
 
-### Project Logic
-ss
+
+### To be improved
+- Program did not handle non-exisitent input file and files without permission.
+- Program did not use MLX Images
+- Scaling rounding issues from Double to Int will cause model to flatten after multiple zoom operations
+- Could consider adding live rotation and translation while mouse is on hold
+- Add colours
+- Shade nodes to transform wireframe into solid 3D
