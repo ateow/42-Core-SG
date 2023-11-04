@@ -31,5 +31,5 @@ This project recreates basic features of linux's PIPE function.
 
 ### [Project 7: fdf_wireframe_model](https://github.com/ateow/42-Core-SG/tree/main/%237_FdF_wireframe_model) - 125/100
 This project is about creating a simple wireframe model using the school's MiniLibX library.
-- SKillset: Ploting lines, 3D Projection, Key and Mouse Hooks
+- SKillset: Connecting lines from coordinates, 3D Projection/Rotation/Translation/Scale, Key and Mouse Hooks
 - External Functions Allowed: open, close, read, write, malloc, free, Math Library, MiniLibX functions
