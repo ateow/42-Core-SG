@@ -1,5 +1,5 @@
 # 42-Core-SG
-Completed projects in 42 SUTD Singapore Core program. 
+This is a repo of my completed projects in 42 SUTD Singapore Core program. 
 ### [Project 1: libft](https://github.com/ateow/42-Core-SG/tree/main/%231_libft) - 125/100
 This project is about coding a C library. It contains a lot of general purpose functions programs will rely upon.
 - Skillset: Basic C programming, Pointers and Memory Manipulation, Structures and Link Lists
