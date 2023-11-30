@@ -25,21 +25,19 @@ int	ft_atoi(const char *str)
 	return (res * n);
 }
 
-int	all_dead(t_status *philo)
+long int	timestamp(void)
 {
-	int	i;
-	int	c;
-	
-	i = 0;
-	c = 0;
-	while(i < philo[0].pax)
-	{
-		if (philo[i].dead == 1)
-			c++;
-		i++;
-	}
-	if (c == philo[0].pax)
-		return(1);
-	else
-		return(0);
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	ft_usleep(int ms)
+{
+	long int	time;
+
+	time = timestamp();
+	while (timestamp() - time < ms)
+		usleep(ms / 10);
 }
