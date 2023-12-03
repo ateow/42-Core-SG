@@ -12,6 +12,8 @@
 
 #include "philo_bonus.h"
 
+sem_t *end_sim;
+
 void	eat_sleep(t_philo *philo)
 {
 	//eat
@@ -64,7 +66,21 @@ void	get_forks(t_philo *philo)
 		print(philo, "has taken a fork", 1);
 	}
 }
-/*
+
+void	stop_process(t_vars *data, int *child_pid)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->n_philo)
+	{
+		printf("stop process\n");
+		kill(child_pid[i], SIGTERM);
+		i++;
+	}
+}
+
+
 void	*check_death(void *data)
 {
 	t_philo	*philo;
@@ -73,31 +89,87 @@ void	*check_death(void *data)
 	while(philo->data->end_sim != 1)
 	{
 		pthread_mutex_lock(&philo->eating);
-		if ((timestamp() - philo->last_ate) > philo->data->time_die
-			&& philo->data->end_sim != 1)
+		if ((timestamp() - philo->last_ate) > philo->data->time_die)
 		{
 			philo->data->end_sim = 1;
 			print(philo, "died", 0);
+			sem_post(end_sim);
 		}
 		pthread_mutex_unlock(&philo->eating);
-		usleep(1 * 1000);
 	}
 	return (NULL);
-}*/
+}
 
-void	stop_process(t_vars *data, int *child_pid)
+void	*philo_life(void *data)
 {
-	int	i;
+	t_philo	*philo;
+	pthread_t	health_thread;
 
-	i = 0;
-
-	while (i < data->n_philo)
+	philo = (t_philo *)data;
+	pthread_create(&health_thread, NULL, check_death, philo);
+	while (philo->data->end_sim == 0)
 	{
-		kill(child_pid[i], SIGTERM);
-		printf("stop process\n");
+		if (philo->hold_forks == 1)
+		{
+			eat_sleep(philo);
+			philo->is_thinking = 1;
+		}
+		else if (philo->hold_forks == 0 && philo->is_thinking == 0
+			&& philo->data->n_philo > 1)
+		{
+			get_forks(philo);
+			philo->hold_forks = 1;
+		}
+		else if (philo->is_thinking == 1)
+		{
+			print(philo, "is thinking", 1);
+			philo->is_thinking = 0;
+			usleep(2 * 1000);
+		}
+	}
+	return (NULL);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_vars	data;
+	int		i;
+	int status;
+	int	child_pid[10];
+	const char *semaphore_name = "/end_sim";
+
+	end_sim = sem_open(semaphore_name, O_CREAT | O_EXCL, 0666, 0);
+	if (argc < 5 || (argv[5] && ft_atoi(argv[5]) <= 0) || ft_atoi(argv[1]) < 1 
+		|| ft_atoi(argv[2]) < 0 || ft_atoi(argv[3]) < 0 || ft_atoi(argv[4]) < 0)
+		return (0);
+	init_data(&data, argv);
+	i = 0;
+	while (i < data.n_philo)
+	{
+		child_pid[i] = fork();
+		if (child_pid[i] == 0)
+		{
+			init_philo(&data, i);
+			philo_life(&data.philo[i]);
+			exit (1);
+		}
 		i++;
 	}
+	sem_wait(end_sim);
+	stop_process(&data, child_pid);
+	i = 0;
+	while (i < data.n_philo)
+	{
+		waitpid(child_pid[i], &status, 0);
+		i++;
+	}
+	free_all(&data);
+	sem_close(end_sim);
+    	sem_unlink(semaphore_name);
+	return (1);
 }
+
+/*
 
 void	check_end_sim(t_vars *data, int *child_pid)
 {
@@ -129,71 +201,7 @@ void	check_end_sim(t_vars *data, int *child_pid)
 	}
 }
 
-void	*philo_life(void *data)
-{
-	t_philo	*philo;
-	
-	philo = (t_philo *)data;
-	check_end_sim(&data, child_pid);
-	while (philo->data->end_sim == 0)
-	{
-		if (philo->hold_forks == 1)
-		{
-			eat_sleep(philo);
-			philo->is_thinking = 1;
-		}
-		else if (philo->hold_forks == 0 && philo->is_thinking == 0
-			&& philo->data->n_philo > 1)
-		{
-			get_forks(philo);
-			philo->hold_forks = 1;
-		}
-		else if (philo->is_thinking == 1)
-		{
-			print(philo, "is thinking", 1);
-			philo->is_thinking = 0;
-			usleep(2 * 1000);
-		}
-	}
-	return (NULL);
-}
 
-int	main(int argc, char *argv[])
-{
-	t_vars	data;
-	int		i;
-	int status;
-	int	child_pid[10];
-
-	if (argc < 5 || (argv[5] && ft_atoi(argv[5]) <= 0) || ft_atoi(argv[1]) < 1 
-		|| ft_atoi(argv[2]) < 0 || ft_atoi(argv[3]) < 0 || ft_atoi(argv[4]) < 0)
-		return (0);
-	init_data(&data, argv);
-	i = 0;
-	while (i < data.n_philo)
-	{
-		child_pid[i] = fork();
-		if (child_pid[i] == 0)
-		{
-			printf("life\n");
-			init_philo(&data, i);
-			philo_life(&data.philo[i]);
-			exit (1);
-		}
-		i++;
-	}
-	usleep(100 * 1000);
-	i = 0;
-	while (i < data.n_philo)
-	{
-		waitpid(child_pid[i], &status, 0);
-		i++;
-	}
-	free_all(&data);
-	return (1);
-}
-
-/*
 void	death_check(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->eating);
