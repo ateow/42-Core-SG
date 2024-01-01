@@ -32,8 +32,8 @@ typedef struct s_vars
 	int				time_eat;
 	int				end_sim;
 	long int		start_time;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	print;
+	sem_t 			*sem_end_sim;
+	sem_t 			*sem_is_full;
 }	t_vars;
 
 typedef struct s_philo

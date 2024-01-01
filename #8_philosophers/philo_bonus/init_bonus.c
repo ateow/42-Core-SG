@@ -23,8 +23,6 @@ int	init_data(t_vars *data, char **argv)
 	if (argv[5])
 		data->n_eat = ft_atoi(argv[5]);
 	data->philo = malloc(sizeof(t_philo) * data->n_philo);
-	data->fork = malloc(sizeof(pthread_mutex_t) * data->n_philo);
-	pthread_mutex_init(&(data->print), NULL);
 	data->start_time = timestamp();
 	return (0);
 }
@@ -37,6 +35,4 @@ void	init_philo(t_vars *data, int i)
 	data->philo[i].hold_forks = 0;
 	data->philo[i].is_thinking = 1;
 	data->philo[i].data = data;
-	pthread_mutex_init(&(data->fork[i]), NULL);
-	pthread_mutex_init(&(data->philo[i].eating), NULL);
 }
