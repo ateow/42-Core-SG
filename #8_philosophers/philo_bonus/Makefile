@@ -12,7 +12,7 @@
 
 NAME = philo_bonus
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 

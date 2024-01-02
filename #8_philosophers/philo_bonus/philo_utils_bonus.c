@@ -49,13 +49,13 @@ void	print(t_philo *philo, char *str, int health)
 {
 	long int	time;
 
-	// pthread_mutex_lock(&(philo->data->print));
+	sem_wait(philo->data->print);
 	time = timestamp() - philo->data->start_time;
 	if (health == 1 && philo->data->end_sim != 1)
 		printf("%ld %d %s\n", time, philo->id + 1, str);
 	else if (health == 0)
 		printf("%ld %d %s\n", time, philo->id + 1, str);
-	// pthread_mutex_unlock(&(philo->data->print));
+	sem_post(philo->data->print);
 }
 
 // void	free_all(t_vars *data)
