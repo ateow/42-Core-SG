@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ateow <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: ateow <ateow@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 16:29:33 by ateow             #+#    #+#              #
-#    Updated: 2023/12/02 16:29:34 by ateow            ###   ########.fr        #
+#    Updated: 2024/01/03 21:39:31 by ateow            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_bonus
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 

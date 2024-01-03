@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:37:00 by ateow             #+#    #+#             */
-/*   Updated: 2023/12/02 15:37:02 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 21:38:18 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	eat_sleep(t_philo *philo)
 {
-	//eat
 	pthread_mutex_lock(&philo->eating);
 	print(philo, "is eating", 1);
 	philo->last_ate = timestamp();
 	usleep(philo->data->time_eat * 1000);
 	philo->count_eat = philo->count_eat + 1;
-	//realease fork
 	if ((philo->id + 1) != philo->data->n_philo)
 	{
 		pthread_mutex_unlock(&philo->data->fork[philo->id]);
@@ -33,7 +31,6 @@ void	eat_sleep(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->eating);
 	philo->hold_forks = 0;
-	//sleep
 	if (philo->data->end_sim != 1)
 	{
 		print(philo, "is sleeping", 1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:39:55 by ateow             #+#    #+#             */
-/*   Updated: 2023/12/02 15:39:56 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 21:37:15 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_vars
 	long int		start_time;
 	sem_t			*sem_end_sim;
 	sem_t			*sem_is_full;
+	sem_t			*terminate;
 	sem_t			*forks;
 	sem_t			*print;
 	int				*child_pid;
@@ -49,10 +50,15 @@ typedef struct s_philo
 	t_vars			*data;
 }	t_philo;
 
-int			init_data(t_vars *data, char **argv);
+void		init_data(t_vars *data, char **argv);
 void		init_philo(t_vars *data, int i);
+void		init_sem(t_vars *data);
 long int	timestamp(void);
 int			ft_atoi(const char *str);
 void		print(t_philo *philo, char *str, int health);
+void		unlink_sem(void);
+void		close_sem(t_vars *data);
+void		*check_full(void *data);
+void		*end_process(void *data);
 
 #endif

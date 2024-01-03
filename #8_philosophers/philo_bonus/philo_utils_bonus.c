@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   philo_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:37:07 by ateow             #+#    #+#             */
-/*   Updated: 2023/12/02 15:37:08 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 21:37:33 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,41 @@ void	print(t_philo *philo, char *str, int health)
 	long int	time;
 
 	sem_wait(philo->data->print);
+	if (health == 0)
+		usleep(2000);
 	time = timestamp() - philo->data->start_time;
 	if (health == 1 && philo->data->end_sim != 1)
 		printf("%ld %d %s\n", time, philo->id + 1, str);
-	else if (health == 0)
+	else if (health == 0 && philo->data->end_sim != 1)
 		printf("%ld %d %s\n", time, philo->id + 1, str);
 	sem_post(philo->data->print);
 }
 
-// void	free_all(t_vars *data)
-// {
-// 	int	i;
+void	*check_full(void *data)
+{
+	t_vars	*philo;
+	int		i;
 
-// 	i = 0;
-// 	while (i < data->n_philo)
-// 	{
-// 		pthread_mutex_destroy(&(data->fork[i]));
-// 		pthread_mutex_destroy(&(data->philo[i].eating));
-// 		i++;
-// 	}
-// 	pthread_mutex_destroy(&(data->print));
-// 	free(data->philo);
-// 	free(data->fork);
-// }
+	i = 0;
+	philo = (t_vars *)data;
+	while (i < philo->n_philo && philo->end_sim != 1)
+	{
+		sem_wait(philo->sem_is_full);
+		i++;
+	}
+	philo->end_sim = 1;
+	sem_post(philo->sem_end_sim);
+	return (NULL);
+}
+
+void	*end_process(void *data)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)data;
+	sem_wait(philo->data->sem_end_sim);
+	philo->data->end_sim = 1;
+	sem_post(philo->data->sem_end_sim);
+	sem_post(philo->data->terminate);
+	return (NULL);
+}
