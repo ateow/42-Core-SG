@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:39:55 by ateow             #+#    #+#             */
-/*   Updated: 2024/01/03 21:37:15 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 22:08:57 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_vars
 	sem_t			*terminate;
 	sem_t			*forks;
 	sem_t			*print;
+	sem_t			*eat;
 	int				*child_pid;
 }	t_vars;
 

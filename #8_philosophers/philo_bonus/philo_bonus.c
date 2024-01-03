@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:37:00 by ateow             #+#    #+#             */
-/*   Updated: 2024/01/03 21:37:01 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 22:09:39 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,25 @@
 
 void	eat_sleep(t_philo *philo, sem_t *forks)
 {
-	print(philo, "is eating", 1);
-	philo->last_ate = timestamp();
-	usleep(philo->data->time_eat * 1000);
-	philo->count_eat = philo->count_eat + 1;
-	if (philo->count_eat == philo->data->n_eat)
-		sem_post(philo->data->sem_is_full);
-	sem_post(forks);
-	sem_post(forks);
-	philo->hold_forks = 0;
+	sem_wait(philo->data->eat);
 	if (philo->data->end_sim != 1)
 	{
-		print(philo, "is sleeping", 1);
-		usleep(philo->data->time_sleep * 1000);
+		sem_post(philo->data->eat);
+		print(philo, "is eating", 1);
+		philo->last_ate = timestamp();
+		usleep(philo->data->time_eat * 1000);
+		philo->count_eat = philo->count_eat + 1;
+		if (philo->count_eat == philo->data->n_eat)
+			sem_post(philo->data->sem_is_full);
+		sem_post(forks);
+		sem_post(forks);
+		philo->hold_forks = 0;
+		if (philo->data->end_sim != 1)
+		{
+			print(philo, "is sleeping", 1);
+			usleep(philo->data->time_sleep * 1000);
+		}
+		philo->is_thinking = 1;
 	}
 }
 
@@ -42,7 +48,6 @@ void	*philo_thread(void *data)
 		if (philo->hold_forks == 1)
 		{
 			eat_sleep(philo, philo->data->forks);
-			philo->is_thinking = 1;
 		}
 		else if (philo->hold_forks == 0 && philo->is_thinking == 0
 			&& philo->data->n_philo > 1)
@@ -72,9 +77,11 @@ void	*philo_life(t_philo *philo)
 	{
 		if ((timestamp() - philo->last_ate) > philo->data->time_die)
 		{
+			sem_wait(philo->data->eat);
 			print(philo, "died", 0);
 			philo->data->end_sim = 1;
 			sem_post(philo->data->sem_end_sim);
+			sem_post(philo->data->eat);
 			break ;
 		}
 	}

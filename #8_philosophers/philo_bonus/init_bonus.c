@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:24:37 by ateow             #+#    #+#             */
-/*   Updated: 2024/01/03 21:29:27 by ateow            ###   ########.fr       */
+/*   Updated: 2024/01/03 22:08:21 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,18 @@ void	init_sem(t_vars *data)
 	data->sem_is_full = sem_open("/sem_is_full", O_CREAT | O_EXCL, 0666, 0);
 	data->forks = sem_open("/forks", O_CREAT | O_EXCL, 0666, data->n_philo);
 	data->print = sem_open("/print", O_CREAT | O_EXCL, 0666, 1);
+	data->eat = sem_open("/eat", O_CREAT | O_EXCL, 0666, 1);
 }
 
 void	unlink_sem(void)
 {
+	sem_unlink("/eat");
 	sem_unlink("/sem_end_sim");
 	sem_unlink("/sem_is_full");
 	sem_unlink("/forks");
 	sem_unlink("/print");
 	sem_unlink("/terminate");
+	sem_unlink("/eat");
 }
 
 void	close_sem(t_vars *data)
@@ -64,5 +67,6 @@ void	close_sem(t_vars *data)
 	sem_close(data->forks);
 	sem_close(data->sem_is_full);
 	sem_close(data->terminate);
+	sem_close(data->eat);
 	unlink_sem();
 }
