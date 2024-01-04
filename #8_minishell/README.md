@@ -5,16 +5,12 @@ The group project is done together with ChristopherOoi. Recreated a bash shell w
 * Implemented our own builtins for: echo, cd, pwd, export, unset, env, exit.
 * Handle signals for SIGINT and SIGQUIT for ctrl-C, ctrl-D, ctrl-\ in interactive mode.
 
-# MINISHELL LOGIC
+### minishell code logic
 
 1) check user input is not empty, spaces or tabs
-
 2) inject space if there are no space in <>&| ("ls >hello" -> "ls > hello")
-
 3) split string into 2D arrary by &&, ||, pipe. do not spilt if there are brackets
-
 4) loop thru strings, in each string, check for:
-
 	- || and &&
 		- skip strings if exit status fufills ||, && conditions
 	- pipes
