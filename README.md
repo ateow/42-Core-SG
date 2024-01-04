@@ -33,3 +33,14 @@ This project recreates basic features of linux's PIPE function.
 This project is about creating a simple wireframe model using the school's MiniLibX library.
 - SKillset: Connecting lines from coordinates, 3D Projection/Rotation/Translation/Scale, Key and Mouse Hooks
 - External Functions Allowed: open, close, read, write, malloc, free, Math Library, MiniLibX functions
+
+### [Project 8: minishell](https://github.com/ateow/42-Core-SG/tree/main/%238_minishell) - 125/100
+A group project of 2 pax that requires us to recreated a simple bash shell with built-in functions
+- SKillset: Processes, file descriptors, pipes, redirection, collabration
+- External Functions Allowed: readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history, printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit, getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
+
+### [Project 9: philosophers](https://github.com/ateow/42-Core-SG/tree/main/%239_philosophers) - 125/100
+This project creates a program that solves the "dining philosophers" problems
+- SKillset: Multi-threading, mutex, semaphore
+- External Functions Allowed: memset, printf, malloc, free, write, usleep, gettimeofday, pthread_create, pthread_detach, pthread_join, pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
+- External Functions Allowed (Bonus): memset, printf, malloc, free, write, fork, kill, exit, pthread_create, pthread_detach, pthread_join, usleep, gettimeofday, waitpid, sem_open, sem_close, sem_post, sem_wait, sem_unlink
