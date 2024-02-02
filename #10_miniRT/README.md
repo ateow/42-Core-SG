@@ -15,6 +15,7 @@ The goal of your program is to generate images using the Raytracing protocol. Th
 'O' to adjust shape position, orientation and colour
 'Space' to re render scene
 
+### Rendered Images
 ![image](https://github.com/ateow/42-Core-SG/assets/144050579/d5f9d554-aaa5-4c97-9202-cc155b8405c6)
 ![image_2024-02-02_23-46-08](https://github.com/ateow/42-Core-SG/assets/144050579/44110a51-32de-4950-af38-5dce1291c278)
 ![image_2024-02-02_23-44-55](https://github.com/ateow/42-Core-SG/assets/144050579/bbd31719-6652-4a76-8584-c9c8aefa9650)
