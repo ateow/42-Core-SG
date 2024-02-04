@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:21:12 by kali              #+#    #+#             */
-/*   Updated: 2024/02/03 11:20:18 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/04 14:37:18 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_in_range(string s, int min, int max)
 	return (1);
 }
 
-int main()
+int main(void)
 {
 	PhoneBook	myphonebook;
 	string		input;
