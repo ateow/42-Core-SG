@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:16:22 by kali              #+#    #+#             */
-/*   Updated: 2024/02/03 11:16:59 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/04 10:35:36 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iomanip>
 #include <string>
 #include <cctype>
+#include <cstdlib>
 
 using std::string;
 using std::cout;

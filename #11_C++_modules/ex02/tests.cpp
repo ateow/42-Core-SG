@@ -12,13 +12,11 @@
 #include <functional>
 #include "Account.hpp"
 
-~Account::Account( void ){};
-
 int		main( void ) {
 
-	typedef std::vector<Account::t>							  accounts_t; // arr of int
-	typedef std::vector<int>								  ints_t; // arr of int
-	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t; 
+	typedef std::vector<Account::t>							  accounts_t;
+	typedef std::vector<int>								  ints_t;
+	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
 
 	int	const				amounts[]	= { 42, 54, 957, 432, 1234, 0, 754, 16576 };
 	size_t const			amounts_size( sizeof(amounts) / sizeof(int) );

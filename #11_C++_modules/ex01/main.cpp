@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:21:12 by kali              #+#    #+#             */
-/*   Updated: 2024/02/04 14:37:18 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/04 10:38:41 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ int main(void)
 				cout << "Enter Index of Interest: ";
 				getline(cin, input);
 				if (is_empty(input) == 1) {continue;}
-				if (is_in_range(input, 0, phonebook_size - 1) == 0 || (stoi(input) >= add_counter))
+				if (is_in_range(input, 0, phonebook_size - 1) == 0 || (std::atoi(input.c_str()) >= add_counter))
 						cout << "invalid search index\n" << endl;
 				else
-					myphonebook.display_contact(stoi(input));
+					myphonebook.display_contact(std::atoi(input.c_str()));
 			}
 			else
 				cout << "no contacts added\n" << endl;

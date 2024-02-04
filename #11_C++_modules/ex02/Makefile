@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/02 21:21:08 by kali              #+#    #+#              #
-#    Updated: 2024/02/04 10:31:10 by kali             ###   ########.fr        #
+#    Created: 2024/02/04 11:27:16 by kali              #+#    #+#              #
+#    Updated: 2024/02/04 11:29:24 by kali             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = account
 
-SOURCES = main.cpp
+SOURCES = tests.cpp Account.cpp
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
