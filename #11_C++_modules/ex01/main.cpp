@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:21:12 by kali              #+#    #+#             */
-/*   Updated: 2024/02/04 10:38:41 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/05 20:26:57 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int	is_empty(string input)
+int	is_empty(std::string input)
 {
 	int i;
 	i = 0;
@@ -23,11 +23,11 @@ int	is_empty(string input)
             return 0;
 		i++;
 	}
-	cout << "invalid inputs\n" << endl;
+	std::cout << "invalid inputs\n" << std::endl;
 	return (1);
 }
 
-int	is_in_range(string s, int min, int max)
+int	is_in_range(std::string s, int min, int max)
 {
 	int i;
 
@@ -45,7 +45,7 @@ int	is_in_range(string s, int min, int max)
 int main(void)
 {
 	PhoneBook	myphonebook;
-	string		input;
+	std::string		input;
 	int			i;
 	int			add_counter;
 	int			phonebook_size;
@@ -55,30 +55,30 @@ int main(void)
 	i = 0;
 	while (1)
 	{
-		cout << "Input Command (ADD, SEARCH, EXIT): ";
-		getline(cin, input);
+		std::cout << "Input Command (ADD, SEARCH, EXIT): ";
+		std::getline(std::cin, input);
 		if (input == "EXIT")
 			break;
 		else if (input == "ADD")
 		{
-			cout << "Enter First Name: ";
-			getline(cin, input);
+			std::cout << "Enter First Name: ";
+			std::getline(std::cin, input);
 			if (is_empty(input) == 1) {continue;}
   			myphonebook.add_first_name(input, i);
-			cout << "Enter Last Name: ";
-			getline(cin, input);
+			std::cout << "Enter Last Name: ";
+			std::getline(std::cin, input);
 			if (is_empty(input) == 1) {continue;}
   			myphonebook.add_last_name(input, i);
-			cout << "Enter Nickname: ";
-			getline(cin, input);
+			std::cout << "Enter Nickname: ";
+			std::getline(std::cin, input);
 			if (is_empty(input) == 1) {continue;}
   			myphonebook.add_nickname(input, i);
-			cout << "Enter Phone Number: ";
-			getline(cin, input);
+			std::cout << "Enter Phone Number: ";
+			std::getline(std::cin, input);
 			if (is_empty(input) == 1) {continue;}
 			myphonebook.add_phone_number(input, i);
-			cout << "Enter Darkest Secret: ";
-			getline(cin, input);
+			std::cout << "Enter Darkest Secret: ";
+			std::getline(std::cin, input);
 			if (is_empty(input) == 1) {continue;}
   			myphonebook.add_darkest_secret(input, i);
 			add_counter++;
@@ -92,18 +92,18 @@ int main(void)
 			if (add_counter > 0)
 			{
 				myphonebook.display_menu(add_counter, phonebook_size);
-				cout << "Enter Index of Interest: ";
-				getline(cin, input);
+				std::cout << "Enter Index of Interest: ";
+				std::getline(std::cin, input);
 				if (is_empty(input) == 1) {continue;}
 				if (is_in_range(input, 0, phonebook_size - 1) == 0 || (std::atoi(input.c_str()) >= add_counter))
-						cout << "invalid search index\n" << endl;
+						std::cout << "invalid search index\n" << std::endl;
 				else
 					myphonebook.display_contact(std::atoi(input.c_str()));
 			}
 			else
-				cout << "no contacts added\n" << endl;
+				std::cout << "no contacts added\n" << std::endl;
 		}
 		else
-			cout << "invalid command\n" << endl;
+			std::cout << "invalid command\n" << std::endl;
 	}
 }

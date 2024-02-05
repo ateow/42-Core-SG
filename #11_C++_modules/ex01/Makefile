@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ateow <ateow@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/02 21:21:08 by kali              #+#    #+#              #
-#    Updated: 2024/02/04 10:31:10 by kali             ###   ########.fr        #
+#    Updated: 2024/02/05 20:30:09 by ateow            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = phonebook
 
 SOURCES = main.cpp
 
-CC = c++
+CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)	
