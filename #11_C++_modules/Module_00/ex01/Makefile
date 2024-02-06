@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
+#    By: ateow <ateow@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/04 11:27:16 by kali              #+#    #+#              #
-#    Updated: 2024/02/04 11:29:24 by kali             ###   ########.fr        #
+#    Created: 2024/02/02 21:21:08 by kali              #+#    #+#              #
+#    Updated: 2024/02/05 20:53:07 by ateow            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = account
+NAME = phonebook
 
-SOURCES = tests.cpp Account.cpp
+SOURCES = main.cpp
 
-CC = c++
+CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)	
