@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:16:22 by ateow             #+#    #+#             */
-/*   Updated: 2024/02/06 22:28:24 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/07 10:13:58 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ class   Zombie
     private:
         std::string name;
     public:
-        Zombie() : name("Default") {}
-        Zombie(std::string n) : name(n) {}  // constructor
+        Zombie() {} // default constructor
+        Zombie(std::string n) // param constructor
+        {
+            name = n;
+        }
         void announce( void );
 };
 

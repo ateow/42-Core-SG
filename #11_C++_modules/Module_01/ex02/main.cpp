@@ -5,18 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 19:11:12 by ateow             #+#    #+#             */
-/*   Updated: 2024/02/07 08:59:52 by kali             ###   ########.fr       */
+/*   Created: 2024/02/07 10:17:15 by kali              #+#    #+#             */
+/*   Updated: 2024/02/07 10:36:25 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
-int     main(void)
+int main()
 {
-    Zombie* my_army;
+    std::string s = "HI THIS IS BRAIN";
+    std::string *stringPTR = &s;
+    std::string &stringREF = s;
+    
+    std::cout << &s << std::endl;
+    std::cout << stringPTR << std::endl;
+    std::cout << &stringREF << std::endl;
 
-    my_army = zombieHorde(10, "thriller");
-    delete[] my_army;
+    std::cout << s << std::endl;
+    std::cout << *stringPTR << std::endl;
+    std::cout << stringREF << std::endl;
+
 }
-
