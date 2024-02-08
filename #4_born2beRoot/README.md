@@ -124,7 +124,7 @@ Reload privilege tables now? [Y/n] Y
 
 * database-name: web_database
 * username: ateow
-* password: 0602
+* password: ****
 * login: `mariadb -u <username-2> -p`
 * `SHOW DATABASE`
 
