@@ -153,7 +153,6 @@ Do port fowarding. Map port 8080 to port 80\
 
 
 # Evaluation
-Born2beroot / Born2be0602
 
 * DEBIAN vs ROCKY
 * AppArmour vs SELINUX
