@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/07 11:12:08 by kali              #+#    #+#              #
-#    Updated: 2024/02/07 11:12:16 by kali             ###   ########.fr        #
+#    Created: 2024/02/10 02:48:10 by kali              #+#    #+#              #
+#    Updated: 2024/02/12 03:05:19 by kali             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test
+NAME = ex01
 
-SOURCES = main.cpp
+SOURCES = main.cpp Fixed.cpp
 
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98

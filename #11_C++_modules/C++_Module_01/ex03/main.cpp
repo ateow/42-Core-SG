@@ -6,90 +6,13 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:43:48 by kali              #+#    #+#             */
-/*   Updated: 2024/02/07 12:34:30 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/09 22:45:11 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-class Weapon
-{
-	private:
-		std::string type;
-
-	public:
-		Weapon(){}
-		Weapon(std::string type)
-		{
-			this->type = type;
-		}
-		std::string& getType() 
-		{
-			return((this->type));
-		}
-
-		void setType(std::string type)
-		{
-			this->type = type;
-		}
-
-};
-
-class HumanA
-{
-	private:
-		std::string name;
-		std::string *weapon;
-
-	public:
-		HumanA(std::string name, Weapon& W)
-		{
-			this->name = name;
-			weapon = &W.getType();
-		}
-
-		void attack()
-		{
-			std::cout << name << " attacks with their " << *weapon << std::endl;
-		}
-};
-
-
-class HumanB
-{
-	private:
-		std::string name;
-		std::string *weapon;
-		int	has_weapon;
-
-	public:
-		HumanB(std::string name)
-		{
-			this->name = name;
-			this->has_weapon = 0;
-			weapon = new std::string("bare fists");
-		}
-
-		~HumanB()
-		{
-			if (has_weapon == 0)
-				delete weapon;
-		}
-		
-		void setWeapon(Weapon& W)
-		{
-			delete weapon;
-			has_weapon = 1;
-			weapon = &W.getType();
-		}
-
-		void attack()
-		{
-			std::cout << name << " attacks with their " << *weapon << std::endl;
-		}
-};
-
-
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int main()
 {
