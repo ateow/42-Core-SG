@@ -6,62 +6,55 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:49:14 by kali              #+#    #+#             */
-/*   Updated: 2024/02/12 11:02:50 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/12 13:07:57 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void )
-{
-    std::cout << "\n<< subject tests >>" << std::endl;
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
-    Fixed a;
-    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+int main( void ) {
+	// No triangle
+	std::cout << "NO TRIANGLE:" << std::endl;
+	{
+		Point	a(0.0f, 0.0f);
+		Point	b(0.0f, 0.0f);
+		Point	c(0.0f, 0.0f);
+		Point	p(0.0f, 0.0f);
+		std::cout << "1. " << (bsp(a, b, c, p) ? "true" : "false") << std::endl; // 1. false
+	}
 
-    std::cout << a << std::endl;
-    std::cout << ++a << std::endl;
-    std::cout << a << std::endl;
-    std::cout << a++ << std::endl;
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << Fixed::max( a, b ) << std::endl;
+	// Test inside
+	std::cout << "\nTEST INSIDE:" << std::endl;
+	{
+		Point a(Fixed(1), Fixed());
+		Point b(Fixed(-1), Fixed());
+		Point c(Fixed(), Fixed(1));
+		Point p(Fixed(0.4f), Fixed(0.4f));
+		std::cout << "1. " << (bsp(a, b, c, p) ? "true" : "false") << std::endl; // 1. true
+	}
 
+	// Test edges
+	std::cout << "\nTEST EDGES:" << std::endl;
+	{
+		Point a(Fixed(1), Fixed());
+		Point b(Fixed(-1), Fixed());
+		Point c(Fixed(), Fixed(1));
+		Point p(Fixed(0.5f), Fixed(0.5f));
+		std::cout << "1. " << (bsp(a, b, c, p) ? "true" : "false") << std::endl; // 1. false
+	}
 
-    std::cout << "\n<< increment >>" << std::endl;
-
-    Fixed t;
-
-    std::cout << t << std::endl;
-    std::cout << ++t << std::endl;
-    std::cout << t << std::endl;
-    std::cout << t++ << std::endl;
-    std::cout << t << std::endl;
-    std::cout << --t << std::endl;
-    std::cout << t << std::endl;
-    std::cout << t-- << std::endl;
-    std::cout << t << std::endl;
-
-
-    std::cout << "\n<< + - * / >>" << std::endl;
-
-    Fixed const plus( Fixed( 5.05f ) + Fixed( 2 ) );
-    Fixed const minus( Fixed( 5.05f ) - Fixed( 2 ) );
-    Fixed const times( Fixed( 5.05f ) * Fixed( 2 ) );
-    Fixed const divide( Fixed( 5.05f ) / Fixed( 2 ) );
-    
-    std::cout << plus << std::endl;
-    std::cout << minus << std::endl;
-    std::cout << times << std::endl;
-    std::cout << divide << std::endl;
-
-
-    std::cout << "\n<< min & max >>" << std::endl;
-
-    Fixed x(1.1f);
-    Fixed y(1.2f);
-    std::cout << "min: " << Fixed::min(x, y) << std::endl;
-    std::cout << "max: " << Fixed::max(x, y) << std::endl;
-
-    return 0;
+	// Test vertex
+	std::cout << "\nTEST VERTEX:" << std::endl;
+	{
+		Point a(Fixed(1), Fixed());
+		Point b(Fixed(-1), Fixed());
+		Point c(Fixed(), Fixed(1));
+		Point p(Fixed(), Fixed(0.5f));
+		std::cout << "1. " << (bsp(a, b, c, p) ? "true" : "false") << std::endl; // 1. true
+		std::cout << "2. " << (bsp(a, b, c, a) ? "true" : "false") << std::endl; // 2. false
+		std::cout << "3. " << (bsp(a, b, c, b) ? "true" : "false") << std::endl; // 3. false
+		std::cout << "4. " << (bsp(a, b, c, c) ? "true" : "false") << std::endl; // 4. false
+	}
 }

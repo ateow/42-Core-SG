@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:31:14 by kali              #+#    #+#             */
-/*   Updated: 2024/02/12 12:18:24 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/12 12:58:00 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ class   Point
 		//construct
 		Point();
         Point(const float a, const float b);
+        Point(const Fixed a, const Fixed b);
 		//copy construct
-		Point(const Point& orignal);
+		Point(const Point& original);
 		
 		//copy operator assign
     	Point& operator=(const Point& original);
@@ -31,4 +32,7 @@ class   Point
 		//destructor
 		~Point();
 
+        //member functions:
+        Fixed getX() const;
+        Fixed getY() const;
 };
