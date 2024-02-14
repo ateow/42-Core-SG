@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:18:58 by kali              #+#    #+#             */
-/*   Updated: 2024/02/12 13:07:40 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/13 10:12:32 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     Fixed   Area_1(triangle_area(a, b, point));
     Fixed   Area_2(triangle_area(a, c, point));
     Fixed   Area_3(triangle_area(b, c, point));
-
-    // std::cout << "total: " << Total_area << std::endl;
-    // std::cout << "Area_1: " << Area_1 << std::endl;
-    // std::cout << "Area_2: " << Area_2 << std::endl;
-    // std::cout << "Area_3: " << Area_3 << std::endl;
-
-
 
     if (Area_1 == 0 || Area_2 == 0 || Area_3 == 0)
         return (false);
