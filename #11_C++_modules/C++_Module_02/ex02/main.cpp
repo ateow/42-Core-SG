@@ -63,5 +63,17 @@ int main( void )
     std::cout << "min: " << Fixed::min(x, y) << std::endl;
     std::cout << "max: " << Fixed::max(x, y) << std::endl;
 
+    Fixed q(10.5);
+    Fixed e(20.5);
+    if (q < e)
+        std::cout << "q is more then e" << std::endl;
+    if (q > e)
+        std::cout << "not suppose to print" << std::endl;
+    if (q == e)
+        std::cout << "not suppose to print" << std::endl;
+    if (q == q)
+        std::cout << "q = q" << std::endl;
+    if (q != e)
+        std::cout << "q != e" << std::endl;
     return 0;
 }

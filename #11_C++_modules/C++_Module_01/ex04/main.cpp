@@ -16,18 +16,18 @@
 
 int main(int argc, char** argv)
 {
+	if (argc != 4)
+	{
+		std::cout << "invalid args" << std::endl;
+		return (1);
+	}
 	std::string filename = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
 	size_t pos = 0;
 	std::string line;
 
-	if (argc != 4)
-	{
-		std::cout << "invalid args" << std::endl;
-		return (1);
-	}
-	std::ifstream inputFile("input.txt");
+	std::ifstream inputFile(argv[1]);
 	if (!inputFile)
 	{
 		std::cerr << "Error: Unable to open file for reading" << std::endl;
@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 
 	while (std::getline(inputFile, line))
 	{
-		pos = line.find(s1, pos);
+		pos = line.find(s1, 0);
 		while (pos != std::string::npos)
 		{
 			line.erase(pos, s1.length());
@@ -56,4 +56,3 @@ int main(int argc, char** argv)
 	outputFile.close();
 	return (0);
 }
-

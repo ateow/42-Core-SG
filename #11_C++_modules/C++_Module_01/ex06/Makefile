@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harlFilter
+NAME = HarlFilter
 
 SOURCES = main.cpp Harl.cpp Harl.hpp
 

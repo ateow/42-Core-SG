@@ -29,7 +29,7 @@ void Harl::warning(void)
 
 void Harl::error(void)
 {
-	std::cout << "[ ERROR ]\nThis is unacceptable! I want to speak to the manager now." << std::endl;
+	std::cout << "[ ERROR ]\nThis is unacceptable! I want to speak to the manager now.\n" << std::endl;
 }
 
 void Harl::complain(std::string level)

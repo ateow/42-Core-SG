@@ -16,7 +16,6 @@ int     main(void)
 {
     Zombie* my_army;
 
-    my_army = zombieHorde(10, "thriller");
+    my_army = zombieHorde(5, "thriller");
     delete[] my_army;
 }
-

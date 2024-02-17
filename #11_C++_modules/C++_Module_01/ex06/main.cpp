@@ -19,5 +19,7 @@ int main(int argc, char **argv)
         Harl harl;
         harl.complain(std::string(argv[1]));
     }
+    else
+        std::cout << "invalid args" << std::endl;
     return 0;
 }

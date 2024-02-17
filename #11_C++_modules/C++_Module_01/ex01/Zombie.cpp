@@ -12,6 +12,9 @@
 
 #include "Zombie.hpp"
 
+Zombie::Zombie() : name("default") {};
+Zombie::Zombie(std::string n) : name(n) {};
+
 void    Zombie::announce(void)
 {
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
