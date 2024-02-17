@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 09:50:09 by kali              #+#    #+#             */
-/*   Updated: 2024/02/14 11:55:24 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/17 15:33:41 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 class   ClapTrap
 {
@@ -39,3 +41,5 @@ class   ClapTrap
 		void    takeDamage(unsigned int amount);
 		void    beRepaired(unsigned int amount);
 };
+
+#endif

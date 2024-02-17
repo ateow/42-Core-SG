@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:40:05 by ateow             #+#    #+#             */
-/*   Updated: 2024/02/17 13:56:16 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/17 18:12:51 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	this->hit_point = 100;
 	this->energy_point = 50;
 	this->attack_damage = 20;
-	std::cout << "Initialising ScavTrap Default " << this->name << std::endl;
+	std::cout << "Initialising ScavTrap Default: " << this->name << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)

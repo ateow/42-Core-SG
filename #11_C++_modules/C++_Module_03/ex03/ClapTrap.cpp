@@ -6,19 +6,19 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:19:02 by kali              #+#    #+#             */
-/*   Updated: 2024/02/17 17:45:36 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/17 17:48:38 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : 
-    name("default"), 
+    name("default_clap_name"), 
     hit_point(10), 
     energy_point(10), 
     attack_damage(0)
 {
-	std::cout << "Initialising ClapTrap Default" << std::endl;
+	std::cout << "Initialising ClapTrap Default: " << this->name << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) :

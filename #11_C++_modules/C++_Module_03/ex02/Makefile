@@ -6,13 +6,13 @@
 #    By: ateow <ateow@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 02:48:10 by kali              #+#    #+#              #
-#    Updated: 2024/02/17 14:10:44 by ateow            ###   ########.fr        #
+#    Updated: 2024/02/17 14:35:07 by ateow            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 
-SOURCES = main.cpp ClapTrap.cpp ScavTrap.cpp
+SOURCES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CC = g++
