@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:31:04 by kali              #+#    #+#             */
-/*   Updated: 2024/02/20 19:50:52 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/20 20:26:49 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class   Animal
 
 		//member functions:
         std::string getType() const;
-		virtual void makeSound() const;
+		virtual void makeSound() const = 0;
 };
 
 
