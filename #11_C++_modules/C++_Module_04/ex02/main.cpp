@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:53:28 by kali              #+#    #+#             */
-/*   Updated: 2024/02/20 22:03:53 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/22 22:29:52 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int main()
 	Cat *cat = new Cat();
 
 	std::cout << std::endl;
+
+	
 
 	std::cout << dog->getType() << std::endl;
 	std::cout << cat->getType() << std::endl;
