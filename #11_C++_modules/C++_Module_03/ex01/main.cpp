@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:26 by kali              #+#    #+#             */
-/*   Updated: 2024/02/17 14:01:31 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/24 10:39:40 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ int main()
 	ScavTrap s2("two");
 	ScavTrap s3("three");
 	ScavTrap s4("four");
-
-	// s1.guardGate();
-	// s2.guardGate();
-	// s3.guardGate();
-	// s4.guardGate();
+	std::cout << std::endl;
+	s1.guardGate();
+	s2.guardGate();
+	s3.guardGate();
+	s4.guardGate();
+	std::cout << std::endl;
 	s1.takeDamage(1000);
 	s1.attack("target1");
 	s1.beRepaired(1000);
@@ -68,4 +69,9 @@ int main()
 	s3.attack("target3");
 	s4.attack("target4");
 	s4.beRepaired(1000);
+	std::cout << std::endl;
+	ClapTrap c1("five");
+	c1.takeDamage(2);
+	c1.attack("target5");
+	std::cout << std::endl;
 }

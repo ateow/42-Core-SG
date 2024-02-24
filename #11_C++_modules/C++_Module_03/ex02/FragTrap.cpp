@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:40:05 by ateow             #+#    #+#             */
-/*   Updated: 2024/02/17 18:10:26 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/24 10:44:50 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	FragTrap::highFivesGuys(void)
 		std::cout << "FragTrap " << this->name << " unable to high fives because is dead." << std::endl;
 		return;
 	}
-	// std::cout << "FragTrap " << this->name << " high fives guys!" << std::endl;
+	std::cout << "FragTrap " << this->name << " high fives guys!" << std::endl;
 }
 

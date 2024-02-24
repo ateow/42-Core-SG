@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classes.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:34:56 by kali              #+#    #+#             */
-/*   Updated: 2024/02/23 00:55:34 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:55:58 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ AMateria& AMateria::operator=(const AMateria &original)
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria "<< "Goodbye " << this->type << std::endl;
+	std::cout << "AMateria Class: "<< "Goodbye " << this->type << std::endl;
 }
 
 std::string const & AMateria::getType() const
@@ -87,7 +87,7 @@ Ice& Ice::operator=(const Ice &original)
 
 Ice::~Ice()
 {
-	std::cout << "Ice " << "Goodbye " << this->type << std::endl;
+	std::cout << "Ice Class: " << "Goodbye " << this->type << std::endl;
 }
 
 AMateria* Ice::clone() const
@@ -122,7 +122,7 @@ Cure& Cure::operator=(const Cure &original)
 
 Cure::~Cure()
 {
-	std::cout << "Cure " << "Goodbye " << this->type << std::endl;
+	std::cout << "Cure Class: " << "Goodbye " << this->type << std::endl;
 }
 
 AMateria* Cure::clone() const
@@ -154,7 +154,7 @@ Character::Character(std::string name) : name(name)
 Character::Character(const Character& original)
 {
   	std::cout << "Initialising copy " << original.name << std::endl;
-	*this = original;
+	this->name = original.name;
     int i = 0;
     while (i < 4) 
     {
@@ -171,9 +171,8 @@ Character& Character::operator=(const Character &original)
 	if (this != &original)
 	{
         this->name = original.name;
-	    
         int i = 0;
-        while (i < 4) 
+        while (i < 4)
         {
             delete this->materia[i];
             if (original.materia[i] != NULL)
@@ -196,7 +195,7 @@ Character::~Character()
         delete this->materia[i];
         i++;
     }
-	std::cout << "Goodbye " << this->name << std::endl;
+	std::cout << "Character Class: Goodbye " << this->name << std::endl;
 }
 
 std::string const & Character::getName() const
@@ -286,7 +285,7 @@ MateriaSource::~MateriaSource()
         delete this->materia[i];
         i++;
     }
-	std::cout << "Goodbye " << std::endl;
+	std::cout << "MateriaSource Class: Goodbye " << std::endl;
 }
 
 void MateriaSource::learnMateria(AMateria* m)

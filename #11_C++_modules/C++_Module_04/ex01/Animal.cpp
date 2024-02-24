@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:45:57 by kali              #+#    #+#             */
-/*   Updated: 2024/02/18 23:10:11 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:18:02 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Animal& Animal::operator=(const Animal &original)
 
 Animal::~Animal()
 {
-	std::cout << "Goodbye " << this->type << std::endl;
+	std::cout << "Animal Class: Goodbye " << this->type << std::endl;
 }
 
 std::string Animal::getType() const

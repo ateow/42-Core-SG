@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:26 by kali              #+#    #+#             */
-/*   Updated: 2024/02/14 11:13:41 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 10:29:34 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int main()
 	std::cout << std::endl;
 
 	c1->beRepaired(1000);
-	c2->beRepaired(1);
-	c3->beRepaired(5);
+	c2->beRepaired(100);
+	c3->beRepaired(1000);
+	c3->takeDamage(5);
+	c3->takeDamage(500);
 
 	std::cout << std::endl;
 

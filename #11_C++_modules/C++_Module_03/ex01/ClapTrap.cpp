@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:19:02 by kali              #+#    #+#             */
-/*   Updated: 2024/02/17 17:45:36 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/24 10:38:33 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ ClapTrap::~ClapTrap()
 {
 	std::cout << "Goodbye ClapTrap " << this->name << std::endl;
 }
-
 void    ClapTrap::attack(const std::string& target)
 {
     if (this->hit_point == 0)
@@ -78,10 +77,15 @@ void    ClapTrap::takeDamage(unsigned int amount)
         return ;
     }
     if (this->hit_point > amount)
+    {
 	    this->hit_point -= amount;
+        std::cout << this->name << " took " << amount << " damage!" << std::endl;
+    }
     else
+    {
+        std::cout << this->name << " took " << amount << " damage and died!" << std::endl;
         this->hit_point = 0;
-    std::cout << this->name << " took " <<  amount <<" damage" << std::endl;
+    }
 }
 
 void    ClapTrap::beRepaired(unsigned int amount)
@@ -98,5 +102,5 @@ void    ClapTrap::beRepaired(unsigned int amount)
     }
     this->hit_point += amount;
 	this->energy_point -= 1;
-    std::cout << this->name << " repaired " <<  amount << std::endl;
+    std::cout << "Repair " << amount << " for " << this->name << std::endl;
 }

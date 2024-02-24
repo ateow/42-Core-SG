@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 00:23:28 by kali              #+#    #+#             */
-/*   Updated: 2024/02/20 19:32:56 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:18:14 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ Brain& Brain::operator=(const Brain &original)
 
 Brain::~Brain()
 {
-	std::cout << "Goodbye Brain" << std::endl;
+	std::cout << "Brain Class: Goodbye Brain" << std::endl;
 }

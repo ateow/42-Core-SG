@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:23:49 by ateow             #+#    #+#             */
-/*   Updated: 2024/02/17 18:15:01 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/24 11:03:32 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ScavTrap.hpp"
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap() : ScavTrap(), FragTrap()
 {
     ClapTrap::name = "default_clap_name";
     this->name = "default";

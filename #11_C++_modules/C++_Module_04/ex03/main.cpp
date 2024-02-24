@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:35:32 by kali              #+#    #+#             */
-/*   Updated: 2024/02/23 00:50:51 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:54:34 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@ int main()
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
-    ICharacter* me = new Character("me");
-    
+    ICharacter* cloud = new Character("cloud");
+
+    std::cout << std::endl;
     AMateria* tmp;
     tmp = src->createMateria("ice");
-    me->equip(tmp);
+    cloud->equip(tmp);
     tmp = src->createMateria("cure");
-    me->equip(tmp);
+    cloud->equip(tmp);
     ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
+
+    std::cout << std::endl;
+    cloud->use(0, *bob);
+    cloud->use(1, *bob);
+    std::cout << std::endl;
+
     delete bob;
-    delete me;
+    delete cloud;
     delete src;
 }

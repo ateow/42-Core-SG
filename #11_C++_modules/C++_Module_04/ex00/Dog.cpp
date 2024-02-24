@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:48:28 by kali              #+#    #+#             */
-/*   Updated: 2024/02/18 23:10:46 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 13:44:10 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Dog& Dog::operator=(const Dog &original)
 
 Dog::~Dog()
 {
-	std::cout << "Goodbye " << this->type << std::endl;
+	std::cout << "Dog Class: Goodbye " << this->type << std::endl;
 }
 
 void Dog::makeSound() const

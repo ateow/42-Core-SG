@@ -29,7 +29,7 @@ class   WrongAnimal
     	WrongAnimal& operator=(const WrongAnimal& original);
 		
 		//destructor
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 
 		//member functions:
         std::string getType() const;

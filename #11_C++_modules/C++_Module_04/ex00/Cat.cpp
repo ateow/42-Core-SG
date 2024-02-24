@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:48:28 by kali              #+#    #+#             */
-/*   Updated: 2024/02/18 23:10:44 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 12:02:06 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Cat& Cat::operator=(const Cat &original)
 
 Cat::~Cat()
 {
-	std::cout << "Goodbye " << this->type << std::endl;
+	std::cout << "Cat Class: Goodbye " << this->type << std::endl;
 }
 
 void Cat::makeSound() const

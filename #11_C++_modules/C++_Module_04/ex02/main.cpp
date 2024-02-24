@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 22:53:28 by kali              #+#    #+#             */
-/*   Updated: 2024/02/22 22:29:52 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:52:09 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int main()
 
 	std::cout << "Create cat2" << std::endl;
 	Cat *cat2 = new Cat();
+	// Cat cat2(*cat);
 	// Cat *cat2(cat);
 	std::cout << std::endl;
 
@@ -87,25 +88,26 @@ int main()
 
 	std::cout << "================ SUBJECT ARRAY TEST ================\n" << std::endl;
 
-	Animal *animals[N_ANIMALS];
+	Animal *animals_array[N_ANIMALS];
 
 	for (int i = 0; i < N_ANIMALS; i++) {
 		if (i < N_ANIMALS / 2) {
-			animals[i] = new Cat();
+			animals_array[i] = new Cat();
 		} else {
-			animals[i] = new Dog();
+			animals_array[i] = new Dog();
 		}
 	}
 
 	std::cout << std::endl;
 
 	for (int i = 0; i < N_ANIMALS; i++) {
-		animals[i]->makeSound();
+		animals_array[i]->makeSound();
 	}
 
 	std::cout << std::endl;
 
 	for (int i = 0; i < N_ANIMALS; i++) {
-		delete animals[i];
+		delete animals_array[i];
 	}
+	// Animal test;
 }

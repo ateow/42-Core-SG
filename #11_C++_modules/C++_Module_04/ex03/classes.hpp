@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   classes.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:31:04 by kali              #+#    #+#             */
-/*   Updated: 2024/02/23 00:46:31 by kali             ###   ########.fr       */
+/*   Updated: 2024/02/24 15:59:51 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ class   Ice : public AMateria
 		~Ice();
 
 		//member functions:
-		virtual AMateria* clone() const;
+		AMateria* clone() const;
 };
 
 class   Cure : public AMateria
@@ -80,7 +80,7 @@ class   Cure : public AMateria
 		~Cure();
 
 		//member functions:
-		virtual AMateria* clone() const;
+		AMateria* clone() const;
 };
 
 

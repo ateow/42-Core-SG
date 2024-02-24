@@ -6,7 +6,7 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 09:50:09 by kali              #+#    #+#             */
-/*   Updated: 2024/02/17 15:33:41 by ateow            ###   ########.fr       */
+/*   Updated: 2024/02/24 10:55:06 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class   ClapTrap
 		~ClapTrap();
 
 		//member function
-		void    attack(const std::string& target);
+		virtual void    attack(const std::string& target);
 		void    takeDamage(unsigned int amount);
 		void    beRepaired(unsigned int amount);
 };
