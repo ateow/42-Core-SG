@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - 443:443
+    volumes:
+      - wp_vol:/var/www/html
+    restart: unless-stopped
+    networks:
+      - inception_network
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - wp_vol:/var/www/html
+    env_file: .env
+    networks:
+      - inception_network
+    restart: unless-stopped
+
+networks:
+  inception_network:
+    driver: bridge
+
+volumes:
+  wp_vol:
+    driver: local
+    name: wp
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/kali/data/wordpress

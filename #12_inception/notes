@@ -1,0 +1,17 @@
+docker ps -a
+- list docker containers (all including stopped containers)
+
+build:
+docker build -t nginx_image .
+
+run:
+docker run -d -p 443:443 --name nginx_container nginx_image
+
+To clear docker stopped images:
+- docker container prune -f
+- docker image prune -a -f
+
+docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null
+
+
+penultimate means “next to last” or “second to last.” 
