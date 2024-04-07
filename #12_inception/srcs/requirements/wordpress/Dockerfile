@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update && apt-get -y install \
 	mariadb-client \
@@ -11,20 +11,21 @@ RUN apt-get update && apt-get -y install \
 	php-fpm \
 	php-pdo \
 	php-gd php-cli \
-	php-mbstring
+	php-mbstring \
+	&& rm -rf /var/lib/apt/lists/*
 	
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
-RUN mkdir -p /etc/php/fpm
-COPY ./www.conf /etc/php/fpm/pool.d
+RUN mkdir -p /etc/php/8.2/fpm
+COPY ./www.conf /etc/php/8.2/fpm/pool.d
 
-RUN mkdir /run/php
+RUN mkdir -p /run/php
 
 COPY ./create_wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/create_wordpress.sh
-
+RUN ls /run/php
 WORKDIR /var/www/html
 
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]

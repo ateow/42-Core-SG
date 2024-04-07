@@ -1,7 +1,7 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update && \
-	apt-get  -y install nginx && \
+	apt-get -y install nginx && \
 	apt-get install openssl
 
 #COPY ./html /usr/share/nginx/html
