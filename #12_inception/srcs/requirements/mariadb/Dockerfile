@@ -3,7 +3,6 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y \
 	mariadb-server mariadb-client
 	
-
 #initalise Database
 RUN rm /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY my.conf /etc/mysql/mariadb.conf.d
@@ -19,7 +18,7 @@ RUN chmod +x ./init_db.sh
 RUN bash ./init_db.sh
 RUN service mysql stop
 
-EXPOSE	3306
+EXPOSE 3306
 
 CMD ["mysqld_safe"]
 

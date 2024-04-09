@@ -11,8 +11,7 @@ RUN apt-get update && apt-get -y install \
 	php-fpm \
 	php-pdo \
 	php-gd php-cli \
-	php-mbstring \
-	&& rm -rf /var/lib/apt/lists/*
+	php-mbstring
 	
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \

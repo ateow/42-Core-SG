@@ -14,4 +14,6 @@ To clear docker stopped images:
 docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null
 
 
-penultimate means “next to last” or “second to last.” 
+penultimate means “next to last” or “second to last.”
+
+docker exec -it 611c794662f1 sh 
