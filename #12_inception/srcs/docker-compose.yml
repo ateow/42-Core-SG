@@ -53,10 +53,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: "/home/kali/data/wordpress"
+      device: "/home/ateow/data/wordpress"
   mariadb_vol:
     driver: local
     driver_opts:
         type: none
         o: bind
-        device: "/home/kali/data/db"
+        device: "/home/ateow/data/db"

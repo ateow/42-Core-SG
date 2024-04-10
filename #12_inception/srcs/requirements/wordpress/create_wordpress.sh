@@ -36,9 +36,9 @@ else
 	
 	wp user create $WP_USER_LOGIN $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root
 	
-	wp option update home 'http://localhost' --allow-root
-	wp option update siteurl 'http://localhost' --allow-root
+	#wp option update home 'http://localhost' --allow-root
+	#wp option update siteurl 'http://localhost' --allow-root
 
 fi
 
-php-fpm8.2 -F
+php-fpm7.3 -F

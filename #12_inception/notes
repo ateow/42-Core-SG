@@ -17,3 +17,5 @@ docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker
 penultimate means “next to last” or “second to last.”
 
 docker exec -it 611c794662f1 sh 
+
+rm -r * && mkdir wordpress && mkdir db
