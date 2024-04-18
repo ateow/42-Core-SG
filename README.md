@@ -49,3 +49,11 @@ This project creates a program that solves the "dining philosophers" problems.
 A group project of 2 pax to generate images using Raytracing protocol. 
 - Skillset: 3D Vector math, Raytracing protocol
 - External Functions Allowed: open, close, read, write, printf, malloc, free, perror, strerror, exit, Math Library, MiniLibX functions
+
+### [Project 11: C++ Modules 00 to 04](https://github.com/ateow/42-Core-SG/tree/main/%2311_C++_modules) - 100/100
+Learning C++ Modules 00 to 04. 
+- Skillset: C++98 standard, polymorphism, abstract classes, interfaces
+
+### [Project 12: Inception(Docker)](https://github.com/ateow/42-Core-SG/tree/main/%2312_inception) - 100/100
+This project broaden your knowledge of system administration by using Docker. 
+- Skillset: Docker compose, Dockerfiles, Docker network, Docker volume, NGINX, MariaDB, Wordpress
