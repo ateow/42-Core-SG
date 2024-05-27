@@ -45,7 +45,7 @@ This project creates a program that solves the "dining philosophers" problems.
 - External Functions Allowed: memset, printf, malloc, free, write, usleep, gettimeofday, pthread_create, pthread_detach, pthread_join, pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 - External Functions Allowed (Bonus): memset, printf, malloc, free, write, fork, kill, exit, pthread_create, pthread_detach, pthread_join, usleep, gettimeofday, waitpid, sem_open, sem_close, sem_post, sem_wait, sem_unlink
 
-### [Project 10: miniRT(RayTrace)](https://github.com/ateow/42-Core-SG/tree/main/%2310_miniRT) - 125/100
+### [Project 10: miniRT (RayTrace)](https://github.com/ateow/42-Core-SG/tree/main/%2310_miniRT) - 125/100
 A group project of 2 pax to generate images using Raytracing protocol. 
 - Skillset: 3D Vector math, Raytracing protocol
 - External Functions Allowed: open, close, read, write, printf, malloc, free, perror, strerror, exit, Math Library, MiniLibX functions
@@ -54,10 +54,10 @@ A group project of 2 pax to generate images using Raytracing protocol.
 Learning C++ Modules 00 to 04. 
 - Skillset: C++98 standard, polymorphism, abstract classes, interfaces
 
-### [Project 12: Inception(Docker)](https://github.com/ateow/42-Core-SG/tree/main/%2312_inception) - 100/100
+### [Project 12: Inception (Docker)](https://github.com/ateow/42-Core-SG/tree/main/%2312_inception) - 100/100
 This project broaden knowledge of system administration by using Docker. 
 - Skillset: Docker compose, Dockerfiles, Docker network, Docker volume, NGINX, MariaDB, Wordpress
 
 ### [Project 13: Webserv](https://github.com/ateow/42-Core-SG/tree/main/%2313_webserv) - 100/100
-This project asks to replicate a http web server. 
+This group project of 3 pax asked to replicate a http web server.
 - Skillset: C++, OOP, Sockets, HTTP requests and responds 
