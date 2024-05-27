@@ -1,7 +1,8 @@
 # webserv
+```
 42 Webserv group project working repository
 
-===========================================================================================================
+======================================================
 
 Configuration
 
@@ -57,7 +58,7 @@ curl -X DELETE http://127.0.0.1:8081/file_to_be_deleted
 chmod 000 ./eval_directories/directory1/no_permission_file
 curl -X DELETE http://127.0.0.1:8080/no_permission_file
 
-===========================================================================================================
+======================================================
 
 Basic checks
 
@@ -76,7 +77,7 @@ curl -F 'test_upload=@/home/ateow/Desktop/webserv/upload_text.txt' http://127.0.
 curl -F 'test_upload=@/home/ateow/Desktop/webserv/upload_text.txt' http://127.0.0.1:8081/upload
 # 8081 limit size of 1. will return 413
 
-===========================================================================================================
+======================================================
 
 Check CGI
 
@@ -94,7 +95,7 @@ curl -X POST http://127.0.0.1:8080/cgi-bin/infinite_loop.cgi
 curl -X POST http://127.0.0.1:8080/cgi-bin/runtime_error.cgi
 curl -X POST http://127.0.0.1:8080/cgi-bin/static_page.cgi
 
-===========================================================================================================
+======================================================
 
 The server should never crash and an error should be visible in case of a problem.
 
@@ -123,7 +124,7 @@ http://127.0.0.1:8081/old_home999
 
 >> Try anything you want to.
 
-===========================================================================================================
+======================================================
 
 Port issues
 
@@ -140,7 +141,7 @@ http://127.0.0.1:8081
 clear && make re && ./webserv ./configs/invalid.conf 
 # invalid port and invalid root_directory
 
-===========================================================================================================
+======================================================
 
 Siege & stress test
 
@@ -156,58 +157,5 @@ htop
 
 
 END
-===========================================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-
-
-Error Handling:
-
-METHODS:
-* if not upper case: return 400
-* if uppercase but method not recongise: return 405
-
-
-┌──(kali㉿kali)-[~/Desktop/webserv]\
-└─$ curl -I -X GET http://127.0.0.1/ \
-HTTP/1.1 200 OK\
-Server: nginx/1.24.0\
-
-┌──(kali㉿kali)-[~/Desktop/webserv]\
-└─$ curl -I -X Get http://127.0.0.1/ \
-HTTP/1.1 400 Bad Request\
-Server: nginx/1.24.0\
-
-┌──(kali㉿kali)-[~/Desktop/webserv]\
-└─$ curl -I -X XXX http://127.0.0.1/ \
-HTTP/1.1 405 Not Allowed\
-Server: nginx/1.24.0\
-
-┌──(kali㉿kali)-[~/Desktop/webserv]\
-└─$ curl -I -X GET1 http://127.0.0.1/ \
-HTTP/1.1 400 Bad Request\
-Server: nginx/1.24.0\
-
+======================================================
+```
