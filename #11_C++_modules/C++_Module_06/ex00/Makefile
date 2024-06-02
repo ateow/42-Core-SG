@@ -6,11 +6,11 @@
 #    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 02:48:10 by kali              #+#    #+#              #
-#    Updated: 2024/06/03 00:20:12 by kali             ###   ########.fr        #
+#    Updated: 2024/06/03 00:42:56 by kali             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = convert
 
 SOURCES = main.cpp ScalarConverter.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
