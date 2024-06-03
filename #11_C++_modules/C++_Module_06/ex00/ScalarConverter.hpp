@@ -16,6 +16,11 @@
 
 # include <iostream>
 # include <exception>
+# include <cstdlib>
+# include <limits>
+# include <iomanip>
+# include <string>
+
 
 class ScalarConverter
 {
