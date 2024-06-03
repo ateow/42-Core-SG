@@ -12,7 +12,7 @@
 
 NAME = convert
 
-SOURCES = main.cpp ScalarConverter.cpp
+SOURCES = main.cpp parser_checker.cpp ScalarConverter.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CC = c++

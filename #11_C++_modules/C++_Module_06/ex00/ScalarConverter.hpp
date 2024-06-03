@@ -42,4 +42,8 @@ class ScalarConverter
         static void convert(std::string input);
 };
 
+bool isValidFloatLiteral(const std::string& str);
+bool isValidDoubleLiteral(const std::string& str);
+bool isValidIntLiteral(const std::string& str);
+
 #endif
