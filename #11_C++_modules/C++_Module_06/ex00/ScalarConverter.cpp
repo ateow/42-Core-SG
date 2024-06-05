@@ -6,15 +6,15 @@
 /*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:14 by kali              #+#    #+#             */
-/*   Updated: 2024/06/05 21:31:19 by ateow            ###   ########.fr       */
+/*   Updated: 2024/06/05 23:01:47 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
 # include <unistd.h>
-#include <limits>
-#include <sstream>
-#include <iostream>
+# include <limits>
+# include <sstream>
+# include <iostream>
 
 ScalarConverter::ScalarConverter(){}
 
@@ -63,24 +63,22 @@ void ScalarConverter::convert(std::string input)
         charValue = "Non Displayable";
     }
 
-
     // FLOAT
     std::stringstream ss2;
 
     ss2 << input;
     float floatValue;
     ss2 >> floatValue;
-    floatValue = static_cast<float>(floatValue);
-
+    
     // DOUBLE
     std::stringstream ss3;
     ss3 << input;
     double doubleValue;
     ss3 >> doubleValue;
-    doubleValue = static_cast<double>(doubleValue);
-    std::cout << doubleValue << "," << std::numeric_limits<double>::min() << std::endl;
-    if (std::numeric_limits<double>::min() > 0)
-        std::cout << "here\n" << std::endl;
+
+    std::string addzero = "";
+    if (intValue == doubleValue)
+        addzero = ".0";
 
     // OUTPUT
     std::cout << "char: " << charValue << std::endl;
@@ -95,17 +93,16 @@ void ScalarConverter::convert(std::string input)
 
     if (!isValidIntLiteral(input) and !isValidFloatLiteral(input) and !isValidDoubleLiteral(input))
         std::cout << "float: impossible" << std::endl;
-    else if (floatValue <= std::numeric_limits<float>::min() || floatValue >= std::numeric_limits<float>::max())
+    else if (doubleValue > 2147483647.0 || doubleValue < -2147483648.0)
         std::cout << "float: impossible!" << std::endl;
     else
-        std::cout << "float: " << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
-
+        std::cout << "float: " << floatValue << addzero << "f" << std::endl;
 
 
     if (!isValidIntLiteral(input) and !isValidFloatLiteral(input) and !isValidDoubleLiteral(input))
         std::cout << "Double: impossible" << std::endl;
-    else if (doubleValue >= std::numeric_limits<double>::min() || doubleValue >= std::numeric_limits<double>::max())
+    else if (doubleValue > 2147483647.0 || doubleValue < -2147483648.0)
         std::cout << "Double: impossible!" << std::endl;
     else
-        std::cout << "Double: " << std::fixed << std::setprecision(1) << doubleValue << std::endl;
+        std::cout << "Double: " << doubleValue << addzero << std::endl;
 }
