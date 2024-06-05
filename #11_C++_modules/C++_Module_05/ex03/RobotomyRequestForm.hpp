@@ -40,7 +40,7 @@ class RobotomyRequestForm : public AForm
         // destructor
         ~RobotomyRequestForm();
         
-        void exec();
+        void exec() const;
         void setTarget(std::string tar);
 };
 

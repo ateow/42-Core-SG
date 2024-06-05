@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:10 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 16:00:29 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:15:24 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ class Bureaucrat
         ~Bureaucrat();
        
         // methods
-        std::string getName();
-        int getGrade();
+        std::string getName() const;
+        int getGrade() const;
         void setGrade(int new_grade);
         void promote_Grade();
         void demote_Grade();
 
         void signForm(AForm& fm);
-        void execForm(AForm& fm);
+        void execForm(AForm const & fm);
 
         class GradeTooHighException : public std::exception // inherit from public class exception
         {

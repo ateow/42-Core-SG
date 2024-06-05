@@ -44,6 +44,4 @@ class Intern
         AForm* makeForm(std::string form_name, std::string form_target);
 };
 
-std::ostream& operator<<(std::ostream& COUT, Intern& input);
-
 #endif

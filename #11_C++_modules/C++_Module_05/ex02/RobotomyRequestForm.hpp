@@ -40,7 +40,7 @@ class RobotomyRequestForm : public AForm
         // destructor
         ~RobotomyRequestForm();
         
-        void exec(); // must have this because AFORM is abstract and require this
+        void exec() const; // must have this because AFORM is abstract and require this
 
 };
 

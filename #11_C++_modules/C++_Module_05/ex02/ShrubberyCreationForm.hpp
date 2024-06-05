@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:50:34 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 17:33:02 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:02:43 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class ShrubberyCreationForm : public AForm
         // destructor
         ~ShrubberyCreationForm();
         
-        void exec(); // must have this because AFORM is abstract and require this
+        void exec() const; // must have this because AFORM is abstract and require this
 
 };
 

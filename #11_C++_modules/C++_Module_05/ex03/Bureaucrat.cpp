@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:14 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 16:12:51 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:16:12 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ Bureaucrat::~Bureaucrat()
 }
 
 // methods
-std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
     return(this->name);
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
     return(this->grade);
 }
@@ -93,7 +93,7 @@ void Bureaucrat::signForm(AForm& fm)
     }
 }
 
-void Bureaucrat::execForm(AForm& fm)
+void Bureaucrat::execForm(AForm const & fm)
 {
     try 
     {

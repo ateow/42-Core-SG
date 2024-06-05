@@ -39,7 +39,7 @@ class PresidentialPardonForm : public AForm
         // destructor
         ~PresidentialPardonForm();
         
-        void exec();
+        void exec() const;
         void setTarget(std::string tar);
 };
 

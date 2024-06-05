@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:55:54 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 17:33:04 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:02:37 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     // std::cout << "destructor called for ShrubberyCreationForm " << this->name << std::endl;
 }
 
-void ShrubberyCreationForm::exec()
+void ShrubberyCreationForm::exec() const
 {
     std::string s = this->target + "_shrubbery";
     std::ofstream File(s.c_str());

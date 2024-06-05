@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 23:26:00 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 01:22:42 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 16:24:47 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 # include "Bureaucrat.hpp"
 
 // constructor
-Form::Form(): name("Default")
+Form::Form(): name("Default"), required_sign_grade(1) ,required_exec_grade(1)
 {
     std::cout << "default constructor called\n";
     this->sign_status = false;
 }
 
-Form::Form(std::string NAME, int REQ_SIGN_GRADE, int REQ_EXEC_GRADE): name(NAME)
+Form::Form(std::string NAME, int REQ_SIGN_GRADE, int REQ_EXEC_GRADE): name(NAME), required_sign_grade(REQ_SIGN_GRADE) ,required_exec_grade(REQ_EXEC_GRADE)
 {
     std::cout << "constructor called for form " << this->name << std::endl;
-    this->set_required_sign_grade(REQ_SIGN_GRADE);
-    this->set_required_exec_grade(REQ_EXEC_GRADE);
+    if (REQ_SIGN_GRADE > 150)
+        throw GradeTooLowException();
+    else if (REQ_SIGN_GRADE < 1)
+        throw GradeTooHighException();
+        
+    if (REQ_EXEC_GRADE > 150)
+        throw GradeTooLowException();
+    else if (REQ_EXEC_GRADE < 1)
+        throw GradeTooHighException();
     this->sign_status = false;
 }
 
 // copy constructor
-Form::Form(Form& Org): name(Org.name + "_copy")
+Form::Form(Form& Org): name(Org.name + "_copy"), required_sign_grade(Org.required_sign_grade) ,required_exec_grade(Org.required_exec_grade)
 {
     std::cout << "copy constructor called for form " << this->name << std::endl;
-    this->set_required_sign_grade(Org.required_sign_grade);
-    this->set_required_exec_grade(Org.required_exec_grade);
     this->sign_status = Org.sign_status;
 }
 
@@ -43,8 +48,6 @@ Form& Form::operator=(Form& Org)
     std::cout << "copy operator assign called for form " << this->name << std::endl;
     if (this != &Org)
     {
-        this->set_required_sign_grade(Org.required_sign_grade);
-        this->set_required_exec_grade(Org.required_exec_grade);
         this->sign_status = Org.sign_status;
     }
     return *this;
@@ -54,27 +57,6 @@ Form& Form::operator=(Form& Org)
 Form::~Form()
 {
     std::cout << "destructor called for form " << this->name << std::endl;
-}
-
-// methods
-void Form::set_required_sign_grade(int REQ_SIGN_GRADE)
-{
-    std::cout << "setting sign grade for form " << this->name << std::endl;
-    if (REQ_SIGN_GRADE > 150)
-        throw GradeTooLowException();
-    else if (REQ_SIGN_GRADE < 1)
-        throw GradeTooHighException();
-    this->required_sign_grade = REQ_SIGN_GRADE;
-}
-
-void Form::set_required_exec_grade(int REQ_EXEC_GRADE)
-{
-    std::cout << "setting exec grade for form " << this->name << std::endl;
-    if (REQ_EXEC_GRADE > 150)
-        throw GradeTooLowException();
-    else if (REQ_EXEC_GRADE < 1)
-        throw GradeTooHighException();
-    this->required_exec_grade = REQ_EXEC_GRADE;
 }
 
 std::string Form::get_name()

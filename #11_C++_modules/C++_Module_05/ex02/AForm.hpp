@@ -25,8 +25,8 @@ class AForm
     private:
         const std::string name;
         bool sign_status;
-        int required_sign_grade;
-        int required_exec_grade;
+        const int required_sign_grade;
+        const int required_exec_grade;
     
     public:    
         // constructor
@@ -41,20 +41,16 @@ class AForm
 
         // destructor
         ~AForm();
-        
-        // setters
-        void set_required_sign_grade(int required_sign_grade);
-        void set_required_exec_grade(int required_exec_grade);
-        
+                
         // getters
-        std::string get_name();
-        int get_sign_status();
-        int get_required_sign_grade();
-        int get_required_exec_grade();
+        std::string get_name() const;
+        int get_sign_status() const;
+        int get_required_sign_grade() const;
+        int get_required_exec_grade() const;
 
         void beSigned(Bureaucrat& Bur);
-        void beExecuted(Bureaucrat& Bur);
-        virtual void exec() = 0; // this makes Aform class abstract. cannot call. and those that inherits needs to have this function.
+        void beExecuted(Bureaucrat const & Bur) const;
+        virtual void exec() const = 0; // this makes Aform class abstract. cannot call. and those that inherits needs to have this function.
         
         // classes
         class GradeTooHighException : public std::exception // inherit from public class exception

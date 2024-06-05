@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:16 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 17:06:03 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 18:15:13 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ int main()
     {
         Form form2("form2", 50, 50);
         std::cout << form2 << std::endl;
-        form2.set_required_exec_grade(100);
-        std::cout << form2 << std::endl;
-        Form form3("form3", 50, 50);
-        form3.set_required_exec_grade(500);
-        std::cout << form3 << std::endl;
     }
     catch (std::exception& e)
     {
@@ -44,12 +39,18 @@ int main()
     }
 
     std::cout << "\n=== Form Signing Fail ===\n";
-    Bureaucrat aaron("aaron", 100);
-    Form applyleave("applyleave", 50, 50);
-    aaron.signForm(applyleave);
-
-    std::cout << "\n=== Form Signing Success ===\n";
-    aaron.setGrade(20);
-    aaron.signForm(applyleave);;
+    try
+    {
+        Bureaucrat aaron("aaron", 100);
+        Form applyleave("applyleave", 50, 50);
+        aaron.signForm(applyleave);
+        std::cout << "\n=== Form Signing Success ===\n";
+        aaron.setGrade(20);
+        aaron.signForm(applyleave);;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what() << std::endl;   
+    }
 }
 

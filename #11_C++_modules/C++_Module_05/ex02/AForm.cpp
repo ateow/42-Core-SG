@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 23:26:00 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 16:52:23 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:08:15 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,32 @@
 # include "Bureaucrat.hpp"
 
 // constructor
-AForm::AForm(): name("Default")
+AForm::AForm(): name("Default"), required_sign_grade(1) ,required_exec_grade(1)
 {
     // std::cout << "default constructor called\n";
     this->sign_status = false;
 }
 
-AForm::AForm(std::string NAME, int REQ_SIGN_GRADE, int REQ_EXEC_GRADE): name(NAME)
+AForm::AForm(std::string NAME, int REQ_SIGN_GRADE, int REQ_EXEC_GRADE): name(NAME), required_sign_grade(REQ_SIGN_GRADE) ,required_exec_grade(REQ_EXEC_GRADE)
 {
     // std::cout << "constructor called for AForm " << this->name << std::endl;
-    this->set_required_sign_grade(REQ_SIGN_GRADE);
-    this->set_required_exec_grade(REQ_EXEC_GRADE);
+     if (REQ_SIGN_GRADE > 150)
+        throw GradeTooLowException();
+    else if (REQ_SIGN_GRADE < 1)
+        throw GradeTooHighException();
+        
+    if (REQ_EXEC_GRADE > 150)
+        throw GradeTooLowException();
+    else if (REQ_EXEC_GRADE < 1)
+        throw GradeTooHighException();
+
     this->sign_status = false;
 }
 
 // copy constructor
-AForm::AForm(AForm& Org): name(Org.name + "_copy")
+AForm::AForm(AForm& Org): name(Org.name + "_copy"), required_sign_grade(Org.required_sign_grade) ,required_exec_grade(Org.required_exec_grade)
 {
     // std::cout << "copy constructor called for AForm " << this->name << std::endl;
-    this->set_required_sign_grade(Org.required_sign_grade);
-    this->set_required_exec_grade(Org.required_exec_grade);
     this->sign_status = Org.sign_status;
 }
 
@@ -43,8 +49,6 @@ AForm& AForm::operator=(AForm& Org)
     // std::cout << "copy operator assign called for AForm " << this->name << std::endl;
     if (this != &Org)
     {
-        this->set_required_sign_grade(Org.required_sign_grade);
-        this->set_required_exec_grade(Org.required_exec_grade);
         this->sign_status = Org.sign_status;
     }
     return *this;
@@ -56,43 +60,22 @@ AForm::~AForm()
     // std::cout << "destructor called for AForm " << this->name << std::endl;
 }
 
-// methods
-void AForm::set_required_sign_grade(int REQ_SIGN_GRADE)
-{
-    // std::cout << "setting sign grade for AForm " << this->name << std::endl;
-    if (REQ_SIGN_GRADE > 150)
-        throw GradeTooLowException();
-    else if (REQ_SIGN_GRADE < 1)
-        throw GradeTooHighException();
-    this->required_sign_grade = REQ_SIGN_GRADE;
-}
-
-void AForm::set_required_exec_grade(int REQ_EXEC_GRADE)
-{
-    // std::cout << "setting exec grade for AForm " << this->name << std::endl;
-    if (REQ_EXEC_GRADE > 150)
-        throw GradeTooLowException();
-    else if (REQ_EXEC_GRADE < 1)
-        throw GradeTooHighException();
-    this->required_exec_grade = REQ_EXEC_GRADE;
-}
-
-std::string AForm::get_name()
+std::string AForm::get_name() const
 {
     return(this->name);
 }
 
-int AForm::get_sign_status()
+int AForm::get_sign_status() const
 {
     return(this->sign_status);
 }
 
-int AForm::get_required_sign_grade()
+int AForm::get_required_sign_grade() const
 {
     return(this->required_sign_grade);
 }
 
-int AForm::get_required_exec_grade()
+int AForm::get_required_exec_grade() const
 {
     return(this->required_exec_grade);
 }
@@ -106,7 +89,7 @@ void AForm::beSigned(Bureaucrat &Bur)
         this->sign_status = true;        
 }
 
-void AForm::beExecuted(Bureaucrat &Bur)
+void AForm::beExecuted(Bureaucrat const & Bur) const
 {
     std::cout << this->name + " form is being executed by " + Bur.getName() << std::endl;
     if (this->sign_status == false)

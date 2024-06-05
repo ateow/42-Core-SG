@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:50:34 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 18:48:26 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 17:56:50 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class ShrubberyCreationForm : public AForm
         // destructor
         ~ShrubberyCreationForm();
         
-        void exec();
+        void exec() const;
         void setTarget(std::string tar);
 };
 

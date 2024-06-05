@@ -49,7 +49,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
     // std::cout << "destructor called for PresidentialPardonForm " << this->name << std::endl;
 }
 
-void PresidentialPardonForm::exec()
+void PresidentialPardonForm::exec() const
 {
     std::cout << this->target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

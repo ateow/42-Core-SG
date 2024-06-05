@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 23:26:03 by kali              #+#    #+#             */
-/*   Updated: 2024/06/02 01:33:32 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/05 18:10:16 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class Form
     private:
         const std::string name;
         bool sign_status;
-        int required_sign_grade;
-        int required_exec_grade;
+        const int required_sign_grade;
+        const int required_exec_grade;
     
     public:    
         // constructor
@@ -41,10 +41,6 @@ class Form
 
         // destructor
         ~Form();
-        
-        // setters
-        void set_required_sign_grade(int required_sign_grade);
-        void set_required_exec_grade(int required_exec_grade);
         
         // getters
         std::string get_name();

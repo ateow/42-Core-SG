@@ -39,7 +39,7 @@ class PresidentialPardonForm : public AForm
         // destructor
         ~PresidentialPardonForm();
         
-        void exec(); // must have this because AFORM is abstract and require this
+        void exec() const; // must have this because AFORM is abstract and require this
 
 };
 
