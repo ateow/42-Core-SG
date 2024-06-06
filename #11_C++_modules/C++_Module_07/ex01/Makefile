@@ -6,7 +6,7 @@
 #    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 02:48:10 by kali              #+#    #+#              #
-#    Updated: 2024/06/05 00:26:29 by kali             ###   ########.fr        #
+#    Updated: 2024/06/06 22:36:49 by kali             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,14 @@ all: $(NAME)
 $(NAME):$(OBJECTS)
 	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
 
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 clean:
-	rm -rf $(NAME)
+	rm -rf $(OBJECTS)
 
 fclean:	clean
-	rm -rf $(NAME) $(OBJECTS)
+	rm -rf $(NAME)
 
 re: fclean all
 

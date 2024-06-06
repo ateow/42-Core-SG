@@ -60,6 +60,10 @@
         "map": "cpp",
         "set": "cpp",
         "optional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "span": "c",
+        "format": "c",
+        "*.tpp": "c",
+        "array.hpp": "c"
     }
 }
