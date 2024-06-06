@@ -45,6 +45,8 @@ bool isValidDoubleLiteral(const std::string& str)
             return false;
         i++;
     }
+    if (hasDecimal != true)
+        return false;
     return true;
 }
 
