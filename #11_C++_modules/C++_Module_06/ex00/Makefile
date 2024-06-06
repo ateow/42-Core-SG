@@ -23,11 +23,14 @@ all: $(NAME)
 $(NAME):$(OBJECTS)
 	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
 
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 clean:
-	rm -rf $(NAME)
+	rm -rf $(OBJECTS)
 
 fclean:	clean
-	rm -rf $(NAME) $(OBJECTS)
+	rm -rf $(NAME)
 
 re: fclean all
 

@@ -21,7 +21,6 @@
 # include <iomanip>
 # include <string>
 
-
 class ScalarConverter
 {
     private:

@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
-# include <unistd.h>
-# include <limits>
 # include <sstream>
-# include <iostream>
 
 ScalarConverter::ScalarConverter(){}
 
