@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:09:09 by kali              #+#    #+#             */
-/*   Updated: 2024/06/07 00:55:53 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/08 18:58:26 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Array<T>::Array(unsigned int n)
     unsigned int i = 0;
     while (i < arr_size)
     {
-        arr[i] = i;
+        arr[i] = '\0';
         i++;
     }
 };
@@ -40,7 +40,7 @@ Array<T>::Array(const Array &Org)
     unsigned int i = 0;
     while (i < arr_size)
     {
-        arr[i] = 0;
+        arr[i] = '\0';
         i++;
     }
 };

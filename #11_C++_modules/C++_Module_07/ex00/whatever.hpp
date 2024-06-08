@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 23:25:51 by kali              #+#    #+#             */
-/*   Updated: 2024/06/04 23:26:41 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/08 19:57:34 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
+
 #endif

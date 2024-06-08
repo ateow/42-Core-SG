@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:16 by kali              #+#    #+#             */
-/*   Updated: 2024/06/01 23:21:06 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/08 17:58:34 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int main()
     delete aaron;
 
     std::cout << "\n=== initi copy constructor and assigment ===\n";
-
     Bureaucrat orginal("orginal", 88);
     Bureaucrat copy(orginal); // copy grade is 88
     std::cout << copy <<std::endl; 
@@ -72,4 +71,3 @@ int main()
     copy = orginal2; // copy grade is now 5. name remain same because its' constant
     std::cout << copy <<std::endl;
 }
-
