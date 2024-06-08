@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_checker.cpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/08 14:51:17 by ateow             #+#    #+#             */
+/*   Updated: 2024/06/08 17:27:28 by ateow            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "ScalarConverter.hpp"
 
 bool isValidFloatLiteral(const std::string& str) 
@@ -57,6 +69,8 @@ bool isValidIntLiteral(const std::string& str)
     size_t i = 0;
     if (str[i] == '-' || str[i] == '+')
         i++; // Skip optional sign
+    if (i == str.size())
+        return false;
     while (i < str.size()) 
     {
         if (!isdigit(str[i])) 

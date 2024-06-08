@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:16 by kali              #+#    #+#             */
-/*   Updated: 2024/06/04 00:57:11 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/08 15:22:55 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ void identify(Base& p)
 {
     try
     {
-        dynamic_cast<A&>(p); 
+        (void) dynamic_cast< A& >( p ); 
         std::cout << "A class identified" << std::endl;
         return;
     }
-    catch(...) {}
+    catch(...) {} // Catch all other exceptions
     try
     {
-        dynamic_cast<B&>(p); 
+        (void) dynamic_cast<B&>(p); 
         std::cout << "B class identified" << std::endl;
         return;
     }
     catch(...) {}
     try
     {
-        dynamic_cast<C&>(p); 
+        (void) dynamic_cast<C&>(p); 
         std::cout << "C class identified" << std::endl;
         return;
     }
@@ -72,13 +72,23 @@ void identify(Base& p)
     std::cout << "Error, can't identify the class" << std::endl;
 }
 
+// With Pointers:
+// dynamic_cast returns nullptr on failure.
+// You check for nullptr to determine if the cast was successful.
+// Simple and straightforward error handling.
+ 
+// With References:
+// dynamic_cast throws a std::bad_cast exception on failure.
+// You need to use try and catch blocks to handle these exceptions.
+// Necessary because references cannot be null, and throwing an exception is the only way to indicate a failure.
+
 int main() 
 {
     Base *b;
     b = generate();
 
-    identify(b);
     identify(*b);
+    identify(b);
 
     delete b;
     return 0;
