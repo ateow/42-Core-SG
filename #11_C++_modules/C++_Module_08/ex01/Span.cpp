@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 17:10:47 by ateow             #+#    #+#             */
-/*   Updated: 2024/06/09 18:48:27 by ateow            ###   ########.fr       */
+/*   Updated: 2024/06/10 00:05:09 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ Span::Span(int N) : arr(N)
     current_it = arr.begin();
 }
 
-Span::Span(const Span& Org) : arr(Org.arr), current_it(Org.current_it), size(Org.size) {}
+Span::Span(const Span& Org) : arr(Org.arr), current_it(arr.end()), size(Org.size) {}
 
 Span& Span::operator=(const Span& Org) 
 {
     if (this != &Org) 
     {
         arr = Org.arr;
-        current_it = Org.current_it;
+        current_it = arr.end();
         size = Org.size;
     }
     return *this;
@@ -61,7 +61,6 @@ int Span::shortestSpan()
     while (j < size)
     {
         sorted[j] = arr[j];
-        // std::cout << sorted[j] << std::endl;
         j++;
     }
 
@@ -81,12 +80,25 @@ int Span::longestSpan()
     return (abs(max - min));
 }
 
+void Span::addRange(std::vector<int>::iterator start,std::vector<int>::iterator end)
+{
+    for(std::vector<int>::iterator i = start; i < end; i++)
+    {
+        if (current_it == arr.end())
+            throw ( "Unable to add number. Span is full." );
+        
+        *current_it = *i;
+        current_it++;
+        size++;
+    }
+}
+
 void Span::print_span()
 {
     unsigned int i = 0;
     while (i < arr.size())
     {
-        std::cout << arr[i] << std::endl;
+        std::cout << "span[" << i << "]: " << arr[i] << std::endl;
         i++;
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 13:36:18 by ateow             #+#    #+#             */
-/*   Updated: 2024/06/09 17:54:24 by ateow            ###   ########.fr       */
+/*   Updated: 2024/06/09 23:34:24 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Span
         int shortestSpan();
         int longestSpan();
         void print_span();
+        void addRange(std::vector<int>::iterator start,std::vector<int>::iterator end);
     
     private:
         std::vector<int> arr;
