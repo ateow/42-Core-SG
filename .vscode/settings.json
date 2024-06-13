@@ -64,6 +64,7 @@
         "span": "c",
         "format": "c",
         "*.tpp": "c",
-        "array.hpp": "c"
+        "array.hpp": "c",
+        "list": "cpp"
     }
 }
