@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 22:07:07 by kali              #+#    #+#             */
-/*   Updated: 2024/06/14 02:07:34 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/15 00:41:33 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,27 @@ BitcoinExchange::BitcoinExchange(std::string filename)
             std::cerr << "Invalid price format: " << line << std::endl;
             continue;
         }
-    
         
-                std::cout << line << std::endl;  // For demonstration, just print each line
+        bool is_duplicate = false;
+        for (size_t i = 0; i < date_vector.size(); ++i) 
+        {
+            if (date_vector[i] == date) 
+            {
+                std::cerr << "Duplicate date found: " << date << std::endl;
+                is_duplicate = true;
+                break;
+            }
+        }
+        if (is_duplicate) 
+            continue;
+            
+        std::stringstream ss(price);
+        float result;
+        ss >> result;
+        
+        price_vector.push_back(result);
+        date_vector.push_back(date);
     }
-
     file.close();
     
 }
@@ -73,6 +89,81 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& Org)
 BitcoinExchange::~BitcoinExchange() {}
 
 
+void BitcoinExchange::compute(std::string filename)
+{
+    std::ifstream file(filename.c_str());
+    
+    if (!file.is_open()) 
+        throw std::runtime_error("Could not open input file");        
+
+    std::string line;
+    while (std::getline(file, line)) 
+    {
+        
+        if (line == "date | value")
+            continue;
+        if (line.substr(10, 3) != " | ")
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        size_t pos = line.find('|');
+        if (line.empty() || pos == std::string::npos)
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+        
+        std::string date = line.substr(0, pos - 1);
+        std::string value = line.substr(pos + 2);
+
+        if (is_valid_date(date) == false)
+        {
+            std::cerr << "Invalid input date format: " << line << std::endl;
+            continue;
+        }
+
+        std::stringstream ss(value);
+        float result;
+        ss >> result;
+        if (result < 0)
+        {
+            std::cerr << "Error: not a positive number => " << line << std::endl;
+            continue;
+        }
+        if (result > 1000)
+        {
+            std::cerr << "Error: too large a number => " << line << std::endl;
+            continue;
+        }
+        
+        if (is_valid_price(value) == false)
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        for (size_t i = 0; i < date_vector.size(); ++i) 
+        {
+            if (date == date_vector[i])
+            {
+                std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+                break;
+            }
+            if (i > 0 && date < date_vector[i])
+            {
+                std::cout << date << " => " << result << " = " << result * price_vector[i - 1] << std::endl; 
+                break;
+            }
+            if (i == 0 && date < date_vector[i])
+            {
+                std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+                break;
+            }
+        }
+    }
+}
 
 
 bool is_valid_date(const std::string& date) 
@@ -130,58 +221,22 @@ bool is_valid_date(const std::string& date)
 
 
 bool is_valid_price(const std::string& price) {
-    // Check if the string is empty
     if (price.empty())
         return false;
 
     bool has_decimal_point = false;
-    int decimal_places = 0;
 
-    for (size_t i = 0; i < price.length(); ++i) {
-        if (price[i] == '.') {
-            // Check if there is more than one decimal point
-            if (has_decimal_point) {
-                return false;
-            }
-            has_decimal_point = true;
-        } else if (!std::isdigit(price[i])) {
-            // Check if the character is not a digit
-            return false;
-        } else if (has_decimal_point) {
-            // Count the number of digits after the decimal point
-            decimal_places++;
-        }
-    }
-
-    // If there is a decimal point, it should be followed by exactly two digits
-    if (has_decimal_point && decimal_places != 2) {
-        return false;
-    }
-
-    return true;
-}
-
-bool isValidFloatLiteral(const std::string& str) 
-{
-    if (str.empty())
-        return false;
-    size_t i = 0;
-    bool hasDecimal = false;
-    if (str[i] == '-' || str[i] == '+')
-        i++; // Skip optional sign
-    while (i < str.size() - 1) 
+    for (size_t i = 0; i < price.length(); ++i) 
     {
-        if (str[i] == '.') 
+        if (price[i] == '.') 
         {
-            if (hasDecimal) 
+            if (has_decimal_point || i == price.length() - 1) // Check if there is more than one decimal point
                 return false;
-            hasDecimal = true;
+            has_decimal_point = true;
         } 
-        else if (!isdigit(str[i])) 
+        else if (!std::isdigit(price[i])) // Check if the character is not a digit
             return false;
-        i++;
     }
-    if (str[i] != 'f')
-        return false;
+
     return true;
 }

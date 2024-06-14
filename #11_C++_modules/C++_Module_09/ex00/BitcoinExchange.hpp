@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:35:50 by kali              #+#    #+#             */
-/*   Updated: 2024/06/13 22:14:50 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/14 23:08:15 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <exception>
 #include <algorithm>
 #include <iostream>
+# include <sstream>
 
 class BitcoinExchange
 {
@@ -35,7 +36,11 @@ class BitcoinExchange
         BitcoinExchange& operator=(const BitcoinExchange& Org);
         ~BitcoinExchange();
         
+        void compute(std::string filename);
         
 };
+
+bool is_valid_date(const std::string& date);
+bool is_valid_price(const std::string& price);
 
 #endif
