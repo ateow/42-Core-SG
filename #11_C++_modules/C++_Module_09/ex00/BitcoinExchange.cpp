@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 22:07:07 by kali              #+#    #+#             */
-/*   Updated: 2024/06/15 00:41:33 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/15 12:23:54 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ BitcoinExchange::BitcoinExchange(std::string filename)
     std::ifstream file(filename.c_str());
     
     if (!file.is_open()) 
-        throw std::runtime_error("Could not open database");        
+        throw std::runtime_error("Error: could not open database");        
 
     std::string line;
     while (std::getline(file, line)) 
@@ -66,7 +66,7 @@ BitcoinExchange::BitcoinExchange(std::string filename)
         std::stringstream ss(price);
         float result;
         ss >> result;
-        
+
         price_vector.push_back(result);
         date_vector.push_back(date);
     }
@@ -94,7 +94,7 @@ void BitcoinExchange::compute(std::string filename)
     std::ifstream file(filename.c_str());
     
     if (!file.is_open()) 
-        throw std::runtime_error("Could not open input file");        
+        throw std::runtime_error("Error: could not open input file");        
 
     std::string line;
     while (std::getline(file, line)) 
@@ -157,6 +157,11 @@ void BitcoinExchange::compute(std::string filename)
                 break;
             }
             if (i == 0 && date < date_vector[i])
+            {
+                std::cerr << "Error: input date before database date => " << line << std::endl;
+                break;
+            }
+            if (i == date_vector.size() - 1)
             {
                 std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
                 break;

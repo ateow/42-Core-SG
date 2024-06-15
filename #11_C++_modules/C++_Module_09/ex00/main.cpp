@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:59:25 by kali              #+#    #+#             */
-/*   Updated: 2024/06/15 00:03:04 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/15 12:15:12 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     try
     {
         BitcoinExchange x("data.csv");
-        x.compute("input.csv");
+        x.compute(argv[1]);
     }
     catch(const std::exception& e)
     {
