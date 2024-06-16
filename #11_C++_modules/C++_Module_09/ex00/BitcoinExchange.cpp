@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 22:07:07 by kali              #+#    #+#             */
-/*   Updated: 2024/06/15 12:23:54 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/16 13:55:37 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,37 +51,36 @@ BitcoinExchange::BitcoinExchange(std::string filename)
         }
         
         bool is_duplicate = false;
-        for (size_t i = 0; i < date_vector.size(); ++i) 
+        for (std::map<std::string, float>::iterator it = map.begin(); it != map.end(); ++it)
         {
-            if (date_vector[i] == date) 
-            {
+            if (it->first == date) {
                 std::cerr << "Duplicate date found: " << date << std::endl;
                 is_duplicate = true;
                 break;
             }
         }
-        if (is_duplicate) 
+        if (is_duplicate)
             continue;
             
         std::stringstream ss(price);
         float result;
         ss >> result;
 
-        price_vector.push_back(result);
-        date_vector.push_back(date);
+        map.insert(std::make_pair(date, result));
     }
     file.close();
     
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& Org) : price_vector(Org.price_vector), date_vector(Org.date_vector) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& Org) : map(Org.map) {}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& Org) 
 {
     if (this != &Org) 
     {
-        price_vector = Org.price_vector;
-        date_vector = Org.date_vector;
+        map = Org.map;
+        // price_vector = Org.price_vector;
+        // date_vector = Org.date_vector;
     }
     return *this;
 }
@@ -102,11 +101,6 @@ void BitcoinExchange::compute(std::string filename)
         
         if (line == "date | value")
             continue;
-        if (line.substr(10, 3) != " | ")
-        {
-            std::cerr << "Error: bad input => " << line << std::endl;
-            continue;
-        }
 
         size_t pos = line.find('|');
         if (line.empty() || pos == std::string::npos)
@@ -115,12 +109,19 @@ void BitcoinExchange::compute(std::string filename)
             continue;
         }
         
+        if (pos != 11 || line.substr(10, 3) != " | ")
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        
         std::string date = line.substr(0, pos - 1);
         std::string value = line.substr(pos + 2);
 
         if (is_valid_date(date) == false)
         {
-            std::cerr << "Invalid input date format: " << line << std::endl;
+            std::cerr << "Error: Invalid input date format: " << line << std::endl;
             continue;
         }
 
@@ -140,33 +141,56 @@ void BitcoinExchange::compute(std::string filename)
         
         if (is_valid_price(value) == false)
         {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cerr << "Error: Invalid input price format: => " << line << std::endl;
             continue;
         }
 
-        for (size_t i = 0; i < date_vector.size(); ++i) 
+        for (std::map<std::string, float>::iterator it = map.begin(); it != map.end(); ++it)
         {
-            if (date == date_vector[i])
+            if (date == it->first)
             {
-                std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+                std::cout << date << " => " << result << " = " << result * it->second << std::endl; 
                 break;
             }
-            if (i > 0 && date < date_vector[i])
+            if (it != map.begin() && date < it->first)
             {
-                std::cout << date << " => " << result << " = " << result * price_vector[i - 1] << std::endl; 
+                std::cout << date << " => " << result << " = " << result * (--it)->second << std::endl; 
                 break;
             }
-            if (i == 0 && date < date_vector[i])
+            if (it == map.begin() && date < it->first)
             {
                 std::cerr << "Error: input date before database date => " << line << std::endl;
                 break;
             }
-            if (i == date_vector.size() - 1)
+            if (it == --map.end())
             {
-                std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+                std::cout << date << " => " << result << " = " << result * it->second << std::endl; 
                 break;
             }
         }
+        // for (size_t i = 0; i < date_vector.size(); ++i) 
+        // {
+        //     if (date == date_vector[i])
+        //     {
+        //         std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+        //         break;
+        //     }
+        //     if (i > 0 && date < date_vector[i])
+        //     {
+        //         std::cout << date << " => " << result << " = " << result * price_vector[i - 1] << std::endl; 
+        //         break;
+        //     }
+        //     if (i == 0 && date < date_vector[i])
+        //     {
+        //         std::cerr << "Error: input date before database date => " << line << std::endl;
+        //         break;
+        //     }
+        //     if (i == date_vector.size() - 1)
+        //     {
+        //         std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
+        //         break;
+        //     }
+        // }
     }
 }
 

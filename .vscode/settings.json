@@ -65,6 +65,7 @@
         "format": "c",
         "*.tpp": "c",
         "array.hpp": "c",
-        "list": "cpp"
+        "list": "cpp",
+        "pmergeme.hpp": "c"
     }
 }

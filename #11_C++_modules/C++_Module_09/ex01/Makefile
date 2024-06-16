@@ -6,13 +6,13 @@
 #    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 21:36:13 by kali              #+#    #+#              #
-#    Updated: 2024/06/15 12:51:56 by kali             ###   ########.fr        #
+#    Updated: 2024/06/15 12:53:04 by kali             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = btc
+NAME = RPN
 
-SOURCES = main.cpp BitcoinExchange.cpp
+SOURCES = main.cpp RPN.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CC = c++

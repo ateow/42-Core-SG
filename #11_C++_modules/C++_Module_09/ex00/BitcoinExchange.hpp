@@ -6,7 +6,7 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:35:50 by kali              #+#    #+#             */
-/*   Updated: 2024/06/14 23:08:15 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/16 13:36:30 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <string>
-#include <vector>
+#include <map>
 #include <cstdlib>
 #include <fstream>
 #include <exception>
@@ -26,8 +26,7 @@
 class BitcoinExchange
 {
     private:
-        std::vector<float> price_vector;
-        std::vector<std::string> date_vector;
+        std::map<std::string, float> map;
 
     public:
         BitcoinExchange();
