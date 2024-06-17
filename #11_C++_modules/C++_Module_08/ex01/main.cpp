@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:43:16 by kali              #+#    #+#             */
-/*   Updated: 2024/06/10 00:11:08 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/12 16:29:42 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int main()
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp2.shortestSpan() << std::endl;
         std::cout << sp3.shortestSpan() << std::endl;
-        sp3.print_span();
         std::cout << sp.longestSpan() << std::endl;
         std::cout << sp2.longestSpan() << std::endl;
         std::cout << sp3.longestSpan() << std::endl;
@@ -83,13 +82,15 @@ int main()
     try
     {
         std::srand(time(NULL));
+        
         int sizeofarr = 10000;
         std::vector<int> big(sizeofarr);
         for (int i = 0; i < sizeofarr; ++i)
             big[i] = rand() % 100000;
+
         Span sp = Span(sizeofarr);
         sp.addRange(big.begin(), big.end());
-        // sp2.print_span();
+        // sp.print_span();
         std::cout << sp.longestSpan() << std::endl;
         std::cout << sp.shortestSpan() << std::endl;
     }

@@ -21,7 +21,7 @@ CFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -g
 all: $(NAME)
 
 $(NAME):$(OBJECTS)
-	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
