@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 16:39:11 by kali              #+#    #+#             */
-/*   Updated: 2024/06/16 11:21:35 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/17 14:58:39 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,31 +94,34 @@ void merge_chain_pend(container &chain, container &pend)
     typename container::iterator it;
     typename container::iterator v1;
     typename container::iterator v2;
-    
+    typename container::iterator insertPoint;
+
     while (!pend.empty())    
     {
+
         it = pend.begin();
-        typename container::iterator insertPoint = std::lower_bound(chain.begin(), chain.end(), *it);
+        insertPoint = chain.begin();
+        insertPoint = std::lower_bound(chain.begin(), chain.end(), *it);
+
         chain.insert(insertPoint, *it); // insert current element
 
         v1 = pend.begin(); 
         v2 = pend.begin();
         std::advance(v2, 1); // find next element
- 
+        insertPoint = chain.begin();
+
         while (v2 != pend.end() && *v2 > *v1) // if next pend is bigger, dont have to compare from start
         {   
-            insertPoint = std::lower_bound(chain.begin(), chain.end(), *v1);
-            chain.insert(insertPoint, *v1);
+            insertPoint = std::lower_bound(insertPoint, chain.end(), *v2);
+            chain.insert(insertPoint, *v2);
             pend.erase(v1); // Erase and move to the next element in pend
             v1 = pend.begin();
             v2 = pend.begin();
             std::advance(v2, 1);
         }
         pend.erase(pend.begin()); // Erase the current element from pend
-
     }
 }
-
 
 template <typename Iterator>
 std::list<int> FJ_Merge_Insertion_Sort_list(Iterator start, Iterator end)
@@ -127,7 +130,7 @@ std::list<int> FJ_Merge_Insertion_Sort_list(Iterator start, Iterator end)
     std::list<int> pend;
     get_chain_pend(start, end, chain, pend); // Pair them up and pass the larger element of each pair into chain and smaller element into pend.
     recursive_insertion_sort(chain.begin(), chain.end()); // Recursively sort the chain elements, creating a sorted sequence S of the input elements, in ascending order.
-    
+
     //Insert the remaining elements into S, one at a time, with a specially chosen insertion ordering described below.
     //Use binary search in subsequences of S to determine the position at which each element should be inserted.
     merge_chain_pend(chain, pend);

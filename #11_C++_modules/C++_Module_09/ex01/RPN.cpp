@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 22:07:07 by kali              #+#    #+#             */
-/*   Updated: 2024/06/16 14:09:47 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/17 13:37:00 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ void RPN::compute(std::string expression)
             else if (expression[i] == '*')
                 stack.top() = stack.top() * tmp;
             else if (expression[i] == '/')
+            {   if (tmp == 0)
+                {
+                    std::cerr << "Error: Invalid Operations (divide by 0)" << std::endl;
+                    return;
+                }
                 stack.top() = stack.top() / tmp;
+            }
         }
         i++;
     }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ateow <ateow@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 22:07:07 by kali              #+#    #+#             */
-/*   Updated: 2024/06/16 13:55:37 by kali             ###   ########.fr       */
+/*   Updated: 2024/06/17 13:15:36 by ateow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -79,8 +78,6 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& Org)
     if (this != &Org) 
     {
         map = Org.map;
-        // price_vector = Org.price_vector;
-        // date_vector = Org.date_vector;
     }
     return *this;
 }
@@ -168,29 +165,6 @@ void BitcoinExchange::compute(std::string filename)
                 break;
             }
         }
-        // for (size_t i = 0; i < date_vector.size(); ++i) 
-        // {
-        //     if (date == date_vector[i])
-        //     {
-        //         std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
-        //         break;
-        //     }
-        //     if (i > 0 && date < date_vector[i])
-        //     {
-        //         std::cout << date << " => " << result << " = " << result * price_vector[i - 1] << std::endl; 
-        //         break;
-        //     }
-        //     if (i == 0 && date < date_vector[i])
-        //     {
-        //         std::cerr << "Error: input date before database date => " << line << std::endl;
-        //         break;
-        //     }
-        //     if (i == date_vector.size() - 1)
-        //     {
-        //         std::cout << date << " => " << result << " = " << result * price_vector[i] << std::endl; 
-        //         break;
-        //     }
-        // }
     }
 }
 
@@ -215,9 +189,20 @@ bool is_valid_date(const std::string& date)
         }
     }
     // Extract year, month, and day from the date string
-    int year = atoi(date.substr(0, 4).c_str());
-    int month = atoi(date.substr(5, 2).c_str());
-    int day = atoi(date.substr(8, 2).c_str());
+    std::stringstream ss;
+    ss << date.substr(0, 4).c_str();
+    int year;
+    ss >> year;
+
+    std::stringstream ss2;
+    ss2 << date.substr(5, 2).c_str();
+    int month;
+    ss2 >> month;
+
+    std::stringstream ss3;
+    ss3 << date.substr(8, 2).c_str();
+    int day;
+    ss3 >> day;
 
     // Check if the month is valid
     if (month < 1 || month > 12)
