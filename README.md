@@ -61,3 +61,7 @@ This project broaden knowledge of system administration by using Docker.
 ### [Project 13: Webserv](https://github.com/ateow/42-Core-SG/tree/main/%2313_webserv) - 100/100
 This group project of 3 pax asked to replicate a http web server.
 - Skillset: C++, OOP, Sockets, HTTP requests and responds 
+
+### [Project 14: Transcendence](https://github.com/ateow/Transcendance) - 100/100
+This group project of 3 pax asked to develop a web application with Django of a pong game with chat interface, auth and AI Bots.
+- Skillset: Django, Python, Websocket 
